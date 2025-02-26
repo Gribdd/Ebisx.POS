@@ -27,6 +27,7 @@ namespace Ebisx.POS.Presentation
         private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddTransient<MainPageViewModel>();
+            mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
             return mauiAppBuilder;
         }
 

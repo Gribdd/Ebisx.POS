@@ -5,8 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Ebisx.POS.Presentation"
     xmlns:views="clr-namespace:Ebisx.POS.Presentation.Views"
+    Title="Ebisx.POS.Presentation"
     Shell.FlyoutBehavior="Flyout"
-    Title="Ebisx.POS.Presentation">
+    Shell.NavBarIsVisible="False">
 
     <ShellContent
         Title="Home"
@@ -14,7 +15,7 @@
         Route="mainpage" />
 
     <TabBar>
-        <Tab Title="Home" Route="home" Icon="home.png">
+        <Tab Route="home">
             <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
         </Tab>
     </TabBar>

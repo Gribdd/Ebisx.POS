@@ -13,4 +13,11 @@ public partial class User : BaseModel
 
     [ObservableProperty]
     private DateTime _birthDate;
+
+    public User()
+    {
+        _username = string.Empty;
+        _password = string.Empty;
+        _email = string.Empty;
+    }
 }

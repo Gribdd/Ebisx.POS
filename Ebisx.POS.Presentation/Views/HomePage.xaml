@@ -1,12 +1,283 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Ebisx.POS.Presentation.Views.HomePage"
-             Title="">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="Ebisx.POS.Presentation.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:Ebisx.POS.Presentation.Models"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:vm="clr-namespace:Ebisx.POS.Presentation.ViewModels"
+    x:DataType="vm:HomePageViewModel">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="BoxView">
+                <Setter Property="Color" Value="White" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Margin="0" RowDefinitions="auto,auto,*,auto">
+        <Label
+            FontAttributes="Bold"
+            FontSize="20"
+            HorizontalTextAlignment="Center"
+            Text="Hello" />
+        <Grid
+            Grid.Row="1"
+            ColumnDefinitions="*,Auto,*,Auto,*"
+            RowDefinitions="Auto,*,Auto">
+
+            <!--  Top Divider  -->
+            <BoxView
+                Grid.Row="0"
+                Grid.ColumnSpan="5"
+                HeightRequest="2" />
+
+            <!--  First Column Content  -->
+            <Grid
+                Grid.Row="1"
+                Grid.Column="0" ColumnDefinitions="*,*">
+                <Grid>
+                    
+                </Grid>
+                
+            </Grid>
+
+            <!--  First Vertical Divider  -->
+            <BoxView
+                Grid.Row="1"
+                Grid.Column="1"
+                VerticalOptions="Fill"
+                WidthRequest="2" />
+
+            <!-- Second Column Content -->
+            <Grid Grid.Row="1" Grid.Column="2" ColumnDefinitions="*,*" RowSpacing="5" RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto" Padding="5">
+                <!-- Left Column Labels -->
+                <Label Grid.Row="0" Grid.Column="0" Text="NO. OF ITEMS:" FontAttributes="Bold" />
+                <Label Grid.Row="1" Grid.Column="0" Text="QTY:" FontAttributes="Bold" />
+                <Label Grid.Row="2" Grid.Column="0" Text="DISCOUNT:" FontAttributes="Bold" />
+                <Label Grid.Row="3" Grid.Column="0" Text="LOYALTY POINTS:" FontAttributes="Bold" />
+                <Label Grid.Row="4" Grid.Column="0" Text="GRAND TOTAL:" FontAttributes="Bold" />
+                <Label Grid.Row="5" Grid.Column="0" Text="AMOUNT PAID:" FontAttributes="Bold" />
+                <Label Grid.Row="6" Grid.Column="0" Text="CHANGE:" FontAttributes="Bold" />
+
+                <!-- Right Column (All Zeroes) -->
+                <Label Grid.Row="0" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
+                <Label Grid.Row="1" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
+                <Label Grid.Row="2" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
+                <Label Grid.Row="3" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
+                <Label Grid.Row="4" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
+                <Label Grid.Row="5" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
+                <Label Grid.Row="6" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
+
+                <Grid Grid.Row="7" Grid.ColumnSpan="2" ColumnDefinitions="*,*" ColumnSpacing="20">
+                    <Button Grid.Column="0" Text="TENDER FLOAT"/>
+                    <Button Grid.Column="1" Text="REPRINT RECEIPT"/>
+                </Grid>
+            </Grid>
+
+
+            <!--  Second Vertical Divider  -->
+            <BoxView
+                Grid.Row="1"
+                Grid.Column="3"
+                VerticalOptions="Fill"
+                WidthRequest="2" />
+
+            <!--  Third Column Content  -->
+            <Grid Grid.Row="1" Grid.Column="4" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*" Padding="40,10" ColumnSpacing="15" RowSpacing="15">
+                <!-- Row 1 -->
+                <Button Grid.Row="0" Grid.Column="0" Text="9" />
+                <Button Grid.Row="0" Grid.Column="1" Text="8" />
+                <Button Grid.Row="0" Grid.Column="2" Text="7" />
+
+                <!-- Row 2 -->
+                <Button Grid.Row="1" Grid.Column="0" Text="6" />
+                <Button Grid.Row="1" Grid.Column="1" Text="5" />
+                <Button Grid.Row="1" Grid.Column="2" Text="4" />
+
+                <!-- Row 3 -->
+                <Button Grid.Row="2" Grid.Column="0" Text="3" />
+                <Button Grid.Row="2" Grid.Column="1" Text="2" />
+                <Button Grid.Row="2" Grid.Column="2" Text="1" />
+
+                <!-- Row 4 -->
+                <Button Grid.Row="3" Grid.Column="0" Text="." />
+                <Button Grid.Row="3" Grid.Column="1" Text="0" />
+                <Button Grid.Row="3" Grid.Column="2" Text="X" />
+            </Grid>
+
+
+            <!--  Bottom Divider  -->
+            <BoxView
+                Grid.Row="2"
+                Grid.ColumnSpan="5"
+                HeightRequest="2" />
+
+        </Grid>
+        <Grid Grid.Row="2" RowDefinitions="auto,*">
+            <!--  Sticky Header  -->
+            <Grid
+                Padding="3"
+                BackgroundColor="Gray"
+                ColumnDefinitions="*,*,*,*,*,*,*,*"
+                HeightRequest="30">
+                <Label
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="Product ID" />
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="Product Name" />
+                <Label
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="Barcode" />
+                <Label
+                    Grid.Column="3"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="Quantity" />
+                <Label
+                    Grid.Column="4"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="Price" />
+                <Label
+                    Grid.Column="5"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="Discount" />
+                <Label
+                    Grid.Column="6"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="VAT" />
+                <Label
+                    Grid.Column="7"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="Total Amount" />
+            </Grid>
+
+            <!--  Scrollable CollectionView  -->
+            <CollectionView Grid.Row="1" ItemsSource="{Binding Products}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Product">
+                        <Grid Padding="5" ColumnDefinitions="*,*,*,*,*,*,*,*">
+                            <Label
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Id}" />
+                            <Label
+                                Grid.Column="1"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding ProductName}" />
+                            <Label
+                                Grid.Column="2"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Barcode}" />
+                            <Label
+                                Grid.Column="3"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Quantity}" />
+                            <Label
+                                Grid.Column="4"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Price, StringFormat='₱{0:N2}'}" />
+                            <Label
+                                Grid.Column="5"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Discount, StringFormat='₱{0:N2}'}" />
+                            <Label
+                                Grid.Column="6"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Vat, StringFormat='₱{0:N2}'}" />
+                            <Label
+                                Grid.Column="7"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding TotalAmount, StringFormat='₱{0:N2}'}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        <Grid
+            Grid.Row="3"
+            Padding="5"
+            ColumnDefinitions="*,*,*,*,*,*,*"
+            ColumnSpacing="5"
+            RowDefinitions="Auto,Auto"
+            RowSpacing="5">
+
+            <!--  First Row Buttons  -->
+            <Button
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="NEW TRANSACTION" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="VOID INVOICE" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="2"
+                Text="ITEM DISCOUNT" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="3"
+                Text="SCAN ITEMS" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="4"
+                Text="CLOSE TALLY" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="5"
+                Text="CHANGE RATE" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="6"
+                Text="TOGGLE KEYBOARD" />
+
+            <!--  Second Row Buttons  -->
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="HOLD TRANSACTION" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="LOAD TRANSACTION" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="2"
+                Text="FIND ITEM" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="3"
+                Text="CHANGE QTY" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="4"
+                Text="BILL DISCOUNT" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="5"
+                Text="DELETE ROW" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="6"
+                Text="CALL MANAGER" />
+
+        </Grid>
+    </Grid>
 </ContentPage>
