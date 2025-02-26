@@ -2,23 +2,18 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
-        public MainPage()
+        MainPageViewModel vm;
+        public MainPage(MainPageViewModel _vm)
         {
             InitializeComponent();
+            BindingContext = _vm;
+            vm = _vm;
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            base.OnAppearing();
+            vm.LoadMockEmails();
         }
     }
 

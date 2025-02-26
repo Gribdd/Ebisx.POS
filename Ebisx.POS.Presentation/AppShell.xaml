@@ -4,12 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Ebisx.POS.Presentation"
+    xmlns:views="clr-namespace:Ebisx.POS.Presentation.Views"
     Shell.FlyoutBehavior="Flyout"
     Title="Ebisx.POS.Presentation">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="mainpage" />
 
+    <TabBar>
+        <Tab Title="Home" Route="home" Icon="home.png">
+            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
+        </Tab>
+    </TabBar>
 </Shell>
