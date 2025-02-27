@@ -4,6 +4,7 @@
     {
         public AppShell()
         {
+            Application.Current.UserAppTheme = AppTheme.Dark;
             InitializeComponent();
             RegisterRoutes();
         }

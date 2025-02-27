@@ -103,12 +103,12 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
-                    Text="0" />
+                    Text="{Binding TotalNumOfItems}" />
                 <Label
                     Grid.Row="1"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
-                    Text="0" />
+                    Text="{Binding TotalQuantity}" />
                 <Label
                     Grid.Row="2"
                     Grid.Column="1"
@@ -123,7 +123,7 @@
                     Grid.Row="4"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
-                    Text="0" />
+                    Text="{Binding GrandTotal}" />
                 <Label
                     Grid.Row="5"
                     Grid.Column="1"
@@ -277,14 +277,17 @@
             </Grid>
 
             <!--  Scrollable CollectionView  -->
-            <CollectionView Grid.Row="1" ItemsSource="{Binding Products}">
+            <CollectionView
+                Grid.Row="1"
+                ItemsSource="{Binding OrderItems}"
+                SelectionMode="Single">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Product">
+                    <DataTemplate x:DataType="model:OrderItem">
                         <Grid Padding="5" ColumnDefinitions="*,*,*,*,*,*,*,*">
                             <Label
                                 Grid.Column="0"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding Id}" />
+                                Text="{Binding ProductId}" />
                             <Label
                                 Grid.Column="1"
                                 HorizontalTextAlignment="Center"
@@ -296,11 +299,11 @@
                             <Label
                                 Grid.Column="3"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding Quantity}" />
+                                Text="{Binding QuantityAtPurchase}" />
                             <Label
                                 Grid.Column="4"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding Price, StringFormat='₱{0:N2}'}" />
+                                Text="{Binding PriceAtPurchase, StringFormat='₱{0:N2}'}" />
                             <Label
                                 Grid.Column="5"
                                 HorizontalTextAlignment="Center"
@@ -308,7 +311,7 @@
                             <Label
                                 Grid.Column="6"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding Vat, StringFormat='₱{0:N2}'}" />
+                                Text="{Binding VatAtPurchase, StringFormat='₱{0:N2}'}" />
                             <Label
                                 Grid.Column="7"
                                 HorizontalTextAlignment="Center"
@@ -330,6 +333,7 @@
             <Button
                 Grid.Row="0"
                 Grid.Column="0"
+                Command="{Binding NewTransactionCommand}"
                 Text="NEW TRANSACTION" />
             <Button
                 Grid.Row="0"

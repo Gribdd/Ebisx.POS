@@ -3,16 +3,17 @@
     x:Class="Ebisx.POS.Presentation.Views.ItemInventoryPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="ItemInventoryPage">
+    xmlns:model="clr-namespace:Ebisx.POS.Presentation.Models"
+    xmlns:vm="clr-namespace:Ebisx.POS.Presentation.ViewModels"
+    Title="ItemInventoryPage"
+    x:DataType="vm:ItemInventoryPageViewModel">
 
-    <Grid
-        Padding="10"
-        RowDefinitions="Auto, Auto, *">
+    <Grid Padding="10" RowDefinitions="Auto, Auto, *">
         <!--  First Row: Title & Search Bar  -->
         <Grid
+            Grid.Row="0"
             Margin="0,10,0,10"
-            ColumnDefinitions="*, Auto"
-            Grid.Row="0">
+            ColumnDefinitions="*, Auto">
             <Label
                 Grid.Column="0"
                 FontAttributes="Bold"
@@ -31,7 +32,7 @@
         <Grid
             Grid.Row="1"
             Padding="5"
-            BackgroundColor="LightGray"
+            BackgroundColor="gray"
             ColumnDefinitions="*, *, *, *, *, *, *">
 
             <Label
@@ -65,14 +66,24 @@
         </Grid>
 
         <!--  Third Row: CollectionView for Items  -->
-        <CollectionView Grid.Row="2" ItemsSource="{Binding Products}">
+        <CollectionView
+            x:Name="products"
+            Grid.Row="2"
+            ItemsSource="{Binding Products}"
+            SelectionMode="Single">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="model:Product">
                     <Grid
-                        Padding="5"
-                        ColumnDefinitions="*, *, *, *, *, *, *"
-                        RowSpacing="5">
-
+                        Padding="0,10"
+                        ColumnDefinitions="*, *, *, *, *, *, *, auto"
+                        RowDefinitions="*,auto">
+                        <Grid.GestureRecognizers>
+                            <!--  Go to parent datatype or the binding context in code behind and find this command  -->
+                            <TapGestureRecognizer
+                                Command="{Binding NavigateBackCommand, Source={RelativeSource AncestorType={x:Type vm:ItemInventoryPageViewModel}}}"
+                                CommandParameter="{Binding .}"
+                                NumberOfTapsRequired="2" />
+                        </Grid.GestureRecognizers>
                         <Label Grid.Column="0" Text="{Binding Id}" />
                         <Label Grid.Column="1" Text="{Binding ProductName}" />
                         <Label Grid.Column="2" Text="{Binding Barcode}" />
@@ -80,6 +91,15 @@
                         <Label Grid.Column="4" Text="{Binding Price, StringFormat='₱{0:N2}'}" />
                         <Label Grid.Column="5" Text="{Binding Vat, StringFormat='{0}%'}" />
                         <Label Grid.Column="6" Text="{Binding SalesUnit}" />
+
+                        <BoxView
+                            Grid.Row="1"
+                            Grid.ColumnSpan="8"
+                            HeightRequest="1"
+                            MaximumHeightRequest="1"
+                            MinimumHeightRequest="1"
+                            VerticalOptions="Start"
+                            Color="gray" />
 
                     </Grid>
                 </DataTemplate>

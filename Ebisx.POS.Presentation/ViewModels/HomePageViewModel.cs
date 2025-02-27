@@ -4,16 +4,23 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Ebisx.POS.Presentation.ViewModels;
 
+[QueryProperty(nameof(OrderItem), nameof(OrderItem))]
 public partial class HomePageViewModel : BaseViewModel
 {
     [ObservableProperty]
-    private ObservableCollection<Product> _products;
+    public partial ObservableCollection<OrderItem> OrderItems { get; set; } = new();
+    
+    [ObservableProperty]
+    public partial OrderItem OrderItem { get; set; } = new();
 
+    [ObservableProperty]
+    public partial int TotalQuantity { get; set; }
+    
+    [ObservableProperty]
+    public partial int TotalNumOfItems { get; set; }
 
-    public HomePageViewModel()
-    {
-        Products = new();
-    }
+    [ObservableProperty]
+    public partial decimal GrandTotal { get; set; }
 
     public void GenerateMockProducts(int count = 10)
     {
@@ -30,9 +37,45 @@ public partial class HomePageViewModel : BaseViewModel
         //Products = new ObservableCollection<Product>(fakeProducts);
     }
 
+    private void CalculateTotalQuantity()
+    {
+        TotalQuantity = OrderItems.Sum(o => o.QuantityAtPurchase);
+    }
+
+    private void CalculateTotalNumOfItems()
+    {
+        TotalNumOfItems = OrderItems.Count;
+    }
+
+    private void CalculateGrandTotal()
+    {
+        GrandTotal = OrderItems.Sum(o => o.TotalAmount);
+    }
+
+
+    public void UpdateOrderItems()
+    {
+        if (OrderItem != null && !string.IsNullOrEmpty(OrderItem.ProductName))
+        {
+            OrderItems.Add(OrderItem);
+            CalculateTotalQuantity();
+            CalculateTotalNumOfItems();
+            CalculateGrandTotal();
+        }
+    }
+
+
     [RelayCommand]
     private async Task NavigateToItemSearch()
     {
         await Shell.Current.GoToAsync("//home/iteminventory");
+    }
+
+    [RelayCommand]
+    private void NewTransaction()
+    {
+        OrderItems.Clear();
+        CalculateTotalQuantity();
+        CalculateTotalNumOfItems();
     }
 }

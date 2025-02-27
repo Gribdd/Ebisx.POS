@@ -13,6 +13,6 @@ public partial class HomePage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        _vm.GenerateMockProducts(100);
+        _vm.UpdateOrderItems();
     }
 }

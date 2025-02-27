@@ -4,14 +4,17 @@ namespace Ebisx.POS.Presentation.ViewModels;
 
 public partial class MainPageViewModel : BaseViewModel
 {
-    [ObservableProperty]
-    private ObservableCollection<string> _mockEmails;
-
+    //[ObservableProperty]
+    //private ObservableCollection<string> _mockEmails;
+    //[ObservableProperty]
+    //private User _user = new();
     private ObservableCollection<User> _mockUsers;
 
     [ObservableProperty]
-    private User _user = new();
+    public partial ObservableCollection<string> MockEmails { get; set; }
 
+    [ObservableProperty]
+    public partial User User { get; set; } = new();
 
     public MainPageViewModel()
     {
