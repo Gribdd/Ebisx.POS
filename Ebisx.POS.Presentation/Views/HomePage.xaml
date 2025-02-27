@@ -40,11 +40,10 @@
             <!--  First Column Content  -->
             <Grid
                 Grid.Row="1"
-                Grid.Column="0" ColumnDefinitions="*,*">
-                <Grid>
-                    
-                </Grid>
-                
+                Grid.Column="0"
+                ColumnDefinitions="*,*">
+                <Grid />
+
             </Grid>
 
             <!--  First Vertical Divider  -->
@@ -54,29 +53,95 @@
                 VerticalOptions="Fill"
                 WidthRequest="2" />
 
-            <!-- Second Column Content -->
-            <Grid Grid.Row="1" Grid.Column="2" ColumnDefinitions="*,*" RowSpacing="5" RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto" Padding="5">
-                <!-- Left Column Labels -->
-                <Label Grid.Row="0" Grid.Column="0" Text="NO. OF ITEMS:" FontAttributes="Bold" />
-                <Label Grid.Row="1" Grid.Column="0" Text="QTY:" FontAttributes="Bold" />
-                <Label Grid.Row="2" Grid.Column="0" Text="DISCOUNT:" FontAttributes="Bold" />
-                <Label Grid.Row="3" Grid.Column="0" Text="LOYALTY POINTS:" FontAttributes="Bold" />
-                <Label Grid.Row="4" Grid.Column="0" Text="GRAND TOTAL:" FontAttributes="Bold" />
-                <Label Grid.Row="5" Grid.Column="0" Text="AMOUNT PAID:" FontAttributes="Bold" />
-                <Label Grid.Row="6" Grid.Column="0" Text="CHANGE:" FontAttributes="Bold" />
+            <!--  Second Column Content  -->
+            <Grid
+                Grid.Row="1"
+                Grid.Column="2"
+                Padding="5"
+                ColumnDefinitions="*,*"
+                RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto"
+                RowSpacing="5">
+                <!--  Left Column Labels  -->
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="NO. OF ITEMS:" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="QTY:" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="DISCOUNT:" />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="LOYALTY POINTS:" />
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="GRAND TOTAL:" />
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="AMOUNT PAID:" />
+                <Label
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="CHANGE:" />
 
-                <!-- Right Column (All Zeroes) -->
-                <Label Grid.Row="0" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
-                <Label Grid.Row="1" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
-                <Label Grid.Row="2" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
-                <Label Grid.Row="3" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
-                <Label Grid.Row="4" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
-                <Label Grid.Row="5" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
-                <Label Grid.Row="6" Grid.Column="1" Text="0" HorizontalTextAlignment="End" />
+                <!--  Right Column (All Zeroes)  -->
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                    Text="0" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                    Text="0" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                    Text="0" />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                    Text="0" />
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                    Text="0" />
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                    Text="0" />
+                <Label
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                    Text="0" />
 
-                <Grid Grid.Row="7" Grid.ColumnSpan="2" ColumnDefinitions="*,*" ColumnSpacing="20">
-                    <Button Grid.Column="0" Text="TENDER FLOAT"/>
-                    <Button Grid.Column="1" Text="REPRINT RECEIPT"/>
+                <Grid
+                    Grid.Row="7"
+                    Grid.ColumnSpan="2"
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="20">
+                    <Button Grid.Column="0" Text="TENDER FLOAT" />
+                    <Button Grid.Column="1" Text="REPRINT RECEIPT" />
                 </Grid>
             </Grid>
 
@@ -89,26 +154,69 @@
                 WidthRequest="2" />
 
             <!--  Third Column Content  -->
-            <Grid Grid.Row="1" Grid.Column="4" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*" Padding="40,10" ColumnSpacing="15" RowSpacing="15">
-                <!-- Row 1 -->
-                <Button Grid.Row="0" Grid.Column="0" Text="9" />
-                <Button Grid.Row="0" Grid.Column="1" Text="8" />
-                <Button Grid.Row="0" Grid.Column="2" Text="7" />
+            <Grid
+                Grid.Row="1"
+                Grid.Column="4"
+                Padding="40,10"
+                ColumnDefinitions="*,*,*"
+                ColumnSpacing="15"
+                RowDefinitions="*,*,*,*"
+                RowSpacing="15">
+                <!--  Row 1  -->
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="9" />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="8" />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Text="7" />
 
-                <!-- Row 2 -->
-                <Button Grid.Row="1" Grid.Column="0" Text="6" />
-                <Button Grid.Row="1" Grid.Column="1" Text="5" />
-                <Button Grid.Row="1" Grid.Column="2" Text="4" />
+                <!--  Row 2  -->
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="6" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="5" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Text="4" />
 
-                <!-- Row 3 -->
-                <Button Grid.Row="2" Grid.Column="0" Text="3" />
-                <Button Grid.Row="2" Grid.Column="1" Text="2" />
-                <Button Grid.Row="2" Grid.Column="2" Text="1" />
+                <!--  Row 3  -->
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="3" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="2" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Text="1" />
 
-                <!-- Row 4 -->
-                <Button Grid.Row="3" Grid.Column="0" Text="." />
-                <Button Grid.Row="3" Grid.Column="1" Text="0" />
-                <Button Grid.Row="3" Grid.Column="2" Text="X" />
+                <!--  Row 4  -->
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Text="." />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text="0" />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Text="X" />
             </Grid>
 
 
@@ -260,6 +368,7 @@
             <Button
                 Grid.Row="1"
                 Grid.Column="2"
+                Command="{Binding NavigateToItemSearchCommand}"
                 Text="FIND ITEM" />
             <Button
                 Grid.Row="1"

@@ -6,17 +6,17 @@
     xmlns:local="clr-namespace:Ebisx.POS.Presentation"
     xmlns:views="clr-namespace:Ebisx.POS.Presentation.Views"
     Title="Ebisx.POS.Presentation"
-    Shell.FlyoutBehavior="Flyout"
-    Shell.NavBarIsVisible="False">
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="mainpage" />
 
-    <TabBar>
-        <Tab Route="home">
-            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
-        </Tab>
-    </TabBar>
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate views:HomePage}"
+        Route="home" />
 </Shell>

@@ -15,10 +15,8 @@ public partial class Product : BaseModel
     private decimal _price;
 
     [ObservableProperty]
-    private decimal _discount;
-
-    [ObservableProperty]
     private decimal _vat;
-
-    public decimal TotalAmount => (Price - Discount) + Vat; 
+    
+    [ObservableProperty]
+    private string? _salesUnit;
 }

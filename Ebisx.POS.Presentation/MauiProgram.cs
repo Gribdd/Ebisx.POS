@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using Ebisx.POS.ApiService.Services;
+
 namespace Ebisx.POS.Presentation
 {
     public static class MauiProgram
@@ -10,6 +10,7 @@ namespace Ebisx.POS.Presentation
             builder
                 .UseMauiApp<App>()  
                 .RegisterViewModels()
+                .RegisterServices()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -24,10 +25,17 @@ namespace Ebisx.POS.Presentation
             return builder.Build();
         }
 
+        private static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
+        {
+            mauiAppBuilder.Services.AddSingleton<MockDataService>();
+            return mauiAppBuilder;
+        }
+
         private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddTransient<MainPageViewModel>();
             mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
+            mauiAppBuilder.Services.AddTransient<ItemInventoryPageViewModel>();
             return mauiAppBuilder;
         }
 

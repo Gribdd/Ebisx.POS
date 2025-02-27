@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Ebisx.POS.Presentation.Views.ItemInventoryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="ItemInventoryPage">
+
+    <Grid
+        Padding="10"
+        RowDefinitions="Auto, Auto, *">
+        <!--  First Row: Title & Search Bar  -->
+        <Grid
+            Margin="0,10,0,10"
+            ColumnDefinitions="*, Auto"
+            Grid.Row="0">
+            <Label
+                Grid.Column="0"
+                FontAttributes="Bold"
+                FontSize="Title"
+                HorizontalOptions="Center"
+                Text="Item Inventory"
+                VerticalOptions="Center" />
+
+            <SearchBar
+                Grid.Column="1"
+                Placeholder="Search item..."
+                WidthRequest="200" />
+        </Grid>
+
+        <!--  Second Row: Sticky Headers  -->
+        <Grid
+            Grid.Row="1"
+            Padding="5"
+            BackgroundColor="LightGray"
+            ColumnDefinitions="*, *, *, *, *, *, *">
+
+            <Label
+                Grid.Column="0"
+                FontAttributes="Bold"
+                Text="Product ID" />
+            <Label
+                Grid.Column="1"
+                FontAttributes="Bold"
+                Text="Product Name" />
+            <Label
+                Grid.Column="2"
+                FontAttributes="Bold"
+                Text="Barcode" />
+            <Label
+                Grid.Column="3"
+                FontAttributes="Bold"
+                Text="Quantity" />
+            <Label
+                Grid.Column="4"
+                FontAttributes="Bold"
+                Text="Price" />
+            <Label
+                Grid.Column="5"
+                FontAttributes="Bold"
+                Text="VAT%" />
+            <Label
+                Grid.Column="6"
+                FontAttributes="Bold"
+                Text="Sales Unit" />
+        </Grid>
+
+        <!--  Third Row: CollectionView for Items  -->
+        <CollectionView Grid.Row="2" ItemsSource="{Binding Products}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        Padding="5"
+                        ColumnDefinitions="*, *, *, *, *, *, *"
+                        RowSpacing="5">
+
+                        <Label Grid.Column="0" Text="{Binding Id}" />
+                        <Label Grid.Column="1" Text="{Binding ProductName}" />
+                        <Label Grid.Column="2" Text="{Binding Barcode}" />
+                        <Label Grid.Column="3" Text="{Binding Quantity}" />
+                        <Label Grid.Column="4" Text="{Binding Price, StringFormat='₱{0:N2}'}" />
+                        <Label Grid.Column="5" Text="{Binding Vat, StringFormat='{0}%'}" />
+                        <Label Grid.Column="6" Text="{Binding SalesUnit}" />
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>
