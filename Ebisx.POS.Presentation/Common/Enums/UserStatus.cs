@@ -1,4 +1,4 @@
-﻿namespace Ebisx.POS.Presentation.Common;
+﻿namespace Ebisx.POS.Presentation.Common.Enums;
 
 public enum UserStatus
 {

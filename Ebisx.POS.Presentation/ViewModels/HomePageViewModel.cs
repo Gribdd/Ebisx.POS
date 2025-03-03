@@ -1,6 +1,6 @@
 ﻿
-using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
+using Ebisx.POS.Presentation.Common.Enums;
 
 namespace Ebisx.POS.Presentation.ViewModels;
 
@@ -12,6 +12,12 @@ public partial class HomePageViewModel : BaseViewModel
     
     [ObservableProperty]
     public partial OrderItem OrderItem { get; set; } = new();
+    
+    [ObservableProperty]
+    public partial KeypadMode CurrentMode { get; set; } = KeypadMode.None;
+    
+    [ObservableProperty]
+    public partial bool IsInputActive { get; set; } = false;
 
     [ObservableProperty]
     public partial int TotalQuantity { get; set; }
@@ -90,7 +96,6 @@ public partial class HomePageViewModel : BaseViewModel
         }
     }
 
-
     [RelayCommand]
     private async Task NavigateToItemSearch()
     {
@@ -107,7 +112,7 @@ public partial class HomePageViewModel : BaseViewModel
             CalculateTotals();
         }
     }
-
+        
     [RelayCommand]
     private void NewTransaction()
     {
@@ -134,5 +139,44 @@ public partial class HomePageViewModel : BaseViewModel
             Shell.Current.DisplayAlert("Error", "Please select an item first.", "OK");
             return;
         }
+
+        
+        if (CurrentMode == KeypadMode.ChangeQuantity)
+        {
+            // Exiting mode
+            CurrentMode = KeypadMode.None;
+            IsInputActive = false;
+        }
+        else
+        {
+            // Entering mode
+            CurrentMode = KeypadMode.ChangeQuantity;
+            IsInputActive = true;
+        }
+    }
+
+    [RelayCommand]
+    private void ApplyItemDiscount()
+    {
+
+    }
+
+    [RelayCommand]
+    private void NumberInput(string input)
+    {
+        // base case
+        if (!IsInputActive) return;
+
+        if (decimal.TryParse(input, out decimal value))
+        {
+            switch (CurrentMode)
+            {
+                case KeypadMode.ChangeQuantity:
+                    if (SelectedOrderItem != null)
+                        SelectedOrderItem.QuantityAtPurchase = (int)value;
+                    break;
+            }
+        }
+            
     }
 }
