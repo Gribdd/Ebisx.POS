@@ -18,7 +18,10 @@ public partial class HomePageViewModel : BaseViewModel
     
     [ObservableProperty]
     public partial int TotalNumOfItems { get; set; }
-
+    
+    [ObservableProperty]
+    public partial string? SelectedNumber { get; set; }
+        
     [ObservableProperty]
     public partial decimal GrandTotal { get; set; }
 
@@ -110,5 +113,26 @@ public partial class HomePageViewModel : BaseViewModel
     {
         OrderItems.Clear();
         CalculateTotals();
+    }
+
+    [RelayCommand]
+    private void HoldTransaction()
+    { 
+
+        //save transaction
+        Shell.Current.DisplayAlert("Success", "Transaction held and saved successfully.", "OK");
+        
+        //start new transaction
+        NewTransaction();
+    }
+
+    [RelayCommand]
+    private void ChangeOrderItemQuantity()
+    {
+        if (SelectedOrderItem == null)
+        {
+            Shell.Current.DisplayAlert("Error", "Please select an item first.", "OK");
+            return;
+        }
     }
 }

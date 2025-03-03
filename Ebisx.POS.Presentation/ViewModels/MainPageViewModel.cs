@@ -8,20 +8,14 @@ public partial class MainPageViewModel : BaseViewModel
     //private ObservableCollection<string> _mockEmails;
     //[ObservableProperty]
     //private User _user = new();
-    private ObservableCollection<User> _mockUsers;
+    private ObservableCollection<User> _mockUsers = new();
 
     [ObservableProperty]
-    public partial ObservableCollection<string> MockEmails { get; set; }
+    public partial ObservableCollection<string> MockEmails { get; set; } = new();
 
     [ObservableProperty]
     public partial User User { get; set; } = new();
-
-    public MainPageViewModel()
-    {
-        MockEmails = new();
-        _mockUsers = new();
-    }
-
+        
 
     [RelayCommand]
     private async Task Authenticate()
