@@ -76,7 +76,7 @@
                     Grid.Row="2"
                     Grid.Column="0"
                     FontAttributes="Bold"
-                    Text="DISCOUNT:" />
+                    Text="DISCOUNT :" />
                 <Label
                     Grid.Row="3"
                     Grid.Column="0"
@@ -113,7 +113,7 @@
                     Grid.Row="2"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
-                    Text="0" />
+                    Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
                 <Label
                     Grid.Row="3"
                     Grid.Column="1"
@@ -250,7 +250,7 @@
             <Grid
                 Padding="3"
                 BackgroundColor="Gray"
-                ColumnDefinitions="*,*,*,*,*,*,*,*"
+                ColumnDefinitions="*,*,*,*,*,*,*,*,*"
                 HeightRequest="30">
                 <Label
                     Grid.Column="0"
@@ -281,14 +281,19 @@
                     Grid.Column="5"
                     FontAttributes="Bold"
                     HorizontalTextAlignment="Center"
-                    Text="Discount" />
+                    Text="Discount %" />
                 <Label
                     Grid.Column="6"
                     FontAttributes="Bold"
                     HorizontalTextAlignment="Center"
-                    Text="VAT" />
+                    Text="Discount PHP" />
                 <Label
                     Grid.Column="7"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="VAT" />
+                <Label
+                    Grid.Column="8"
                     FontAttributes="Bold"
                     HorizontalTextAlignment="Center"
                     Text="Total Amount" />
@@ -302,7 +307,7 @@
                 SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:OrderItem">
-                        <Grid Padding="5" ColumnDefinitions="*,*,*,*,*,*,*,*">
+                        <Grid Padding="5" ColumnDefinitions="*,*,*,*,*,*,*,*,*">
                             <Label
                                 Grid.Column="0"
                                 HorizontalTextAlignment="Center"
@@ -326,13 +331,17 @@
                             <Label
                                 Grid.Column="5"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding Discount, StringFormat='₱{0:N2}'}" />
+                                Text="{Binding DiscountPercentage, StringFormat='{0:N2}%'}" />
                             <Label
                                 Grid.Column="6"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding VatAtPurchase, StringFormat='₱{0:N2}'}" />
+                                Text="{Binding DiscountAmount, StringFormat='₱{0:N2}'}" />
                             <Label
                                 Grid.Column="7"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding VatAtPurchase, StringFormat='{0:N2}%'}" />
+                            <Label
+                                Grid.Column="8"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding TotalAmount, StringFormat='₱{0:N2}'}" />
                         </Grid>
@@ -361,6 +370,8 @@
             <Button
                 Grid.Row="0"
                 Grid.Column="2"
+                BackgroundColor="{Binding CurrentMode, Converter={converter:KeypadModeToColorConverter}, ConverterParameter=ItemDiscount}"
+                Command="{Binding ApplyItemDiscountCommand}"
                 Text="ITEM DISCOUNT" />
             <Button
                 Grid.Row="0"

@@ -26,6 +26,9 @@ public partial class HomePageViewModel : BaseViewModel
     public partial int TotalNumOfItems { get; set; }
     
     [ObservableProperty]
+    public partial decimal TotalDiscount { get; set; }
+    
+    [ObservableProperty]
     public partial string? SelectedNumber { get; set; }
         
     [ObservableProperty]
@@ -80,11 +83,17 @@ public partial class HomePageViewModel : BaseViewModel
         GrandTotal = OrderItems.Sum(o => o.TotalAmount);
     }
 
+    private void CalculateTotalDiscount()
+    {
+        TotalDiscount = OrderItems.Sum(o => o.DiscountAmount);
+    }
+
     private void CalculateTotals()
     {
         CalculateTotalQuantity();
         CalculateTotalNumOfItems();
         CalculateGrandTotal();
+        CalculateTotalDiscount();
     }
 
     public void UpdateOrderItems()
@@ -146,6 +155,8 @@ public partial class HomePageViewModel : BaseViewModel
             // Exiting mode
             CurrentMode = KeypadMode.None;
             IsInputActive = false;
+            CalculateTotals();
+            
         }
         else
         {
@@ -157,6 +168,32 @@ public partial class HomePageViewModel : BaseViewModel
 
     [RelayCommand]
     private void ApplyItemDiscount()
+    {
+        if (SelectedOrderItem == null)
+        {
+            Shell.Current.DisplayAlert("Error", "Please select an item first.", "OK");
+            return;
+        }
+
+
+        if (CurrentMode == KeypadMode.ItemDiscount)
+        {
+            // Exiting mode
+            CurrentMode = KeypadMode.None;
+            IsInputActive = false;
+            CalculateTotals();
+        }
+        else
+        {
+            // Entering mode
+            CurrentMode = KeypadMode.ItemDiscount;
+            IsInputActive = true;
+        }
+    }
+
+
+    [RelayCommand]
+    private void ApplyBillDiscount()
     {
 
     }
@@ -174,6 +211,11 @@ public partial class HomePageViewModel : BaseViewModel
                 case KeypadMode.ChangeQuantity:
                     if (SelectedOrderItem != null)
                         SelectedOrderItem.QuantityAtPurchase = (int)value;
+                    break;
+
+                case KeypadMode.ItemDiscount:
+                    if (SelectedOrderItem != null)
+                        SelectedOrderItem.DiscountPercentage = (decimal)value;
                     break;
             }
         }

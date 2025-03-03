@@ -31,7 +31,7 @@ public partial class ItemInventoryPageViewModel : BaseViewModel
             QuantityAtPurchase = 1,
             PriceAtPurchase = selectedProduct.Price,
             VatAtPurchase = selectedProduct.Vat,            
-            Discount = 0,
+            DiscountPercentage = 0,
             Barcode = selectedProduct.Barcode
         };
 
