@@ -22,6 +22,25 @@ public partial class HomePageViewModel : BaseViewModel
     [ObservableProperty]
     public partial decimal GrandTotal { get; set; }
 
+    private OrderItem? _selectedOrderItem = new();
+
+    public OrderItem? SelectedOrderItem
+    {
+        get { return _selectedOrderItem; }
+        set 
+        {
+            if (Equals(value, _selectedOrderItem))
+            {
+                _selectedOrderItem = null;
+            }
+            else
+            {
+                _selectedOrderItem = value;
+            }
+            OnPropertyChanged(nameof(SelectedOrderItem));
+        }
+    }
+
     public void GenerateMockProducts(int count = 10)
     {
         //var productFaker = new Faker<Product>()
@@ -52,15 +71,19 @@ public partial class HomePageViewModel : BaseViewModel
         GrandTotal = OrderItems.Sum(o => o.TotalAmount);
     }
 
+    private void CalculateTotals()
+    {
+        CalculateTotalQuantity();
+        CalculateTotalNumOfItems();
+        CalculateGrandTotal();
+    }
 
     public void UpdateOrderItems()
     {
         if (OrderItem != null && !string.IsNullOrEmpty(OrderItem.ProductName))
         {
             OrderItems.Add(OrderItem);
-            CalculateTotalQuantity();
-            CalculateTotalNumOfItems();
-            CalculateGrandTotal();
+            CalculateTotals();
         }
     }
 
@@ -72,10 +95,20 @@ public partial class HomePageViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    private void DeleteSelectedOrderItem()
+    {
+        if (SelectedOrderItem != null)
+        {
+            OrderItems.Remove(SelectedOrderItem);
+            SelectedOrderItem = null; // Reset selection after deletion
+            CalculateTotals();
+        }
+    }
+
+    [RelayCommand]
     private void NewTransaction()
     {
         OrderItems.Clear();
-        CalculateTotalQuantity();
-        CalculateTotalNumOfItems();
+        CalculateTotals();
     }
 }
