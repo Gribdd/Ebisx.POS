@@ -21,3 +21,4 @@ public partial class User : BaseModel
         _email = string.Empty;
     }
 }
+    

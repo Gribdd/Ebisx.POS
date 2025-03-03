@@ -41,10 +41,65 @@
             <Grid
                 Grid.Row="1"
                 Grid.Column="0"
-                ColumnDefinitions="*,*">
-                <Grid />
+                Padding="5"
+                ColumnDefinitions="*,*"
+                RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                RowSpacing="5">
+                <!--  Left Column Labels  -->
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="INVOICE NO.:" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="TILL ID:" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="PAYMENT MODE:" />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="USER ID:" />
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="EMPLOYEE TYPE:" />
 
+                <!--  Right Column Default Values  -->
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                    Text="0" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                    Text="0" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                    Text="0" />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                    Text="0" />
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                    Text="0" />
             </Grid>
+
 
             <!--  First Vertical Divider  -->
             <BoxView
@@ -59,7 +114,7 @@
                 Grid.Column="2"
                 Padding="5"
                 ColumnDefinitions="*,*"
-                RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto"
+                RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto"
                 RowSpacing="5">
                 <!--  Left Column Labels  -->
                 <Label
@@ -73,32 +128,32 @@
                     FontAttributes="Bold"
                     Text="QTY:" />
                 <Label
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Grid.Column="0"
                     FontAttributes="Bold"
                     Text="DISCOUNT :" />
                 <Label
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Grid.Column="0"
                     FontAttributes="Bold"
                     Text="LOYALTY POINTS:" />
                 <Label
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Grid.Column="0"
                     FontAttributes="Bold"
                     Text="GRAND TOTAL:" />
                 <Label
-                    Grid.Row="5"
+                    Grid.Row="6"
                     Grid.Column="0"
                     FontAttributes="Bold"
                     Text="AMOUNT PAID:" />
                 <Label
-                    Grid.Row="6"
+                    Grid.Row="7"
                     Grid.Column="0"
                     FontAttributes="Bold"
                     Text="CHANGE:" />
 
-                <!--  Right Column (All Zeroes)  -->
+                <!--  Right Column  -->
                 <Label
                     Grid.Row="0"
                     Grid.Column="1"
@@ -109,34 +164,62 @@
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
                     Text="{Binding TotalQuantity}" />
-                <Label
+
+                <Grid
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    ColumnDefinitions="*,*">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="11"
+                        HorizontalTextAlignment="End"
+                        Text="ITEM DISCOUNT %" />
+                    <Label
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="11"
+                        HorizontalTextAlignment="End"
+                        Text="BILL DISCOUNT %" />
+                </Grid>
+
+                <Grid
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    ColumnDefinitions="*,*">
+                    <Label HorizontalTextAlignment="End" Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
+                    <Label
+                        Grid.Column="1"
+                        HorizontalTextAlignment="End"
+                        Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
+                </Grid>
+                <!--<Label
                     Grid.Row="2"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
-                    Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
-                <Label
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Text="0" />
+                    Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />-->
                 <Label
                     Grid.Row="4"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
-                    Text="{Binding GrandTotal, StringFormat='₱{0:N2}'}" />
+                    Text="0" />
                 <Label
                     Grid.Row="5"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
-                    Text="0" />
+                    Text="{Binding GrandTotal, StringFormat='₱{0:N2}'}" />
                 <Label
                     Grid.Row="6"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
                     Text="0" />
+                <Label
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                    Text="0" />
 
                 <Grid
-                    Grid.Row="7"
+                    Grid.Row="8"
                     Grid.ColumnSpan="2"
                     ColumnDefinitions="*,*"
                     ColumnSpacing="20">
@@ -380,6 +463,7 @@
             <Button
                 Grid.Row="0"
                 Grid.Column="4"
+                Command="{Binding CloseTallyCommand}"
                 Text="CLOSE TALLY" />
             <Button
                 Grid.Row="0"

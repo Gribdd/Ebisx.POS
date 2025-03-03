@@ -134,7 +134,10 @@ public partial class HomePageViewModel : BaseViewModel
     { 
 
         //save transaction
-        Shell.Current.DisplayAlert("Success", "Transaction held and saved successfully.", "OK");
+        Shell.Current.DisplayAlert(
+            "Success", 
+            "Transaction held and saved successfully.", 
+            "OK");
         
         //start new transaction
         NewTransaction();
@@ -145,7 +148,10 @@ public partial class HomePageViewModel : BaseViewModel
     {
         if (SelectedOrderItem == null)
         {
-            Shell.Current.DisplayAlert("Error", "Please select an item first.", "OK");
+            Shell.Current.DisplayAlert
+                ("Error", 
+                "Please select an item first.",
+                "OK");
             return;
         }
 
@@ -171,7 +177,10 @@ public partial class HomePageViewModel : BaseViewModel
     {
         if (SelectedOrderItem == null)
         {
-            Shell.Current.DisplayAlert("Error", "Please select an item first.", "OK");
+            Shell.Current.DisplayAlert
+                ("Error", 
+                "Please select an item first.", 
+                "OK");
             return;
         }
 
@@ -190,7 +199,6 @@ public partial class HomePageViewModel : BaseViewModel
             IsInputActive = true;
         }
     }
-
 
     [RelayCommand]
     private void ApplyBillDiscount()
@@ -220,5 +228,14 @@ public partial class HomePageViewModel : BaseViewModel
             }
         }
             
+    }
+
+    [RelayCommand]
+    private void CloseTally()
+    {
+        Shell.Current.DisplayAlert
+            ("Tally Closed",
+            "CANNOT CLOSE TALLY. CALL A MANAGER.", 
+            "OK");
     }
 }
