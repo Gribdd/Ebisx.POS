@@ -7,6 +7,8 @@ namespace Ebisx.POS.Presentation.ViewModels;
 [QueryProperty(nameof(OrderItem), nameof(OrderItem))]
 public partial class HomePageViewModel : BaseViewModel
 {
+    Services.Interface.IPopupService _popupServce;
+
     [ObservableProperty]
     public partial ObservableCollection<OrderItem> OrderItems { get; set; } = new();
     
@@ -53,19 +55,10 @@ public partial class HomePageViewModel : BaseViewModel
         }
     }
 
-    public void GenerateMockProducts(int count = 10)
-    {
-        //var productFaker = new Faker<Product>()
-        //    .RuleFor(p => p.Id, f => f.Random.Int(1000, 9999))
-        //    .RuleFor(p => p.ProductName, f => f.Commerce.ProductName())
-        //    .RuleFor(p => p.Barcode, f => f.Random.ReplaceNumbers("##########")) // 10-digit barcode
-        //    .RuleFor(p => p.Quantity, f => f.Random.Int(1, 50))
-        //    .RuleFor(p => p.Price, f => f.Random.Decimal(10, 500))
-        //    .RuleFor(p => p.Discount, f => f.Random.Decimal(0, 50))
-        //    .RuleFor(p => p.Vat, f => f.Random.Decimal(1, 20));
 
-        //var fakeProducts = productFaker.Generate(count);
-        //Products = new ObservableCollection<Product>(fakeProducts);
+    public HomePageViewModel(Services.Interface.IPopupService popupService)
+    {
+        _popupServce = popupService;
     }
 
     private void CalculateTotalQuantity()
@@ -162,7 +155,7 @@ public partial class HomePageViewModel : BaseViewModel
             CurrentMode = KeypadMode.None;
             IsInputActive = false;
             CalculateTotals();
-            
+            SelectedNumber = string.Empty;
         }
         else
         {
@@ -191,6 +184,7 @@ public partial class HomePageViewModel : BaseViewModel
             CurrentMode = KeypadMode.None;
             IsInputActive = false;
             CalculateTotals();
+            SelectedNumber = string.Empty;
         }
         else
         {
@@ -212,7 +206,9 @@ public partial class HomePageViewModel : BaseViewModel
         // base case
         if (!IsInputActive) return;
 
-        if (decimal.TryParse(input, out decimal value))
+        SelectedNumber += input;
+
+        if (decimal.TryParse(SelectedNumber, out decimal value))
         {
             switch (CurrentMode)
             {
@@ -237,5 +233,12 @@ public partial class HomePageViewModel : BaseViewModel
             ("Tally Closed",
             "CANNOT CLOSE TALLY. CALL A MANAGER.", 
             "OK");
+    }
+
+    [RelayCommand]
+    private void ProcessTenderFloat()
+    {
+        var popup = new PaymentPopup();
+        _popupServce.ShowPopup(popup);
     }
 }

@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Core;
+
+using Microsoft.Extensions.Logging;
 
 namespace Ebisx.POS.Presentation
 {
@@ -9,6 +12,7 @@ namespace Ebisx.POS.Presentation
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()  
+			    .UseMauiCommunityToolkit()
                 .RegisterViewModels()
                 .RegisterServices()
                 .ConfigureFonts(fonts =>
@@ -28,6 +32,7 @@ namespace Ebisx.POS.Presentation
         private static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddSingleton<MockDataService>();
+            mauiAppBuilder.Services.AddTransient<Services.Interface.IPopupService, Services.PopupService>();
             return mauiAppBuilder;
         }
 

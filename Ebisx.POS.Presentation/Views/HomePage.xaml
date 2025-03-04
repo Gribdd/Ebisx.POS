@@ -77,27 +77,27 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
-                    Text="0" />
+                    Text="INV-01" />
                 <Label
                     Grid.Row="1"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
-                    Text="0" />
+                    Text="TILL-05" />
                 <Label
                     Grid.Row="2"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
-                    Text="0" />
+                    Text="CASH" />
                 <Label
                     Grid.Row="3"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
-                    Text="0" />
+                    Text="12345" />
                 <Label
                     Grid.Row="4"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
-                    Text="0" />
+                    Text="CASHIER" />
             </Grid>
 
 
@@ -223,7 +223,10 @@
                     Grid.ColumnSpan="2"
                     ColumnDefinitions="*,*"
                     ColumnSpacing="20">
-                    <Button Grid.Column="0" Text="TENDER FLOAT" />
+                    <Button
+                        Grid.Column="0"
+                        Command="{Binding ProcessTenderFloatCommand}"
+                        Text="TENDER FLOAT" />
                     <Button Grid.Column="1" Text="REPRINT RECEIPT" />
                 </Grid>
             </Grid>
@@ -313,6 +316,8 @@
                 <Button
                     Grid.Row="3"
                     Grid.Column="1"
+                    Command="{Binding NumberInputCommand}"
+                    CommandParameter="0"
                     Text="0" />
                 <Button
                     Grid.Row="3"
