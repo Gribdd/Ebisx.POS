@@ -1,4 +1,5 @@
 ﻿
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 using Ebisx.POS.Presentation.Common.Enums;
 
@@ -7,7 +8,7 @@ namespace Ebisx.POS.Presentation.ViewModels;
 [QueryProperty(nameof(OrderItem), nameof(OrderItem))]
 public partial class HomePageViewModel : BaseViewModel
 {
-    Services.Interface.IPopupService _popupServce;
+    private readonly IPopupService _popupService;
 
     [ObservableProperty]
     public partial ObservableCollection<OrderItem> OrderItems { get; set; } = new();
@@ -56,9 +57,9 @@ public partial class HomePageViewModel : BaseViewModel
     }
 
 
-    public HomePageViewModel(Services.Interface.IPopupService popupService)
+    public HomePageViewModel(IPopupService popupService)
     {
-        _popupServce = popupService;
+        _popupService = popupService;
     }
 
     private void CalculateTotalQuantity()
@@ -238,7 +239,6 @@ public partial class HomePageViewModel : BaseViewModel
     [RelayCommand]
     private void ProcessTenderFloat()
     {
-        var popup = new PaymentPopup();
-        _popupServce.ShowPopup(popup);
+        _popupService.ShowPopup<PaymentPopupViewModel>();
     }
 }

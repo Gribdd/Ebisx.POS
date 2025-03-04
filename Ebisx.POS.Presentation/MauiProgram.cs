@@ -1,6 +1,4 @@
 ﻿using CommunityToolkit.Maui;
-using CommunityToolkit.Maui.Core;
-
 using Microsoft.Extensions.Logging;
 
 namespace Ebisx.POS.Presentation
@@ -32,7 +30,6 @@ namespace Ebisx.POS.Presentation
         private static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddSingleton<MockDataService>();
-            mauiAppBuilder.Services.AddTransient<Services.Interface.IPopupService, Services.PopupService>();
             return mauiAppBuilder;
         }
 
@@ -41,6 +38,7 @@ namespace Ebisx.POS.Presentation
             mauiAppBuilder.Services.AddTransient<MainPageViewModel>();
             mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
             mauiAppBuilder.Services.AddTransient<ItemInventoryPageViewModel>();
+            mauiAppBuilder.Services.AddTransientPopup<PaymentPopup, PaymentPopupViewModel>();
             return mauiAppBuilder;
         }
 
