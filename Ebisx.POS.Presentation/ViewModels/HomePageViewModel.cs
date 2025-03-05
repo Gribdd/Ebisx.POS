@@ -195,7 +195,7 @@ public partial class HomePageViewModel : BaseViewModel
         }
     }
 
-    [RelayCommand]
+    [RelayCommand]  
     private void ApplyBillDiscount()
     {
 

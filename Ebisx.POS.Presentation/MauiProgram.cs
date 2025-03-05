@@ -10,7 +10,10 @@ namespace Ebisx.POS.Presentation
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()  
-			    .UseMauiCommunityToolkit()
+			    .UseMauiCommunityToolkit(options =>
+                {
+                    options.SetShouldEnableSnackbarOnWindows(true);
+                })
                 .RegisterViewModels()
                 .RegisterServices()
                 .ConfigureFonts(fonts =>
@@ -39,6 +42,7 @@ namespace Ebisx.POS.Presentation
             mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
             mauiAppBuilder.Services.AddTransient<ItemInventoryPageViewModel>();
             mauiAppBuilder.Services.AddTransientPopup<PaymentPopup, PaymentPopupViewModel>();
+            mauiAppBuilder.Services.AddTransientPopup<CashPaymentPopup, CashPaymentPopupViewModel>();
             return mauiAppBuilder;
         }
 

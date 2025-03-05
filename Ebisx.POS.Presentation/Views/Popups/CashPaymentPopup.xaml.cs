@@ -1,9 +1,10 @@
 using CommunityToolkit.Maui.Views;
+
 namespace Ebisx.POS.Presentation.Views.Popups;
 
-public partial class PaymentPopup : Popup
+public partial class CashPaymentPopup : Popup
 {
-	public PaymentPopup(PaymentPopupViewModel vm)	
+	public CashPaymentPopup(CashPaymentPopupViewModel vm)
 	{
 		InitializeComponent();
 		BindingContext = vm;

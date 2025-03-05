@@ -1,5 +1,5 @@
 ﻿
-using System.Windows.Input;
+using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 
@@ -11,7 +11,6 @@ public partial class PaymentPopupViewModel : BaseViewModel
 
     [ObservableProperty]
     public partial ObservableCollection<PaymentMethod> PaymentMethods { get; set; }
-    public ICommand AddPaymentCommand { get; }
 
     public double PopupWidth => Shell.Current.CurrentPage.Width * 0.9;
     public double PopupHeight => Shell.Current.CurrentPage.Height * 0.9;
@@ -28,18 +27,82 @@ public partial class PaymentPopupViewModel : BaseViewModel
             new () { Name = "Loyalty Card", Amount = 0 },
         ];
 
-        AddPaymentCommand = new Command<PaymentMethod>(AddPayment);
         _popupService = popupService;
     }
 
-    private void AddPayment(PaymentMethod paymentMethod)
-    {
-        // Handle payment logic here
-        Console.WriteLine($"Adding payment for: {paymentMethod.Name}");
-    }
+    //private async void AddPayment(PaymentMethod paymentMethod)
+    //{
+    //    // Handle payment logic here
+    //    Console.WriteLine($"Adding payment for: {paymentMethod.Name} " );
+    //    await Shell.Current.CurrentPage.DisplayAlert(
+    //        "Payment", 
+    //        $"Adding payment for: {paymentMethod.Name} PHP {paymentMethod.Amount}", 
+    //        "OK");
+
+    //    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
+    //    string text = $"Payment added: {paymentMethod.Name} with an amount of PHP {paymentMethod.Amount}";
+    //    ToastDuration duration = ToastDuration.Short;
+    //    double fontSize = 14;
+
+    //    var toast = Toast.Make(text, duration, fontSize);
+
+    //    await toast.Show(cancellationTokenSource.Token);
+
+    //    switch (paymentMethod.Name)
+    //    {
+    //        case "Cash":
+    //            // Handle cash payment
+    //            _popupService.ShowPopup<CashPaymentPopupViewModel>();
+    //            break;
+    //        case "Credit":
+    //            // Handle credit payment
+    //            break;
+    //    }
+    //}
+
+    
 
     [RelayCommand]
-    void OnCancel()
+    private async Task AddPayment(object parameter)
+    {
+        if (parameter is Tuple<object, object> tuple &&
+            tuple.Item1 is PaymentMethod paymentMethod &&
+            tuple.Item2 is Button anchorButton)
+        {
+            Console.WriteLine($"Adding payment for: {paymentMethod.Name}");
+
+            //await Shell.Current.CurrentPage.DisplayAlert(
+            //    "Payment",
+            //    $"Adding payment for: {paymentMethod.Name} PHP {paymentMethod.Amount}",
+            //    "OK");
+
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
+            string text = $"Payment added: {paymentMethod.Name} with an amount of PHP {paymentMethod.Amount}";
+            ToastDuration duration = ToastDuration.Short;   
+            double fontSize = 14;
+
+            var toast = Toast.Make(text, duration, fontSize);
+            await toast.Show(cancellationTokenSource.Token);
+
+
+            switch (paymentMethod.Name)
+            {
+                case "Cash":
+                    _popupService.ShowPopup<CashPaymentPopupViewModel>(
+                        onPresenting: vm => vm.Anchor = anchorButton);
+                    break;
+                case "Credit":
+                    // Handle credit payment
+                    break;
+            }
+        }
+    }
+
+
+    [RelayCommand]
+    private void HandlePayment()
     {
         _popupService.ClosePopup();
     }
