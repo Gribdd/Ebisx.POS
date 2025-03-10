@@ -70,6 +70,7 @@
             x:Name="products"
             Grid.Row="2"
             ItemsSource="{Binding Products}"
+            SelectedItem="{Binding SelectedProduct}"
             SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Product">

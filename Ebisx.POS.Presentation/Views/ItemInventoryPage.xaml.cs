@@ -14,5 +14,6 @@ public partial class ItemInventoryPage : ContentPage
     {
         base.OnAppearing();
         await _vm.LoadProducts();
+        _vm.SelectedProduct = _vm.Products[0];
     }
 }

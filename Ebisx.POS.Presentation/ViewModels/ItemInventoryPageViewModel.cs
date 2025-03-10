@@ -10,6 +10,9 @@ public partial class ItemInventoryPageViewModel : BaseViewModel
     [ObservableProperty]
     public partial ObservableCollection<Product> Products { get; set; } = new();
 
+    [ObservableProperty]
+    public partial Product SelectedProduct { get; set; } = new();
+
     public ItemInventoryPageViewModel(MockDataService service)
     {
         _service = service;

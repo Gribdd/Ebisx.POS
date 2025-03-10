@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using Ebisx.POS.Presentation.Common;
 
 namespace Ebisx.POS.Presentation.ViewModels;
 
@@ -50,6 +51,7 @@ public partial class MainPageViewModel : BaseViewModel
             
         //map the emails to the mockEmails collection
         MockEmails = new ObservableCollection<string>(_mockUsers.Select(u => u.Email));
+
     }
 
 }
