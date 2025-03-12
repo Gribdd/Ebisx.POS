@@ -6,8 +6,8 @@ public partial class ItemInventoryPage : ContentPage
     public ItemInventoryPage(ItemInventoryPageViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = vm;
         _vm = vm;
+		BindingContext = vm;
     }
 
     protected override async void OnAppearing()

@@ -18,6 +18,7 @@
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="black" />
                 <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextTransform" Value="Uppercase" />
             </Style>
 
             <Style TargetType="Button">
@@ -29,7 +30,7 @@
                 <Setter Property="CornerRadius" Value="10" />
             </Style>
 
-            <Style x:Key="UnclikableButtonStyle" TargetType="Button">
+            <Style x:Key="unclikableButtonStyle" TargetType="Button">
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="BackgroundColor" Value="white" />
                 <Setter Property="MaximumHeightRequest" Value="20" />
@@ -41,7 +42,7 @@
                 <Setter Property="CornerRadius" Value="10" />
             </Style>
 
-            <Style x:Key="NumberButtonStyle" TargetType="Button">
+            <Style x:Key="numberButtonStyle" TargetType="Button">
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="BackgroundColor" Value="#d9d9d9" />
                 <Setter Property="TextColor" Value="{StaticResource Gray900}" />
@@ -58,6 +59,18 @@
                 <Setter Property="TextColor" Value="{StaticResource Gray900}" />
                 <Setter Property="CornerRadius" Value="15" />
             </Style>
+
+            <Style x:Key="borderStyle" TargetType="Border">
+                <Setter Property="Stroke" Value="black" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 15" />
+            </Style>
+
+            <Style x:Key="labelBorderstyle" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -86,7 +99,7 @@
             <Grid
                 Grid.Row="1"
                 Grid.Column="0"
-                ColumnDefinitions="auto,auto"
+                ColumnDefinitions="*,auto"
                 RowDefinitions="*,auto">
                 <Border
                     Grid.Row="0"
@@ -97,7 +110,7 @@
                     </Border.StrokeShape>
                     <Grid
                         Margin="10"
-                        ColumnDefinitions="auto,auto"
+                        ColumnDefinitions="auto,*"
                         ColumnSpacing="15"
                         RowDefinitions="auto,auto,auto,auto,auto"
                         RowSpacing="10">
@@ -119,34 +132,45 @@
                             Text="EMPLOYEE TYPE.:"
                             VerticalTextAlignment="Center" />
 
-                        <Button
-                            Grid.Column="1"
-                            Style="{StaticResource UnclikableButtonStyle}"
-                            Text="INVOICE NO.:" />
-                        <Button
+                        <!--<Border Grid.Column="1" Stroke="Black">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="15"/>
+                            </Border.StrokeShape>
+                            <Label Text="INV-01" FontSize="12"
+                            VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                        </Border>-->
+                        <Border Grid.Column="1" Style="{StaticResource borderStyle}">
+                            <Label Style="{StaticResource labelBorderstyle}" Text="INV-01" />
+                        </Border>
+                        <Border
                             Grid.Row="1"
                             Grid.Column="1"
-                            Style="{StaticResource UnclikableButtonStyle}"
-                            Text="INVOICE NO.:" />
-                        <Button
+                            Style="{StaticResource borderStyle}">
+                            <Label Style="{StaticResource labelBorderstyle}" Text="TILL-05" />
+                        </Border>
+                        <Border
                             Grid.Row="2"
                             Grid.Column="1"
-                            Style="{StaticResource UnclikableButtonStyle}"
-                            Text="INVOICE NO.:" />
-                        <Button
+                            Style="{StaticResource borderStyle}">
+                            <Label Style="{StaticResource labelBorderstyle}" Text="CASH" />
+                        </Border>
+                        <Border
                             Grid.Row="3"
                             Grid.Column="1"
-                            Style="{StaticResource UnclikableButtonStyle}"
-                            Text="INVOICE NO.:" />
-                        <Button
+                            Style="{StaticResource borderStyle}">
+                            <Label Style="{StaticResource labelBorderstyle}" Text="0129428" />
+                        </Border>
+                        <Border
                             Grid.Row="4"
                             Grid.Column="1"
-                            Style="{StaticResource UnclikableButtonStyle}"
-                            Text="INVOICE NO.:" />
+                            Style="{StaticResource borderStyle}">
+                            <Label Style="{StaticResource labelBorderstyle}" Text="CASHIER" />
+                        </Border>
                     </Grid>
                 </Border>
                 <Grid
                     Grid.Column="1"
+                    Margin="0,0,5,0"
                     RowDefinitions="*,*"
                     RowSpacing="10"
                     VerticalOptions="Center">
@@ -164,78 +188,17 @@
                     RowDefinitions="*,*"
                     RowSpacing="3">
                     <Label HorizontalOptions="Center" Text="BARCODE PRODUCT ID" />
-                    <Button
-                        Grid.Row="1"
-                        Background="white"
-                        Text="BARCODE PRODUCT ID" />
+                    <Border Grid.Row="1" Style="{StaticResource borderStyle}">
+                        <Label
+                            FontSize="30"
+                            Style="{StaticResource labelBorderstyle}"
+                            Text=""
+                            WidthRequest="300" />
+                    </Border>
+
+
                 </Grid>
             </Grid>
-            <!--<Grid
-                Grid.Row="1"
-                Grid.Column="0"
-                Padding="5"
-                ColumnDefinitions="*,*"
-                RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-                RowSpacing="5">
-            -->
-            <!--  Left Column Labels  -->
-            <!--
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    FontAttributes="Bold"
-                    Text="INVOICE NO.:" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    FontAttributes="Bold"
-                    Text="TILL ID:" />
-                <Label
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    FontAttributes="Bold"
-                    Text="PAYMENT MODE:" />
-                <Label
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    FontAttributes="Bold"
-                    Text="USER ID:" />
-                <Label
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    FontAttributes="Bold"
-                    Text="EMPLOYEE TYPE:" />
-
-            -->
-            <!--  Right Column Default Values  -->
-            <!--
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Text="INV-01" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Text="TILL-05" />
-                <Label
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Text="CASH" />
-                <Label
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Text="12345" />
-                <Label
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Text="CASHIER" />
-            </Grid>-->
-
 
             <!--  First Vertical Divider  -->
             <BoxView
@@ -290,20 +253,22 @@
                     Text="CHANGE:" />
 
                 <!--  Right Column  -->
-                <Label
-                    Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Text="{Binding TotalNumOfItems}" />
-                <Label
+                <Border Grid.Column="1" Style="{StaticResource borderStyle}">
+                    <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalNumOfItems}" />
+                </Border>
+                <Border
                     Grid.Row="1"
                     Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Text="{Binding TotalQuantity}" />
+                    Style="{StaticResource borderStyle}">
+                    <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalQuantity}" />
+                </Border>
+
 
                 <Grid
                     Grid.Row="2"
                     Grid.Column="1"
                     ColumnDefinitions="*,*">
+
                     <Label
                         FontAttributes="Bold"
                         FontSize="11"
@@ -320,34 +285,44 @@
                 <Grid
                     Grid.Row="3"
                     Grid.Column="1"
-                    ColumnDefinitions="*,*">
-                    <Label HorizontalTextAlignment="End" Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
-                    <Label
-                        Grid.Column="1"
-                        HorizontalTextAlignment="End"
-                        Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="5">
+                    <Border Grid.Column="0" Style="{StaticResource borderStyle}">
+                        <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
+                    </Border>
+                    <Border Grid.Column="1" Style="{StaticResource borderStyle}">
+                        <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
+                    </Border>
+
                 </Grid>
 
-                <Label
+                <Border
                     Grid.Row="4"
                     Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Text="0" />
-                <Label
+                    Style="{StaticResource borderStyle}">
+                    <Label Style="{StaticResource labelBorderstyle}" Text="0" />
+                </Border>
+
+                <Border
                     Grid.Row="5"
                     Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Text="{Binding GrandTotal, StringFormat='₱{0:N2}'}" />
-                <Label
+                    Style="{StaticResource borderStyle}">
+                    <Label Style="{StaticResource labelBorderstyle}" Text="{Binding GrandTotal, StringFormat='₱{0:N2}'}" />
+                </Border>
+
+                <Border
                     Grid.Row="6"
                     Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Text="0" />
-                <Label
+                    Style="{StaticResource borderStyle}">
+                    <Label Style="{StaticResource labelBorderstyle}" Text="0" />
+                </Border>
+
+                <Border
                     Grid.Row="7"
                     Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Text="0" />
+                    Style="{StaticResource borderStyle}">
+                    <Label Style="{StaticResource labelBorderstyle}" Text="0" />
+                </Border>
 
                 <Grid
                     Grid.Row="8"
@@ -388,21 +363,21 @@
                     Grid.Column="0"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="9"
-                    Style="{StaticResource NumberButtonStyle}"
+                    Style="{StaticResource numberButtonStyle}"
                     Text="9" />
                 <Button
                     Grid.Row="0"
                     Grid.Column="1"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="8"
-                    Style="{StaticResource NumberButtonStyle}"
+                    Style="{StaticResource numberButtonStyle}"
                     Text="8" />
                 <Button
                     Grid.Row="0"
                     Grid.Column="2"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="7"
-                    Style="{StaticResource NumberButtonStyle}"
+                    Style="{StaticResource numberButtonStyle}"
                     Text="7" />
 
                 <!--  Row 2  -->
@@ -411,21 +386,21 @@
                     Grid.Column="0"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="6"
-                    Style="{StaticResource NumberButtonStyle}"
+                    Style="{StaticResource numberButtonStyle}"
                     Text="6" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="1"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="5"
-                    Style="{StaticResource NumberButtonStyle}"
+                    Style="{StaticResource numberButtonStyle}"
                     Text="5" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="2"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="4"
-                    Style="{StaticResource NumberButtonStyle}"
+                    Style="{StaticResource numberButtonStyle}"
                     Text="4" />
 
                 <!--  Row 3  -->
@@ -434,40 +409,40 @@
                     Grid.Column="0"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="3"
-                    Style="{StaticResource NumberButtonStyle}"
+                    Style="{StaticResource numberButtonStyle}"
                     Text="3" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="1"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="2"
-                    Style="{StaticResource NumberButtonStyle}"
+                    Style="{StaticResource numberButtonStyle}"
                     Text="2" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="2"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="1"
-                    Style="{StaticResource NumberButtonStyle}"
+                    Style="{StaticResource numberButtonStyle}"
                     Text="1" />
 
                 <!--  Row 4  -->
                 <Button
                     Grid.Row="3"
                     Grid.Column="0"
-                    Style="{StaticResource NumberButtonStyle}"
+                    Style="{StaticResource numberButtonStyle}"
                     Text="." />
                 <Button
                     Grid.Row="3"
                     Grid.Column="1"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="0"
-                    Style="{StaticResource NumberButtonStyle}"
+                    Style="{StaticResource numberButtonStyle}"
                     Text="0" />
                 <Button
                     Grid.Row="3"
                     Grid.Column="2"
-                    Style="{StaticResource NumberButtonStyle}"
+                    Style="{StaticResource numberButtonStyle}"
                     Text="X" />
             </Grid>
 
@@ -481,8 +456,8 @@
         </Grid>
         <Grid
             Grid.Row="2"
-            BackgroundColor="white"
-            RowDefinitions="auto,*">
+            BackgroundColor="White"
+            RowDefinitions="auto,auto,*">
             <!--  Sticky Header  -->
             <Grid
                 Padding="3"
@@ -535,20 +510,23 @@
                     HorizontalTextAlignment="Center"
                     Text="Total Amount" />
             </Grid>
-
+            <BoxView Grid.Row="1" HeightRequest="2" />
             <!--  Scrollable CollectionView  -->
             <CollectionView
-                Grid.Row="1"
+                Grid.Row="2"
                 ItemsSource="{Binding OrderItems}"
                 SelectedItem="{Binding SelectedOrderItem, Mode=TwoWay}"
                 SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:OrderItem">
-                        <Grid Padding="5" ColumnDefinitions="*,*,*,*,*,*,*,*,*">
+                        <!--<Grid
+                            Padding="5"
+                            ColumnDefinitions="*,*,*,*,*,*,*,*,*"
+                            RowDefinitions="auto">
                             <Label
                                 Grid.Column="0"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding ProductId}" />
+                                Text="0" />
                             <Label
                                 Grid.Column="1"
                                 HorizontalTextAlignment="Center"
@@ -581,11 +559,15 @@
                                 Grid.Column="8"
                                 HorizontalTextAlignment="Center"
                                 Text="{Binding TotalAmount, StringFormat='₱{0:N2}'}" />
+                        </Grid>-->
+                        <Grid >
+                            <Label Text="{Binding ProductName}"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
+
         <Grid
             Grid.Row="3"
             Padding="5"

@@ -28,7 +28,6 @@
                         Span="3"
                         VerticalItemSpacing="15" />
                 </CollectionView.ItemsLayout>
-
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:PaymentMethod">
                         <StackLayout>
