@@ -12,15 +12,59 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="BoxView">
-                <Setter Property="Color" Value="White" />
+                <Setter Property="Color" Value="black" />
             </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="black" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
             <Style TargetType="Button">
                 <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="#d9d9d9" />
+                <Setter Property="TextColor" Value="{StaticResource Gray900}" />
+                <Setter Property="BorderColor" Value="black" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+
+            <Style x:Key="UnclikableButtonStyle" TargetType="Button">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="white" />
+                <Setter Property="MaximumHeightRequest" Value="20" />
+                <Setter Property="MaximumWidthRequest" Value="130" />
+
+                <Setter Property="TextColor" Value="{StaticResource Gray900}" />
+                <Setter Property="BorderColor" Value="black" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+
+            <Style x:Key="NumberButtonStyle" TargetType="Button">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="#d9d9d9" />
+                <Setter Property="TextColor" Value="{StaticResource Gray900}" />
+                <Setter Property="BorderColor" Value="black" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+
+            <Style x:Key="CTAButtonStyle" TargetType="Button">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BorderColor" Value="black" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="BackgroundColor" Value="#84a689" />
+                <Setter Property="TextColor" Value="{StaticResource Gray900}" />
+                <Setter Property="CornerRadius" Value="15" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid Margin="0" RowDefinitions="auto,auto,*,auto">
+    <Grid
+        Margin="0"
+        BackgroundColor="#84a689"
+        RowDefinitions="auto,auto,*,auto">
         <Label
             FontAttributes="Bold"
             FontSize="20"
@@ -28,6 +72,7 @@
             Text="Hello" />
         <Grid
             Grid.Row="1"
+            BackgroundColor="white"
             ColumnDefinitions="*,Auto,*,Auto,*"
             RowDefinitions="Auto,*,Auto">
 
@@ -41,11 +86,100 @@
             <Grid
                 Grid.Row="1"
                 Grid.Column="0"
+                ColumnDefinitions="auto,auto"
+                RowDefinitions="*,auto">
+                <Border
+                    Grid.Row="0"
+                    Margin="10"
+                    Stroke="Black">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15" />
+                    </Border.StrokeShape>
+                    <Grid
+                        Margin="10"
+                        ColumnDefinitions="auto,auto"
+                        ColumnSpacing="15"
+                        RowDefinitions="auto,auto,auto,auto,auto"
+                        RowSpacing="10">
+                        <Label Text="INVOICE NO.:" VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="1"
+                            Text="TILL ID:"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="2"
+                            Text="PAYMENT MODE.:"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="3"
+                            Text="USER ID.:"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="4"
+                            Text="EMPLOYEE TYPE.:"
+                            VerticalTextAlignment="Center" />
+
+                        <Button
+                            Grid.Column="1"
+                            Style="{StaticResource UnclikableButtonStyle}"
+                            Text="INVOICE NO.:" />
+                        <Button
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Style="{StaticResource UnclikableButtonStyle}"
+                            Text="INVOICE NO.:" />
+                        <Button
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Style="{StaticResource UnclikableButtonStyle}"
+                            Text="INVOICE NO.:" />
+                        <Button
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Style="{StaticResource UnclikableButtonStyle}"
+                            Text="INVOICE NO.:" />
+                        <Button
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Style="{StaticResource UnclikableButtonStyle}"
+                            Text="INVOICE NO.:" />
+                    </Grid>
+                </Border>
+                <Grid
+                    Grid.Column="1"
+                    RowDefinitions="*,*"
+                    RowSpacing="10"
+                    VerticalOptions="Center">
+                    <Button Style="{StaticResource CTAButtonStyle}" Text="SALES RETURN" />
+                    <Button
+                        Grid.Row="1"
+                        Style="{StaticResource CTAButtonStyle}"
+                        Text="SALESMAN" />
+                </Grid>
+                <Grid
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="0,5"
+                    HorizontalOptions="Center"
+                    RowDefinitions="*,*"
+                    RowSpacing="3">
+                    <Label HorizontalOptions="Center" Text="BARCODE PRODUCT ID" />
+                    <Button
+                        Grid.Row="1"
+                        Background="white"
+                        Text="BARCODE PRODUCT ID" />
+                </Grid>
+            </Grid>
+            <!--<Grid
+                Grid.Row="1"
+                Grid.Column="0"
                 Padding="5"
                 ColumnDefinitions="*,*"
                 RowDefinitions="Auto,Auto,Auto,Auto,Auto"
                 RowSpacing="5">
-                <!--  Left Column Labels  -->
+            -->
+            <!--  Left Column Labels  -->
+            <!--
                 <Label
                     Grid.Row="0"
                     Grid.Column="0"
@@ -72,7 +206,9 @@
                     FontAttributes="Bold"
                     Text="EMPLOYEE TYPE:" />
 
-                <!--  Right Column Default Values  -->
+            -->
+            <!--  Right Column Default Values  -->
+            <!--
                 <Label
                     Grid.Row="0"
                     Grid.Column="1"
@@ -98,7 +234,7 @@
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
                     Text="CASHIER" />
-            </Grid>
+            </Grid>-->
 
 
             <!--  First Vertical Divider  -->
@@ -155,7 +291,6 @@
 
                 <!--  Right Column  -->
                 <Label
-                    Grid.Row="0"
                     Grid.Column="1"
                     HorizontalTextAlignment="End"
                     Text="{Binding TotalNumOfItems}" />
@@ -220,10 +355,13 @@
                     ColumnDefinitions="*,*"
                     ColumnSpacing="20">
                     <Button
-                        Grid.Column="0"
                         Command="{Binding ProcessTenderFloatCommand}"
+                        Style="{StaticResource CTAButtonStyle}"
                         Text="TENDER FLOAT" />
-                    <Button Grid.Column="1" Text="REPRINT RECEIPT" />
+                    <Button
+                        Grid.Column="1"
+                        Style="{StaticResource CTAButtonStyle}"
+                        Text="REPRINT RECEIPT" />
                 </Grid>
             </Grid>
 
@@ -250,18 +388,21 @@
                     Grid.Column="0"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="9"
+                    Style="{StaticResource NumberButtonStyle}"
                     Text="9" />
                 <Button
                     Grid.Row="0"
                     Grid.Column="1"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="8"
+                    Style="{StaticResource NumberButtonStyle}"
                     Text="8" />
                 <Button
                     Grid.Row="0"
                     Grid.Column="2"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="7"
+                    Style="{StaticResource NumberButtonStyle}"
                     Text="7" />
 
                 <!--  Row 2  -->
@@ -270,18 +411,21 @@
                     Grid.Column="0"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="6"
+                    Style="{StaticResource NumberButtonStyle}"
                     Text="6" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="1"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="5"
+                    Style="{StaticResource NumberButtonStyle}"
                     Text="5" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="2"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="4"
+                    Style="{StaticResource NumberButtonStyle}"
                     Text="4" />
 
                 <!--  Row 3  -->
@@ -290,34 +434,40 @@
                     Grid.Column="0"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="3"
+                    Style="{StaticResource NumberButtonStyle}"
                     Text="3" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="1"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="2"
+                    Style="{StaticResource NumberButtonStyle}"
                     Text="2" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="2"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="1"
+                    Style="{StaticResource NumberButtonStyle}"
                     Text="1" />
 
                 <!--  Row 4  -->
                 <Button
                     Grid.Row="3"
                     Grid.Column="0"
+                    Style="{StaticResource NumberButtonStyle}"
                     Text="." />
                 <Button
                     Grid.Row="3"
                     Grid.Column="1"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="0"
+                    Style="{StaticResource NumberButtonStyle}"
                     Text="0" />
                 <Button
                     Grid.Row="3"
                     Grid.Column="2"
+                    Style="{StaticResource NumberButtonStyle}"
                     Text="X" />
             </Grid>
 
@@ -329,11 +479,14 @@
                 HeightRequest="2" />
 
         </Grid>
-        <Grid Grid.Row="2" RowDefinitions="auto,*">
+        <Grid
+            Grid.Row="2"
+            BackgroundColor="white"
+            RowDefinitions="auto,*">
             <!--  Sticky Header  -->
             <Grid
                 Padding="3"
-                BackgroundColor="Gray"
+                BackgroundColor="#84a689"
                 ColumnDefinitions="*,*,*,*,*,*,*,*,*"
                 HeightRequest="30">
                 <Label
@@ -436,6 +589,7 @@
         <Grid
             Grid.Row="3"
             Padding="5"
+            BackgroundColor="white"
             ColumnDefinitions="*,*,*,*,*,*,*"
             ColumnSpacing="5"
             RowDefinitions="Auto,Auto"
