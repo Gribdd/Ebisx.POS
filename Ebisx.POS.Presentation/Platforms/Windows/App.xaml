@@ -19,5 +19,11 @@
 
         <SolidColorBrush x:Key="HoverTextColor" Color="#84a689" />
         <StaticResource x:Key="ComboBoxItemForegroundPointerOver" ResourceKey="HoverTextColor" />
+
+        <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="#Ff0000" />
+        <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="#Ff0000" />
+        <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPressed" Color="#Ff0000" />
+        <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="#Ff0000" />
+
     </maui:MauiWinUIApplication.Resources>
 </maui:MauiWinUIApplication>

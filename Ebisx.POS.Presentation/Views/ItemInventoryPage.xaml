@@ -6,155 +6,260 @@
     xmlns:model="clr-namespace:Ebisx.POS.Presentation.Models"
     xmlns:vm="clr-namespace:Ebisx.POS.Presentation.ViewModels"
     Title="ItemInventoryPage"
-    x:DataType="vm:ItemInventoryPageViewModel">
+    x:DataType="vm:ItemInventoryPageViewModel"
+    Background="#84a689">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="headerLabelStyle" TargetType="Label">
-                <Setter Property="FontAttributes" Value="Bold" />
+            <Style x:Key="labelStyle" TargetType="Label">
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="TextTransform" Value="Uppercase" />
+                <Setter Property="TextColor" Value="black" />
             </Style>
         </ResourceDictionary>
-        
-        
+
+
     </ContentPage.Resources>
-    <Grid Padding="10" RowDefinitions="Auto, Auto, *">
-        <!--  First Row: Title & Search Bar  -->
-        <Grid
-            Grid.Row="0"
-            Margin="0,10,0,10"
-            ColumnDefinitions="*, Auto">
-            <Label
-                Grid.Column="0"
-                FontSize="Title"
-                HorizontalOptions="Center"
-                Style="{StaticResource headerLabelStyle}"
-                Text="Item Inventory"
-                VerticalOptions="Center" />
+    <Border
+        Margin="15"
+        Stroke="Black"
+        StrokeThickness="2">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="15" />
+        </Border.StrokeShape>
+        <Grid RowDefinitions="auto,auto,*">
+            <!--  First Row: Title & Search Bar  -->
+            <Border
+                Margin="15"
+                Background="White"
+                Stroke="Black"
+                StrokeShape="RoundRectangle 15">
+                <Grid
+                    Grid.Row="0"
+                    Margin="0,10,0,10"
+                    ColumnDefinitions="*, Auto">
+                    <Label
+                        Grid.Column="0"
+                        FontSize="Title"
+                        Style="{StaticResource labelStyle}"
+                        Text="Item Inventory"
+                        VerticalOptions="Center" />
 
-            <SearchBar
-                Grid.Column="1"
-                Placeholder="Search item..."
-                WidthRequest="200" />
+                    <SearchBar
+                        Grid.Column="1"
+                        Placeholder="Search item..."
+                        TextColor="black"
+                        WidthRequest="200" />
+                </Grid>
+            </Border>
+
+            <!--  Second Row: Sticky Headers with Dividers  -->
+            <Grid
+                Grid.Row="1"
+                BackgroundColor="#84a689"
+                ColumnDefinitions="*, *, *, *, *, *, *"
+                HeightRequest="30"
+                RowDefinitions="auto,*, auto">
+                <BoxView
+                    Grid.Row="0"
+                    Grid.ColumnSpan="8"
+                    BackgroundColor="black"
+                    HeightRequest="1"
+                    VerticalOptions="Start" />
+
+                <!--  Header Labels  -->
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Style="{StaticResource labelStyle}"
+                    Text="Product ID" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{StaticResource labelStyle}"
+                    Text="Product Name" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Style="{StaticResource labelStyle}"
+                    Text="Barcode" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Style="{StaticResource labelStyle}"
+                    Text="Quantity" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    Style="{StaticResource labelStyle}"
+                    Text="Price" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="5"
+                    Style="{StaticResource labelStyle}"
+                    Text="VAT%" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="6"
+                    Style="{StaticResource labelStyle}"
+                    Text="Sales Unit" />
+
+                <!--  Vertical Divider Lines  -->
+                <BoxView
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    BackgroundColor="black"
+                    HorizontalOptions="End"
+                    WidthRequest="1" />
+                <BoxView
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    BackgroundColor="black"
+                    HorizontalOptions="End"
+                    WidthRequest="1" />
+                <BoxView
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    BackgroundColor="black"
+                    HorizontalOptions="End"
+                    WidthRequest="1" />
+                <BoxView
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    BackgroundColor="black"
+                    HorizontalOptions="End"
+                    WidthRequest="1" />
+                <BoxView
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    BackgroundColor="black"
+                    HorizontalOptions="End"
+                    WidthRequest="1" />
+                <BoxView
+                    Grid.Row="1"
+                    Grid.Column="5"
+                    BackgroundColor="black"
+                    HorizontalOptions="End"
+                    WidthRequest="1" />
+                <BoxView
+                    Grid.Row="1"
+                    Grid.Column="6"
+                    BackgroundColor="black"
+                    HorizontalOptions="End"
+                    WidthRequest="1" />
+
+                <BoxView
+                    Grid.Row="2 "
+                    Grid.ColumnSpan="8"
+                    BackgroundColor="black"
+                    HeightRequest="1"
+                    VerticalOptions="Start" />
+            </Grid>
+
+
+
+            <!--  Third Row: CollectionView for Items  -->
+            <CollectionView
+                x:Name="products"
+                Grid.Row="2"
+                ItemsSource="{Binding Products}"
+                SelectedItem="{Binding SelectedProduct}"
+                BackgroundColor="White"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Product">
+                        <Grid
+                            ColumnDefinitions="*, *, *, *, *, *, *, auto"
+                            HeightRequest="30"
+                            RowDefinitions="*, auto">
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding NavigateBackCommand, Source={RelativeSource AncestorType={x:Type vm:ItemInventoryPageViewModel}}}"
+                                    CommandParameter="{Binding .}"
+                                    NumberOfTapsRequired="2" />
+                            </Grid.GestureRecognizers>
+
+                            <!--  Labels for Product Details  -->
+                            <Label
+                                Grid.Column="0"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding Id}" />
+                            <Label
+                                Grid.Column="1"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding ProductName}" />
+                            <Label
+                                Grid.Column="2"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding Barcode}" />
+                            <Label
+                                Grid.Column="3"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding Quantity}" />
+                            <Label
+                                Grid.Column="4"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding Price, StringFormat='₱{0:N2}'}" />
+                            <Label
+                                Grid.Column="5"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding Vat, StringFormat='{0}%'}" />
+                            <Label
+                                Grid.Column="6"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding SalesUnit}" />
+
+                            <!--  Vertical Divider Lines  -->
+                            <BoxView
+                                Grid.Column="0"
+                                BackgroundColor="Gray"
+                                HorizontalOptions="End"
+                                WidthRequest="1" />
+                            <BoxView
+                                Grid.Column="1"
+                                BackgroundColor="Gray"
+                                HorizontalOptions="End"
+                                WidthRequest="1" />
+                            <BoxView
+                                Grid.Column="2"
+                                BackgroundColor="Gray"
+                                HorizontalOptions="End"
+                                WidthRequest="1" />
+                            <BoxView
+                                Grid.Column="3"
+                                BackgroundColor="Gray"
+                                HorizontalOptions="End"
+                                WidthRequest="1" />
+                            <BoxView
+                                Grid.Column="4"
+                                BackgroundColor="Gray"
+                                HorizontalOptions="End"
+                                WidthRequest="1" />
+                            <BoxView
+                                Grid.Column="5"
+                                BackgroundColor="Gray"
+                                HorizontalOptions="End"
+                                WidthRequest="1" />
+                            <BoxView
+                                Grid.Column="6"
+                                BackgroundColor="Gray"
+                                HorizontalOptions="End"
+                                WidthRequest="1" />
+
+                            <!--  Bottom Line Divider  -->
+                            <BoxView
+                                Grid.Row="1"
+                                Grid.ColumnSpan="8"
+                                BackgroundColor="black"
+                                HeightRequest="1"
+                                VerticalOptions="Start" />
+                        </Grid>
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
         </Grid>
-
-        <!--  Second Row: Sticky Headers  -->
-        <Grid
-            Grid.Row="1"
-            Padding="5"
-            BackgroundColor="gray"
-            ColumnDefinitions="*, *, *, *, *, *, *">
-
-            <Label
-                Grid.Column="0"
-                Style="{StaticResource headerLabelStyle}"
-                Text="Product ID" />
-            <Label
-                Grid.Column="1"
-                Style="{StaticResource headerLabelStyle}"
-                Text="Product Name" />
-            <Label
-                Grid.Column="2"
-                Style="{StaticResource headerLabelStyle}"
-                Text="Barcode" />
-            <Label
-                Grid.Column="3"
-                Style="{StaticResource headerLabelStyle}"
-                Text="Quantity" />
-            <Label
-                Grid.Column="4"
-                Style="{StaticResource headerLabelStyle}"
-                Text="Price" />
-            <Label
-                Grid.Column="5"
-                Style="{StaticResource headerLabelStyle}"
-                Text="VAT%" />
-            <Label
-                Grid.Column="6"
-                Style="{StaticResource headerLabelStyle}"
-                Text="Sales Unit" />
-        </Grid>
-
-        <!--  Third Row: CollectionView for Items  -->
-        <CollectionView
-            x:Name="products"
-            Grid.Row="2"
-            ItemsSource="{Binding Products}"
-            SelectedItem="{Binding SelectedProduct}"
-            SelectionMode="Single">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Product">
-                    <Grid
-                        ColumnDefinitions=
-                        "*, *, *, *, *, *, *, auto"
-                        RowDefinitions="*, auto">
-
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Command="{Binding NavigateBackCommand, Source={RelativeSource AncestorType={x:Type vm:ItemInventoryPageViewModel}}}"
-                                CommandParameter="{Binding .}"
-                                NumberOfTapsRequired="2" />
-                        </Grid.GestureRecognizers>
-
-                        <!--  Labels for Product Details  -->
-                        <Label Grid.Column="0" HorizontalTextAlignment="Center" Text="{Binding Id}" />
-                        <Label Grid.Column="1" HorizontalTextAlignment="Center" Text="{Binding ProductName}" />
-                        <Label Grid.Column="2" HorizontalTextAlignment="Center" Text="{Binding Barcode}" />
-                        <Label Grid.Column="3" HorizontalTextAlignment="Center" Text="{Binding Quantity}" />
-                        <Label Grid.Column="4" HorizontalTextAlignment="Center" Text="{Binding Price, StringFormat='₱{0:N2}'}" />
-                        <Label Grid.Column="5" HorizontalTextAlignment="Center" Text="{Binding Vat, StringFormat='{0}%'}" />
-                        <Label Grid.Column="6" HorizontalTextAlignment="Center" Text="{Binding SalesUnit}" />
-
-                        <!--  Vertical Divider Lines  -->
-                        <BoxView
-                            Grid.Column="0"
-                            BackgroundColor="Gray"
-                            HorizontalOptions="End"
-                            
-                            WidthRequest="1" />
-                        <BoxView
-                            Grid.Column="1"
-                            BackgroundColor="Gray"
-                            HorizontalOptions="End"
-                            WidthRequest="1" />
-                        <BoxView
-                            Grid.Column="2"
-                            BackgroundColor="Gray"
-                            HorizontalOptions="End"
-                            WidthRequest="1" />
-                        <BoxView
-                            Grid.Column="3"
-                            BackgroundColor="Gray"
-                            HorizontalOptions="End"
-                            WidthRequest="1" />
-                        <BoxView
-                            Grid.Column="4"
-                            BackgroundColor="Gray"
-                            HorizontalOptions="End"
-                            WidthRequest="1" />
-                        <BoxView
-                            Grid.Column="5"
-                            BackgroundColor="Gray"
-                            HorizontalOptions="End"
-                            WidthRequest="1" />
-                        <BoxView
-                            Grid.Column="6"
-                            BackgroundColor="Gray"
-                            HorizontalOptions="End"
-                            WidthRequest="1" />
-
-                        <!--  Bottom Line Divider  -->
-                        <BoxView
-                            Grid.Row="1"
-                            Grid.ColumnSpan="8"
-                            BackgroundColor="Gray"
-                            HeightRequest="1"
-                            VerticalOptions="Start" />
-                    </Grid>
-                </DataTemplate>
-
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-    </Grid>
+    </Border>
 </ContentPage>

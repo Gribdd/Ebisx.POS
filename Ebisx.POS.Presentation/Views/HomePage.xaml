@@ -17,13 +17,13 @@
 
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="black" />
-                <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextTransform" Value="Uppercase" />
+                <Setter Property="FontFamily" Value="LuckiestGuyRegular" />
             </Style>
 
             <Style TargetType="Button">
-                <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="BackgroundColor" Value="#d9d9d9" />
+                <Setter Property="FontFamily" Value="LuckiestGuyRegular" />
                 <Setter Property="TextColor" Value="{StaticResource Gray900}" />
                 <Setter Property="BorderColor" Value="black" />
                 <Setter Property="BorderWidth" Value="1" />
@@ -31,7 +31,6 @@
             </Style>
 
             <Style x:Key="unclikableButtonStyle" TargetType="Button">
-                <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="BackgroundColor" Value="white" />
                 <Setter Property="MaximumHeightRequest" Value="20" />
                 <Setter Property="MaximumWidthRequest" Value="130" />
@@ -43,7 +42,6 @@
             </Style>
 
             <Style x:Key="numberButtonStyle" TargetType="Button">
-                <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="BackgroundColor" Value="#d9d9d9" />
                 <Setter Property="TextColor" Value="{StaticResource Gray900}" />
                 <Setter Property="BorderColor" Value="black" />
@@ -52,7 +50,6 @@
             </Style>
 
             <Style x:Key="CTAButtonStyle" TargetType="Button">
-                <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="BorderColor" Value="black" />
                 <Setter Property="BorderWidth" Value="1" />
                 <Setter Property="BackgroundColor" Value="#84a689" />
@@ -80,7 +77,6 @@
         BackgroundColor="#84a689"
         RowDefinitions="auto,auto,*,auto">
         <Label
-            FontAttributes="Bold"
             FontSize="20"
             Style="{StaticResource labelBorderstyle}"
             Text="Hello" />
@@ -212,37 +208,30 @@
                 <Label
                     Grid.Row="0"
                     Grid.Column="0"
-                    FontAttributes="Bold"
                     Text="NO. OF ITEMS:" />
                 <Label
                     Grid.Row="1"
                     Grid.Column="0"
-                    FontAttributes="Bold"
                     Text="QTY:" />
                 <Label
                     Grid.Row="3"
                     Grid.Column="0"
-                    FontAttributes="Bold"
                     Text="DISCOUNT :" />
                 <Label
                     Grid.Row="4"
                     Grid.Column="0"
-                    FontAttributes="Bold"
                     Text="LOYALTY POINTS:" />
                 <Label
                     Grid.Row="5"
                     Grid.Column="0"
-                    FontAttributes="Bold"
                     Text="GRAND TOTAL:" />
                 <Label
                     Grid.Row="6"
                     Grid.Column="0"
-                    FontAttributes="Bold"
                     Text="AMOUNT PAID:" />
                 <Label
                     Grid.Row="7"
                     Grid.Column="0"
-                    FontAttributes="Bold"
                     Text="CHANGE:" />
 
                 <!--  Right Column  -->
@@ -263,13 +252,11 @@
                     ColumnDefinitions="*,*">
 
                     <Label
-                        FontAttributes="Bold"
                         FontSize="11"
                         HorizontalTextAlignment="End"
                         Text="ITEM DISCOUNT %" />
                     <Label
                         Grid.Column="1"
-                        FontAttributes="Bold"
                         FontSize="11"
                         HorizontalTextAlignment="End"
                         Text="BILL DISCOUNT %" />
@@ -551,7 +538,10 @@
                 SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:OrderItem">
-                        <Grid ColumnDefinitions="*,2,*,2,*,2,*,2,*,2,*,2,*,2,*,2,*" RowDefinitions="Auto,2">
+                        <Grid
+                            ColumnDefinitions="*,2,*,2,*,2,*,2,*,2,*,2,*,2,*,2,*"
+                            HeightRequest="50"
+                            RowDefinitions="Auto,2">
 
                             <!--  Labels with BoxView separators  -->
                             <Label
@@ -562,7 +552,7 @@
                             <BoxView
                                 Grid.Column="1"
                                 BackgroundColor="Gray"
-                                WidthRequest="1" />
+                                WidthRequest="2 " />
 
                             <Label
                                 Grid.Column="2"
@@ -572,7 +562,7 @@
                             <BoxView
                                 Grid.Column="3"
                                 BackgroundColor="Gray"
-                                WidthRequest="1" />
+                                WidthRequest="2" />
 
                             <Label
                                 Grid.Column="4"
@@ -582,7 +572,7 @@
                             <BoxView
                                 Grid.Column="5"
                                 BackgroundColor="Gray"
-                                WidthRequest="1" />
+                                WidthRequest="2" />
 
                             <Label
                                 Grid.Column="6"
@@ -592,7 +582,7 @@
                             <BoxView
                                 Grid.Column="7"
                                 BackgroundColor="Gray"
-                                WidthRequest="1" />
+                                WidthRequest="2" />
 
                             <Label
                                 Grid.Column="8"
@@ -602,7 +592,7 @@
                             <BoxView
                                 Grid.Column="9"
                                 BackgroundColor="Gray"
-                                WidthRequest="1" />
+                                WidthRequest="2" />
 
                             <Label
                                 Grid.Column="10"
@@ -612,7 +602,7 @@
                             <BoxView
                                 Grid.Column="11"
                                 BackgroundColor="Gray"
-                                WidthRequest="1" />
+                                WidthRequest="2" />
 
                             <Label
                                 Grid.Column="12"
@@ -622,7 +612,7 @@
                             <BoxView
                                 Grid.Column="13"
                                 BackgroundColor="Gray"
-                                WidthRequest="1" />
+                                WidthRequest="2" />
 
                             <Label
                                 Grid.Column="14"
@@ -632,7 +622,7 @@
                             <BoxView
                                 Grid.Column="15"
                                 BackgroundColor="Gray"
-                                WidthRequest="1" />
+                                WidthRequest="2" />
 
                             <Label
                                 Grid.Column="16"
@@ -645,7 +635,7 @@
                                 Grid.Row="1"
                                 Grid.ColumnSpan="17"
                                 BackgroundColor="Gray"
-                                HeightRequest="1"
+                                HeightRequest="2"
                                 VerticalOptions="End" />
                         </Grid>
                     </DataTemplate>
