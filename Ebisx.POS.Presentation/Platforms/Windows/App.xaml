@@ -2,7 +2,22 @@
     x:Class="Ebisx.POS.Presentation.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:Ebisx.POS.Presentation.WinUI">
+    xmlns:local="using:Ebisx.POS.Presentation.WinUI"
+    xmlns:maui="using:Microsoft.Maui">
+    <maui:MauiWinUIApplication.Resources>
+        <!--  Background Color of Dropdown (Picker)  -->
+        <SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="white" />
+        <!--  TextColor of Dropdown (Picker)  -->
+        <SolidColorBrush x:Key="ComboBoxItemForeground" Color="black" />
+        <SolidColorBrush x:Key="ComboBoxItemForegroundSelectedPointerOver" Color="white" />
+        <SolidColorBrush x:Key="ComboBoxItemForegroundSelected" Color="white" />
+        <SolidColorBrush x:Key="ComboBoxItemForegroundSelectedPressed" Color="white" />
 
+        <SolidColorBrush x:Key="ComboBoxItemBackgroundSelected" Color="#84a689" />
+        <SolidColorBrush x:Key="ComboBoxItemBackgroundSelectedPointerOver" Color="#84a689" />
+        <SolidColorBrush x:Key="ComboBoxItemBackgroundSelectedPressed" Color="#84a689" />
+
+        <SolidColorBrush x:Key="HoverTextColor" Color="#84a689" />
+        <StaticResource x:Key="ComboBoxItemForegroundPointerOver" ResourceKey="HoverTextColor" />
+    </maui:MauiWinUIApplication.Resources>
 </maui:MauiWinUIApplication>
