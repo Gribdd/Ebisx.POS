@@ -1,17 +1,62 @@
-﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             Title=""
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Ebisx.POS.Presentation.ViewModels"
-             x:DataType="vm:MainPageViewModel"
-             x:Class="Ebisx.POS.Presentation.MainPage">
+﻿<ContentPage
+    x:Class="Ebisx.POS.Presentation.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Ebisx.POS.Presentation.ViewModels"
+    Title=""
+    x:DataType="vm:MainPageViewModel"
+    BackgroundColor="white">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Border">
+                <Setter Property="Stroke" Value="black" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 15" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-    <VerticalStackLayout HorizontalOptions="Center" WidthRequest="400" Spacing="20" VerticalOptions="Center">
-        <Label FontAttributes="Bold" Text="EMAIL"/>
-        <Picker ItemsSource="{Binding MockEmails}" SelectedItem="{Binding User.Email}"/>
+    <Grid RowDefinitions="*">
+        <Border
+            BackgroundColor="#84a689"
+            HorizontalOptions="CenterAndExpand"
+            WidthRequest="300"
+            HeightRequest="350"
+            VerticalOptions="CenterAndExpand">
+            <VerticalStackLayout Margin="30" VerticalOptions="Center" Spacing="5">
+                <Label FontAttributes="Bold" TextColor="Black" FontSize="20" HorizontalTextAlignment="Center" Text="POS"/>
 
-        <Label FontAttributes="Bold" Text="PASSWORD"/>
-        <Entry Text="{Binding User.Password}" IsPassword="True"/>
+                <Label
+                    FontAttributes="Bold"
+                    Text="EMAIL"
+                    TextColor="black" />
+                <Border BackgroundColor="white">
+                    <Picker
+                        BackgroundColor="White"
+                        FontAttributes="Bold"
+                        ItemsSource="{Binding MockEmails}"
+                        SelectedItem="{Binding User.Email}"
+                        TextColor="Black" />
+                </Border>
 
-        <Button Text="LOGIN" Command="{Binding AuthenticateCommand}" WidthRequest="200" />
-    </VerticalStackLayout>
+                <Label
+                    Margin="0,25,10,0"
+                    FontAttributes="Bold"
+                    Text="PASSWORD"
+                    TextColor="black" />
+                <Border>
+                    <Entry TextColor="Black" BackgroundColor="White" IsPassword="True" Text="{Binding User.Password}" />
+                </Border>
+                <Button
+                    WidthRequest="130"
+                    Margin="0,30,0,0"
+                    BackgroundColor="White"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    Command="{Binding AuthenticateCommand}"
+                    CornerRadius="20"
+                    FontAttributes="Bold"
+                    Text="LOGIN" />
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>
