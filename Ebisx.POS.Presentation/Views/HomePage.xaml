@@ -67,6 +67,7 @@
 
             <Style x:Key="labelBorderstyle" TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
+                <Setter Property="LineBreakMode" Value="TailTruncation" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
             </Style>
@@ -81,7 +82,7 @@
         <Label
             FontAttributes="Bold"
             FontSize="20"
-            HorizontalTextAlignment="Center"
+            Style="{StaticResource labelBorderstyle}"
             Text="Hello" />
         <Grid
             Grid.Row="1"
@@ -131,14 +132,6 @@
                             Grid.Row="4"
                             Text="EMPLOYEE TYPE.:"
                             VerticalTextAlignment="Center" />
-
-                        <!--<Border Grid.Column="1" Stroke="Black">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="15"/>
-                            </Border.StrokeShape>
-                            <Label Text="INV-01" FontSize="12"
-                            VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                        </Border>-->
                         <Border Grid.Column="1" Style="{StaticResource borderStyle}">
                             <Label Style="{StaticResource labelBorderstyle}" Text="INV-01" />
                         </Border>
@@ -192,7 +185,7 @@
                         <Label
                             FontSize="30"
                             Style="{StaticResource labelBorderstyle}"
-                            Text=""
+                            Text="{Binding SelectedOrderItem.Barcode}"
                             WidthRequest="300" />
                     </Border>
 
@@ -452,65 +445,104 @@
                 Grid.Row="2"
                 Grid.ColumnSpan="5"
                 HeightRequest="2" />
-
         </Grid>
+
         <Grid
             Grid.Row="2"
             BackgroundColor="White"
             RowDefinitions="auto,auto,*">
             <!--  Sticky Header  -->
             <Grid
-                Padding="3"
                 BackgroundColor="#84a689"
-                ColumnDefinitions="*,*,*,*,*,*,*,*,*"
+                ColumnDefinitions="*,2,*,2,*,2,*,2,*,2,*,2,*,2,*,2,*"
                 HeightRequest="30">
+
+                <!--  Header Labels with Vertical Dividers  -->
                 <Label
                     Grid.Column="0"
-                    FontAttributes="Bold"
-                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource labelBorderstyle}"
                     Text="Product ID" />
-                <Label
+                <BoxView
                     Grid.Column="1"
-                    FontAttributes="Bold"
-                    HorizontalTextAlignment="Center"
-                    Text="Product Name" />
+                    BackgroundColor="White"
+                    WidthRequest="2" />
+
                 <Label
                     Grid.Column="2"
-                    FontAttributes="Bold"
-                    HorizontalTextAlignment="Center"
-                    Text="Barcode" />
-                <Label
+                    Style="{StaticResource labelBorderstyle}"
+                    Text="Product Name" />
+                <BoxView
                     Grid.Column="3"
-                    FontAttributes="Bold"
-                    HorizontalTextAlignment="Center"
-                    Text="Quantity" />
+                    BackgroundColor="White"
+                    WidthRequest="2" />
+
                 <Label
                     Grid.Column="4"
-                    FontAttributes="Bold"
-                    HorizontalTextAlignment="Center"
-                    Text="Price" />
-                <Label
+                    Style="{StaticResource labelBorderstyle}"
+                    Text="Barcode" />
+                <BoxView
                     Grid.Column="5"
-                    FontAttributes="Bold"
-                    HorizontalTextAlignment="Center"
-                    Text="Discount %" />
+                    BackgroundColor="White"
+                    WidthRequest="2" />
+
                 <Label
                     Grid.Column="6"
-                    FontAttributes="Bold"
-                    HorizontalTextAlignment="Center"
-                    Text="Discount PHP" />
-                <Label
+                    Style="{StaticResource labelBorderstyle}"
+                    Text="Quantity" />
+                <BoxView
                     Grid.Column="7"
-                    FontAttributes="Bold"
-                    HorizontalTextAlignment="Center"
-                    Text="VAT" />
+                    BackgroundColor="White"
+                    WidthRequest="2" />
+
                 <Label
                     Grid.Column="8"
-                    FontAttributes="Bold"
-                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource labelBorderstyle}"
+                    Text="Price" />
+                <BoxView
+                    Grid.Column="9"
+                    BackgroundColor="White"
+                    WidthRequest="2" />
+
+                <Label
+                    Grid.Column="10"
+                    Style="{StaticResource labelBorderstyle}"
+                    Text="Discount %" />
+                <BoxView
+                    Grid.Column="11"
+                    BackgroundColor="White"
+                    WidthRequest="2" />
+
+                <Label
+                    Grid.Column="12"
+                    Style="{StaticResource labelBorderstyle}"
+                    Text="Discount PHP" />
+                <BoxView
+                    Grid.Column="13"
+                    BackgroundColor="White"
+                    WidthRequest="2" />
+
+                <Label
+                    Grid.Column="14"
+                    Style="{StaticResource labelBorderstyle}"
+                    Text="VAT" />
+                <BoxView
+                    Grid.Column="15"
+                    BackgroundColor="White"
+                    WidthRequest="2" />
+
+                <Label
+                    Grid.Column="16"
+                    Style="{StaticResource labelBorderstyle}"
                     Text="Total Amount" />
             </Grid>
-            <BoxView Grid.Row="1" HeightRequest="2" />
+
+            <!--  Bottom Border  -->
+            <BoxView
+                Grid.Row="1"
+                Grid.ColumnSpan="17"
+                BackgroundColor="White"
+                HeightRequest="2"
+                VerticalOptions="End" />
             <!--  Scrollable CollectionView  -->
             <CollectionView
                 Grid.Row="2"
@@ -519,53 +551,107 @@
                 SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:OrderItem">
-                        <!--<Grid
-                            Padding="5"
-                            ColumnDefinitions="*,*,*,*,*,*,*,*,*"
-                            RowDefinitions="auto">
+                        <Grid ColumnDefinitions="*,2,*,2,*,2,*,2,*,2,*,2,*,2,*,2,*" RowDefinitions="Auto,2">
+
+                            <!--  Labels with BoxView separators  -->
                             <Label
                                 Grid.Column="0"
-                                HorizontalTextAlignment="Center"
-                                Text="0" />
-                            <Label
+                                FontAttributes="None"
+                                Style="{StaticResource labelBorderstyle}"
+                                Text="{Binding ProductId}" />
+                            <BoxView
                                 Grid.Column="1"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding ProductName}" />
+                                BackgroundColor="Gray"
+                                WidthRequest="1" />
+
                             <Label
                                 Grid.Column="2"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding Barcode}" />
-                            <Label
+                                FontAttributes="None"
+                                Style="{StaticResource labelBorderstyle}"
+                                Text="{Binding ProductName}" />
+                            <BoxView
                                 Grid.Column="3"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding QuantityAtPurchase}" />
+                                BackgroundColor="Gray"
+                                WidthRequest="1" />
+
                             <Label
                                 Grid.Column="4"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding PriceAtPurchase, StringFormat='₱{0:N2}'}" />
-                            <Label
+                                FontAttributes="None"
+                                Style="{StaticResource labelBorderstyle}"
+                                Text="{Binding Barcode}" />
+                            <BoxView
                                 Grid.Column="5"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding DiscountPercentage, StringFormat='{0:N2}%'}" />
+                                BackgroundColor="Gray"
+                                WidthRequest="1" />
+
                             <Label
                                 Grid.Column="6"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding DiscountAmount, StringFormat='₱{0:N2}'}" />
-                            <Label
+                                FontAttributes="None"
+                                Style="{StaticResource labelBorderstyle}"
+                                Text="{Binding QuantityAtPurchase}" />
+                            <BoxView
                                 Grid.Column="7"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding VatAtPurchase, StringFormat='{0:N2}%'}" />
+                                BackgroundColor="Gray"
+                                WidthRequest="1" />
+
                             <Label
                                 Grid.Column="8"
-                                HorizontalTextAlignment="Center"
+                                FontAttributes="None"
+                                Style="{StaticResource labelBorderstyle}"
+                                Text="{Binding PriceAtPurchase, StringFormat='₱{0:N2}'}" />
+                            <BoxView
+                                Grid.Column="9"
+                                BackgroundColor="Gray"
+                                WidthRequest="1" />
+
+                            <Label
+                                Grid.Column="10"
+                                FontAttributes="None"
+                                Style="{StaticResource labelBorderstyle}"
+                                Text="{Binding DiscountPercentage, StringFormat='{0:N2}%'}" />
+                            <BoxView
+                                Grid.Column="11"
+                                BackgroundColor="Gray"
+                                WidthRequest="1" />
+
+                            <Label
+                                Grid.Column="12"
+                                FontAttributes="None"
+                                Style="{StaticResource labelBorderstyle}"
+                                Text="{Binding DiscountAmount, StringFormat='₱{0:N2}'}" />
+                            <BoxView
+                                Grid.Column="13"
+                                BackgroundColor="Gray"
+                                WidthRequest="1" />
+
+                            <Label
+                                Grid.Column="14"
+                                FontAttributes="None"
+                                Style="{StaticResource labelBorderstyle}"
+                                Text="{Binding VatAtPurchase, StringFormat='{0:N2}%'}" />
+                            <BoxView
+                                Grid.Column="15"
+                                BackgroundColor="Gray"
+                                WidthRequest="1" />
+
+                            <Label
+                                Grid.Column="16"
+                                FontAttributes="None"
+                                Style="{StaticResource labelBorderstyle}"
                                 Text="{Binding TotalAmount, StringFormat='₱{0:N2}'}" />
-                        </Grid>-->
-                        <Grid >
-                            <Label Text="{Binding ProductName}"/>
+
+                            <!--  Row Divider  -->
+                            <BoxView
+                                Grid.Row="1"
+                                Grid.ColumnSpan="17"
+                                BackgroundColor="Gray"
+                                HeightRequest="1"
+                                VerticalOptions="End" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
         </Grid>
 
         <Grid
