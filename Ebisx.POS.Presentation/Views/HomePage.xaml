@@ -8,19 +8,11 @@
     xmlns:sys="clr-namespace:System;assembly=netstandard"
     xmlns:vm="clr-namespace:Ebisx.POS.Presentation.ViewModels"
     x:DataType="vm:HomePageViewModel">
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="BoxView">
                 <Setter Property="Color" Value="black" />
             </Style>
-
-            <Style TargetType="Label">
-                <Setter Property="TextColor" Value="black" />
-                <Setter Property="TextTransform" Value="Uppercase" />
-                <Setter Property="FontFamily" Value="LuckiestGuyRegular" />
-            </Style>
-
             <Style TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#d9d9d9" />
                 <Setter Property="FontFamily" Value="LuckiestGuyRegular" />
@@ -28,50 +20,74 @@
                 <Setter Property="BorderColor" Value="black" />
                 <Setter Property="BorderWidth" Value="1" />
                 <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#aeaeae" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#aeaeae" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#d9d9d9" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
             </Style>
-
-            <Style x:Key="unclikableButtonStyle" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="white" />
-                <Setter Property="MaximumHeightRequest" Value="20" />
-                <Setter Property="MaximumWidthRequest" Value="130" />
-
-                <Setter Property="TextColor" Value="{StaticResource Gray900}" />
-                <Setter Property="BorderColor" Value="black" />
-                <Setter Property="BorderWidth" Value="1" />
-                <Setter Property="CornerRadius" Value="10" />
+            <Style x:Key="labelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
             </Style>
-
-            <Style x:Key="numberButtonStyle" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#d9d9d9" />
-                <Setter Property="TextColor" Value="{StaticResource Gray900}" />
-                <Setter Property="BorderColor" Value="black" />
-                <Setter Property="BorderWidth" Value="1" />
-                <Setter Property="CornerRadius" Value="10" />
-            </Style>
-
             <Style x:Key="CTAButtonStyle" TargetType="Button">
                 <Setter Property="BorderColor" Value="black" />
                 <Setter Property="BorderWidth" Value="1" />
                 <Setter Property="BackgroundColor" Value="#84a689" />
                 <Setter Property="TextColor" Value="{StaticResource Gray900}" />
                 <Setter Property="CornerRadius" Value="15" />
-            </Style>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#b5c9b8" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#b5c9b8" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#84a689" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
 
+            </Style>
             <Style x:Key="borderStyle" TargetType="Border">
                 <Setter Property="Stroke" Value="black" />
                 <Setter Property="StrokeShape" Value="RoundRectangle 15" />
             </Style>
-
             <Style x:Key="labelBorderstyle" TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="LineBreakMode" Value="TailTruncation" />
+                <Setter Property="TextColor" Value="Black" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
             </Style>
 
         </ResourceDictionary>
     </ContentPage.Resources>
-
     <Grid
         Margin="0"
         BackgroundColor="#84a689"
@@ -111,21 +127,28 @@
                         ColumnSpacing="15"
                         RowDefinitions="auto,auto,auto,auto,auto"
                         RowSpacing="10">
-                        <Label Text="INVOICE NO.:" VerticalTextAlignment="Center" />
+                        <Label
+                            Style="{StaticResource labelStyle}"
+                            Text="INVOICE NO.:"
+                            VerticalTextAlignment="Center" />
                         <Label
                             Grid.Row="1"
+                            Style="{StaticResource labelStyle}"
                             Text="TILL ID:"
                             VerticalTextAlignment="Center" />
                         <Label
                             Grid.Row="2"
+                            Style="{StaticResource labelStyle}"
                             Text="PAYMENT MODE.:"
                             VerticalTextAlignment="Center" />
                         <Label
                             Grid.Row="3"
+                            Style="{StaticResource labelStyle}"
                             Text="USER ID.:"
                             VerticalTextAlignment="Center" />
                         <Label
                             Grid.Row="4"
+                            Style="{StaticResource labelStyle}"
                             Text="EMPLOYEE TYPE.:"
                             VerticalTextAlignment="Center" />
                         <Border Grid.Column="1" Style="{StaticResource borderStyle}">
@@ -176,7 +199,10 @@
                     HorizontalOptions="Center"
                     RowDefinitions="*,*"
                     RowSpacing="3">
-                    <Label HorizontalOptions="Center" Text="BARCODE PRODUCT ID" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{StaticResource labelStyle}"
+                        Text="BARCODE/PRODUCT ID" />
                     <Border Grid.Row="1" Style="{StaticResource borderStyle}">
                         <Label
                             FontSize="30"
@@ -208,30 +234,37 @@
                 <Label
                     Grid.Row="0"
                     Grid.Column="0"
+                    Style="{StaticResource labelStyle}"
                     Text="NO. OF ITEMS:" />
                 <Label
                     Grid.Row="1"
                     Grid.Column="0"
+                    Style="{StaticResource labelStyle}"
                     Text="QTY:" />
                 <Label
                     Grid.Row="3"
                     Grid.Column="0"
+                    Style="{StaticResource labelStyle}"
                     Text="DISCOUNT :" />
                 <Label
                     Grid.Row="4"
                     Grid.Column="0"
+                    Style="{StaticResource labelStyle}"
                     Text="LOYALTY POINTS:" />
                 <Label
                     Grid.Row="5"
                     Grid.Column="0"
+                    Style="{StaticResource labelStyle}"
                     Text="GRAND TOTAL:" />
                 <Label
                     Grid.Row="6"
                     Grid.Column="0"
+                    Style="{StaticResource labelStyle}"
                     Text="AMOUNT PAID:" />
                 <Label
                     Grid.Row="7"
                     Grid.Column="0"
+                    Style="{StaticResource labelStyle}"
                     Text="CHANGE:" />
 
                 <!--  Right Column  -->
@@ -254,11 +287,13 @@
                     <Label
                         FontSize="11"
                         HorizontalTextAlignment="End"
+                        Style="{StaticResource labelStyle}"
                         Text="ITEM DISCOUNT %" />
                     <Label
                         Grid.Column="1"
                         FontSize="11"
                         HorizontalTextAlignment="End"
+                        Style="{StaticResource labelStyle}"
                         Text="BILL DISCOUNT %" />
                 </Grid>
 
@@ -343,21 +378,18 @@
                     Grid.Column="0"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="9"
-                    Style="{StaticResource numberButtonStyle}"
                     Text="9" />
                 <Button
                     Grid.Row="0"
                     Grid.Column="1"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="8"
-                    Style="{StaticResource numberButtonStyle}"
                     Text="8" />
                 <Button
                     Grid.Row="0"
                     Grid.Column="2"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="7"
-                    Style="{StaticResource numberButtonStyle}"
                     Text="7" />
 
                 <!--  Row 2  -->
@@ -366,21 +398,18 @@
                     Grid.Column="0"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="6"
-                    Style="{StaticResource numberButtonStyle}"
                     Text="6" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="1"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="5"
-                    Style="{StaticResource numberButtonStyle}"
                     Text="5" />
                 <Button
                     Grid.Row="1"
                     Grid.Column="2"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="4"
-                    Style="{StaticResource numberButtonStyle}"
                     Text="4" />
 
                 <!--  Row 3  -->
@@ -389,40 +418,34 @@
                     Grid.Column="0"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="3"
-                    Style="{StaticResource numberButtonStyle}"
                     Text="3" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="1"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="2"
-                    Style="{StaticResource numberButtonStyle}"
                     Text="2" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="2"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="1"
-                    Style="{StaticResource numberButtonStyle}"
                     Text="1" />
 
                 <!--  Row 4  -->
                 <Button
                     Grid.Row="3"
                     Grid.Column="0"
-                    Style="{StaticResource numberButtonStyle}"
                     Text="." />
                 <Button
                     Grid.Row="3"
                     Grid.Column="1"
                     Command="{Binding NumberInputCommand}"
                     CommandParameter="0"
-                    Style="{StaticResource numberButtonStyle}"
                     Text="0" />
                 <Button
                     Grid.Row="3"
                     Grid.Column="2"
-                    Style="{StaticResource numberButtonStyle}"
                     Text="X" />
             </Grid>
 
@@ -441,86 +464,81 @@
             <!--  Sticky Header  -->
             <Grid
                 BackgroundColor="#84a689"
-                ColumnDefinitions="*,2,*,2,*,2,*,2,*,2,*,2,*,2,*,2,*"
-                HeightRequest="30">
+                ColumnDefinitions="*,*,*,*,*,*,*,*,*"
+                HeightRequest="40">
 
-                <!--  Header Labels with Vertical Dividers  -->
+                <!--  Header Labels  -->
                 <Label
                     Grid.Column="0"
                     Style="{StaticResource labelBorderstyle}"
                     Text="Product ID" />
-                <BoxView
+                <Label
                     Grid.Column="1"
-                    BackgroundColor="White"
-                    WidthRequest="2" />
-
+                    Style="{StaticResource labelBorderstyle}"
+                    Text="Product Name" />
                 <Label
                     Grid.Column="2"
                     Style="{StaticResource labelBorderstyle}"
-                    Text="Product Name" />
-                <BoxView
+                    Text="Barcode" />
+                <Label
                     Grid.Column="3"
-                    BackgroundColor="White"
-                    WidthRequest="2" />
-
+                    Style="{StaticResource labelBorderstyle}"
+                    Text="Quantity" />
                 <Label
                     Grid.Column="4"
                     Style="{StaticResource labelBorderstyle}"
-                    Text="Barcode" />
-                <BoxView
+                    Text="Price" />
+                <Label
                     Grid.Column="5"
-                    BackgroundColor="White"
-                    WidthRequest="2" />
-
+                    Style="{StaticResource labelBorderstyle}"
+                    Text="Discount %" />
                 <Label
                     Grid.Column="6"
                     Style="{StaticResource labelBorderstyle}"
-                    Text="Quantity" />
-                <BoxView
+                    Text="Discount PHP" />
+                <Label
                     Grid.Column="7"
-                    BackgroundColor="White"
-                    WidthRequest="2" />
-
+                    Style="{StaticResource labelBorderstyle}"
+                    Text="VAT" />
                 <Label
                     Grid.Column="8"
                     Style="{StaticResource labelBorderstyle}"
-                    Text="Price" />
-                <BoxView
-                    Grid.Column="9"
-                    BackgroundColor="White"
-                    WidthRequest="2" />
-
-                <Label
-                    Grid.Column="10"
-                    Style="{StaticResource labelBorderstyle}"
-                    Text="Discount %" />
-                <BoxView
-                    Grid.Column="11"
-                    BackgroundColor="White"
-                    WidthRequest="2" />
-
-                <Label
-                    Grid.Column="12"
-                    Style="{StaticResource labelBorderstyle}"
-                    Text="Discount PHP" />
-                <BoxView
-                    Grid.Column="13"
-                    BackgroundColor="White"
-                    WidthRequest="2" />
-
-                <Label
-                    Grid.Column="14"
-                    Style="{StaticResource labelBorderstyle}"
-                    Text="VAT" />
-                <BoxView
-                    Grid.Column="15"
-                    BackgroundColor="White"
-                    WidthRequest="2" />
-
-                <Label
-                    Grid.Column="16"
-                    Style="{StaticResource labelBorderstyle}"
                     Text="Total Amount" />
+
+                <!--  Vertical Dividers  -->
+
+                <BoxView
+                    Grid.Column="0"
+                    HorizontalOptions="End"
+                    WidthRequest="2" />
+                <BoxView
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    WidthRequest="2" />
+                <BoxView
+                    Grid.Column="2"
+                    HorizontalOptions="End"
+                    WidthRequest="2" />
+                <BoxView
+                    Grid.Column="3"
+                    HorizontalOptions="End"
+                    WidthRequest="2" />
+                <BoxView
+                    Grid.Column="4"
+                    HorizontalOptions="End"
+                    WidthRequest="2" />
+                <BoxView
+                    Grid.Column="5"
+                    HorizontalOptions="End"
+                    WidthRequest="2" />
+                <BoxView
+                    Grid.Column="6"
+                    HorizontalOptions="End"
+                    WidthRequest="2" />
+                <BoxView
+                    Grid.Column="7"
+                    HorizontalOptions="End"
+                    WidthRequest="2" />
             </Grid>
 
             <!--  Bottom Border  -->
@@ -534,107 +552,108 @@
             <CollectionView
                 Grid.Row="2"
                 ItemsSource="{Binding OrderItems}"
-                SelectedItem="{Binding SelectedOrderItem, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedOrderItem}"
                 SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:OrderItem">
                         <Grid
-                            ColumnDefinitions="*,2,*,2,*,2,*,2,*,2,*,2,*,2,*,2,*"
-                            HeightRequest="50"
-                            RowDefinitions="Auto,2">
+                            ColumnDefinitions="*,*,*,*,*,*,*,*,*"
+                            HeightRequest="40"
+                            RowDefinitions="*,auto">
 
-                            <!--  Labels with BoxView separators  -->
                             <Label
-                                Grid.Column="0"
-                                FontAttributes="None"
-                                Style="{StaticResource labelBorderstyle}"
-                                Text="{Binding ProductId}" />
-                            <BoxView
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding ProductId}"
+                                VerticalTextAlignment="Center" />
+                            <Label
                                 Grid.Column="1"
-                                BackgroundColor="Gray"
-                                WidthRequest="2 " />
-
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding ProductName, FallbackValue='No value'}"
+                                VerticalTextAlignment="Center" />
                             <Label
                                 Grid.Column="2"
-                                FontAttributes="None"
-                                Style="{StaticResource labelBorderstyle}"
-                                Text="{Binding ProductName}" />
-                            <BoxView
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding Barcode, FallbackValue='No value'}"
+                                VerticalTextAlignment="Center" />
+                            <Label
                                 Grid.Column="3"
-                                BackgroundColor="Gray"
-                                WidthRequest="2" />
-
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding QuantityAtPurchase, FallbackValue='No value'}"
+                                VerticalTextAlignment="Center" />
                             <Label
                                 Grid.Column="4"
-                                FontAttributes="None"
-                                Style="{StaticResource labelBorderstyle}"
-                                Text="{Binding Barcode}" />
-                            <BoxView
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding PriceAtPurchase, FallbackValue='No value'}"
+                                VerticalTextAlignment="Center" />
+                            <Label
                                 Grid.Column="5"
-                                BackgroundColor="Gray"
-                                WidthRequest="2" />
-
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding DiscountPercentage, FallbackValue='No value'}"
+                                VerticalTextAlignment="Center" />
                             <Label
                                 Grid.Column="6"
-                                FontAttributes="None"
-                                Style="{StaticResource labelBorderstyle}"
-                                Text="{Binding QuantityAtPurchase}" />
-                            <BoxView
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding DiscountAmount, FallbackValue='No value'}"
+                                VerticalTextAlignment="Center" />
+                            <Label
                                 Grid.Column="7"
-                                BackgroundColor="Gray"
-                                WidthRequest="2" />
-
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding VatAtPurchase, FallbackValue='No value'}"
+                                VerticalTextAlignment="Center" />
                             <Label
                                 Grid.Column="8"
-                                FontAttributes="None"
-                                Style="{StaticResource labelBorderstyle}"
-                                Text="{Binding PriceAtPurchase, StringFormat='₱{0:N2}'}" />
-                            <BoxView
-                                Grid.Column="9"
-                                BackgroundColor="Gray"
-                                WidthRequest="2" />
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource labelStyle}"
+                                Text="{Binding TotalAmount, FallbackValue='No value'}"
+                                VerticalTextAlignment="Center" />
 
-                            <Label
-                                Grid.Column="10"
-                                FontAttributes="None"
-                                Style="{StaticResource labelBorderstyle}"
-                                Text="{Binding DiscountPercentage, StringFormat='{0:N2}%'}" />
-                            <BoxView
-                                Grid.Column="11"
-                                BackgroundColor="Gray"
-                                WidthRequest="2" />
+                            <!--  Vertical Dividers  -->
 
-                            <Label
-                                Grid.Column="12"
-                                FontAttributes="None"
-                                Style="{StaticResource labelBorderstyle}"
-                                Text="{Binding DiscountAmount, StringFormat='₱{0:N2}'}" />
                             <BoxView
-                                Grid.Column="13"
-                                BackgroundColor="Gray"
+                                Grid.Column="0"
+                                HorizontalOptions="End"
                                 WidthRequest="2" />
-
-                            <Label
-                                Grid.Column="14"
-                                FontAttributes="None"
-                                Style="{StaticResource labelBorderstyle}"
-                                Text="{Binding VatAtPurchase, StringFormat='{0:N2}%'}" />
                             <BoxView
-                                Grid.Column="15"
-                                BackgroundColor="Gray"
+                                Grid.Column="1"
+                                HorizontalOptions="End"
                                 WidthRequest="2" />
-
-                            <Label
-                                Grid.Column="16"
-                                FontAttributes="None"
-                                Style="{StaticResource labelBorderstyle}"
-                                Text="{Binding TotalAmount, StringFormat='₱{0:N2}'}" />
+                            <BoxView
+                                Grid.Column="2"
+                                HorizontalOptions="End"
+                                WidthRequest="2" />
+                            <BoxView
+                                Grid.Column="3"
+                                HorizontalOptions="End"
+                                WidthRequest="2" />
+                            <BoxView
+                                Grid.Column="4"
+                                HorizontalOptions="End"
+                                WidthRequest="2" />
+                            <BoxView
+                                Grid.Column="5"
+                                HorizontalOptions="End"
+                                WidthRequest="2" />
+                            <BoxView
+                                Grid.Column="6"
+                                HorizontalOptions="End"
+                                WidthRequest="2" />
+                            <BoxView
+                                Grid.Column="7"
+                                HorizontalOptions="End"
+                                WidthRequest="2" />
 
                             <!--  Row Divider  -->
                             <BoxView
                                 Grid.Row="1"
-                                Grid.ColumnSpan="17"
-                                BackgroundColor="Gray"
+                                Grid.ColumnSpan="9"
                                 HeightRequest="2"
                                 VerticalOptions="End" />
                         </Grid>
@@ -721,7 +740,7 @@
                 Grid.Row="1"
                 Grid.Column="6"
                 Text="CALL MANAGER" />
-
         </Grid>
     </Grid>
+
 </ContentPage>
