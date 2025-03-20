@@ -560,7 +560,6 @@
                             ColumnDefinitions="*,*,*,*,*,*,*,*,*"
                             HeightRequest="40"
                             RowDefinitions="*,auto">
-
                             <Label
                                 HorizontalTextAlignment="Center"
                                 Style="{StaticResource labelStyle}"
@@ -588,32 +587,33 @@
                                 Grid.Column="4"
                                 HorizontalTextAlignment="Center"
                                 Style="{StaticResource labelStyle}"
-                                Text="{Binding PriceAtPurchase, FallbackValue='No value'}"
+                                Text="{Binding PriceAtPurchase, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
                                 VerticalTextAlignment="Center" />
                             <Label
                                 Grid.Column="5"
                                 HorizontalTextAlignment="Center"
                                 Style="{StaticResource labelStyle}"
-                                Text="{Binding DiscountPercentage, FallbackValue='No value'}"
+                                Text="{Binding DiscountPercentage, StringFormat='{0:N2}%', FallbackValue='0.00%'}"
                                 VerticalTextAlignment="Center" />
                             <Label
                                 Grid.Column="6"
                                 HorizontalTextAlignment="Center"
                                 Style="{StaticResource labelStyle}"
-                                Text="{Binding DiscountAmount, FallbackValue='No value'}"
+                                Text="{Binding DiscountAmount, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
                                 VerticalTextAlignment="Center" />
                             <Label
                                 Grid.Column="7"
                                 HorizontalTextAlignment="Center"
                                 Style="{StaticResource labelStyle}"
-                                Text="{Binding VatAtPurchase, FallbackValue='No value'}"
+                                Text="{Binding VatAtPurchase, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
                                 VerticalTextAlignment="Center" />
                             <Label
                                 Grid.Column="8"
                                 HorizontalTextAlignment="Center"
                                 Style="{StaticResource labelStyle}"
-                                Text="{Binding TotalAmount, FallbackValue='No value'}"
+                                Text="{Binding TotalAmount, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
                                 VerticalTextAlignment="Center" />
+
 
                             <!--  Vertical Dividers  -->
 
@@ -730,6 +730,7 @@
             <Button
                 Grid.Row="1"
                 Grid.Column="4"
+                Command="{Binding ApplyBillDiscountCommand}"
                 Text="BILL DISCOUNT" />
             <Button
                 Grid.Row="1"

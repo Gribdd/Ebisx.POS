@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Maui;
+using Ebisx.POS.Presentation.ViewModels.Popup.BillDiscount;
+using Ebisx.POS.Presentation.Views.Popups.BillDiscount;
 using Microsoft.Extensions.Logging;
 
 namespace Ebisx.POS.Presentation
@@ -20,6 +22,7 @@ namespace Ebisx.POS.Presentation
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("LuckiestGuy-Regular.ttf", "LuckiestGuyRegular");
                 });
             builder.Services.AddSingleton<ApiService.Services.ApiService>();
 
@@ -43,6 +46,8 @@ namespace Ebisx.POS.Presentation
             mauiAppBuilder.Services.AddTransient<ItemInventoryPageViewModel>();
             mauiAppBuilder.Services.AddTransientPopup<PaymentPopup, PaymentPopupViewModel>();
             mauiAppBuilder.Services.AddTransientPopup<CashPaymentPopup, CashPaymentPopupViewModel>();
+            mauiAppBuilder.Services.AddTransientPopup<BillDiscountPopup, BillDiscountPopupViewModel>();
+            mauiAppBuilder.Services.AddTransientPopup<BillDiscountDetailsPopup, BillDiscountDetailsPopupViewModel>();
             return mauiAppBuilder;
         }
 

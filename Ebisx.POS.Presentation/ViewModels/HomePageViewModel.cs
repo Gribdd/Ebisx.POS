@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
 using Ebisx.POS.Presentation.Common.Enums;
+using Ebisx.POS.Presentation.ViewModels.Popup.BillDiscount;
 
 namespace Ebisx.POS.Presentation.ViewModels;
 
@@ -196,9 +197,15 @@ public partial class HomePageViewModel : BaseViewModel
     }
 
     [RelayCommand]  
-    private void ApplyBillDiscount()
+    private async Task ApplyBillDiscount()
     {
+        var result = await _popupService.ShowPopupAsync<BillDiscountPopupViewModel>();
 
+        if (result != null)
+        {
+            var discountType = result.ToString();
+            _popupService.ShowPopup<BillDiscountDetailsPopupViewModel>();
+        }
     }
 
     [RelayCommand]
@@ -241,4 +248,7 @@ public partial class HomePageViewModel : BaseViewModel
     {
         _popupService.ShowPopup<PaymentPopupViewModel>();
     }
+
+
+
 }

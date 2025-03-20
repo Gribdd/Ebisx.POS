@@ -162,9 +162,9 @@
             <CollectionView
                 x:Name="products"
                 Grid.Row="2"
+                BackgroundColor="White"
                 ItemsSource="{Binding Products}"
                 SelectedItem="{Binding SelectedProduct}"
-                BackgroundColor="White"
                 SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Product">

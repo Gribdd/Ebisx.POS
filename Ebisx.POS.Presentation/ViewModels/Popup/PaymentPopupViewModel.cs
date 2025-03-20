@@ -30,38 +30,11 @@ public partial class PaymentPopupViewModel : BaseViewModel
         _popupService = popupService;
     }
 
-    //private async void AddPayment(PaymentMethod paymentMethod)
-    //{
-    //    // Handle payment logic here
-    //    Console.WriteLine($"Adding payment for: {paymentMethod.Name} " );
-    //    await Shell.Current.CurrentPage.DisplayAlert(
-    //        "Payment", 
-    //        $"Adding payment for: {paymentMethod.Name} PHP {paymentMethod.Amount}", 
-    //        "OK");
-
-    //    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-
-    //    string text = $"Payment added: {paymentMethod.Name} with an amount of PHP {paymentMethod.Amount}";
-    //    ToastDuration duration = ToastDuration.Short;
-    //    double fontSize = 14;
-
-    //    var toast = Toast.Make(text, duration, fontSize);
-
-    //    await toast.Show(cancellationTokenSource.Token);
-
-    //    switch (paymentMethod.Name)
-    //    {
-    //        case "Cash":
-    //            // Handle cash payment
-    //            _popupService.ShowPopup<CashPaymentPopupViewModel>();
-    //            break;
-    //        case "Credit":
-    //            // Handle credit payment
-    //            break;
-    //    }
-    //}
-
-    
+    [RelayCommand]
+    private void Close()
+    {
+        _popupService.ClosePopup();
+    }
 
     [RelayCommand]
     private async Task AddPayment(object parameter)
@@ -70,12 +43,7 @@ public partial class PaymentPopupViewModel : BaseViewModel
             tuple.Item1 is PaymentMethod paymentMethod &&
             tuple.Item2 is Button anchorButton)
         {
-            Console.WriteLine($"Adding payment for: {paymentMethod.Name}");
-
-            //await Shell.Current.CurrentPage.DisplayAlert(
-            //    "Payment",
-            //    $"Adding payment for: {paymentMethod.Name} PHP {paymentMethod.Amount}",
-            //    "OK");
+                
 
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 

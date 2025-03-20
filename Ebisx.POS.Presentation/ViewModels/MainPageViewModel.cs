@@ -38,13 +38,13 @@ public partial class MainPageViewModel : BaseViewModel
     {
 
     }
-
+    
     public void LoadMockEmails()
     {
         var userFaker = new Faker<User>()
         .RuleFor(u => u.Username, f => f.Internet.UserName())
         .RuleFor(u => u.Email, f => f.Internet.Email())
-        .RuleFor(u => u.Password, f => "123")
+        .RuleFor(u => u.Password, f => "")
         .RuleFor(u => u.BirthDate, f => f.Date.Past(30));
 
         _mockUsers = new ObservableCollection<User>(userFaker.Generate(10));

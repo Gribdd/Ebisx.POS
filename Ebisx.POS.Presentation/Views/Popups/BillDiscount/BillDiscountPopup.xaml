@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="Ebisx.POS.Presentation.Views.Popups.BillDiscount.BillDiscountPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:Ebisx.POS.Presentation.ViewModels.Popup.BillDiscount"
+    x:DataType="vm:BillDiscountPopupViewModel"
+    CanBeDismissedByTappingOutsideOfPopup="False"
+    Color="Transparent">
+    <toolkit:Popup.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#d9d9d9" />
+            <Setter Property="FontFamily" Value="LuckiestGuyRegular" />
+            <Setter Property="TextColor" Value="{StaticResource Gray900}" />
+            <Setter Property="BorderColor" Value="black" />
+            <Setter Property="BorderWidth" Value="1" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup Name="CommonStates">
+                        <VisualState Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#aeaeae" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#aeaeae" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#d9d9d9" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </toolkit:Popup.Resources>
+    <Border
+        BackgroundColor="#84a689"
+        HeightRequest="200"
+        Stroke="Black"
+        StrokeShape="RoundRectangle 15"
+        StrokeThickness="3"
+        WidthRequest="600  ">
+        <Grid>
+            <ImageButton
+                Background="Red"
+                BorderColor="Black"
+                BorderWidth="1"
+                Command="{Binding CloseCommand}"
+                CornerRadius="10"
+                HorizontalOptions="End"
+                Source="icons8_close.png"
+                VerticalOptions="Start"
+                WidthRequest="30"
+                ZIndex="1" />
+            <Border
+                Margin="20"
+                BackgroundColor="white"
+                Stroke="Black"
+                StrokeShape="RoundRectangle 15"
+                StrokeThickness="2">
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand">
+                    <Button
+                        Command="{Binding ProceedToDetailsCommand}"
+                        CommandParameter="senior"
+                        Text="SENIOR CITIZEN" />
+                    <Button
+                        Grid.Column="1"
+                        Command="{Binding ProceedToDetailsCommand}"
+                        CommandParameter="pwd"
+                        Text="PWD" />
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+
+</toolkit:Popup>

@@ -31,7 +31,7 @@ public class MockDataService
 
     private ObservableCollection<Product> GenerateMockProducts(int count = 20)
     {
-        var faker = new Faker<Product>()
+        Faker<Product>? faker = new Faker<Product>()
             .RuleFor(p => p.Id, f => f.Random.Int(1000, 9999))
             .RuleFor(p => p.ProductName, f => f.Commerce.ProductName())
             .RuleFor(p => p.Barcode, f => f.Random.ReplaceNumbers("############")) // 12-digit barcode

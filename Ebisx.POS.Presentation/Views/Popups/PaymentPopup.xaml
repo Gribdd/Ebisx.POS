@@ -9,63 +9,318 @@
     xmlns:view="clr-namespace:Ebisx.POS.Presentation.Views.Popups"
     xmlns:vm="clr-namespace:Ebisx.POS.Presentation.ViewModels.Popup"
     x:DataType="vm:PaymentPopupViewModel"
-    CanBeDismissedByTappingOutsideOfPopup="False">
-    <toolkit:Popup.Resources>
-        <converter:PaymentCommandParameterConverter x:Key="PaymentCommandParameterConverter" />
-    </toolkit:Popup.Resources>
+    CanBeDismissedByTappingOutsideOfPopup="False"
+    Color="Transparent">
+
     <Border
-        Padding="10"
-        BackgroundColor="{StaticResource Gray900}"
+        BackgroundColor="#84a689"
         HeightRequest="{Binding PopupHeight}"
+        Stroke="Black"
+        StrokeShape="RoundRectangle 15"
+        StrokeThickness="3"
         WidthRequest="{Binding PopupWidth}">
-        <Grid RowDefinitions="auto,auto" RowSpacing="15">
-
-            <CollectionView ItemsSource="{Binding PaymentMethods}">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout
-                        HorizontalItemSpacing="20"
-                        Orientation="Vertical"
-                        Span="3"
-                        VerticalItemSpacing="15" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:PaymentMethod">
-                        <StackLayout>
+        <Grid>
+            <ImageButton
+                Background="Red"
+                BorderColor="Black"
+                BorderWidth="1"
+                Command="{Binding CloseCommand}"
+                CornerRadius="10"
+                HorizontalOptions="End"
+                Source="icons8_close.png"
+                VerticalOptions="Start"
+                WidthRequest="30"
+                ZIndex="1" />
+            <Border
+                Margin="20"
+                BackgroundColor="white"
+                Stroke="Black"
+                StrokeShape="RoundRectangle 15"
+                StrokeThickness="2">
+                <Grid
+                    Margin="10"
+                    ColumnDefinitions="*,*,*"
+                    ColumnSpacing="10"
+                    RowSpacing="30"
+                    RowDefinitions=".4*,.4*,auto"
+                    VerticalOptions="Start">
+                    <!--  FIRST ROW  -->
+                    <!--  CASH  -->
+                    <Grid
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        RowDefinitions="auto,auto,auto,auto">
+                        <Border
+                            BackgroundColor="#d9d9d9"
+                            Stroke="black"
+                            StrokeShape="RoundRectangle 1"
+                            StrokeThickness="2">
                             <Label
-                                Margin="0,0,0,3"
-                                FontAttributes="Bold"
-                                FontSize="20"
                                 HorizontalTextAlignment="Center"
-                                Text="{Binding Name}" />
+                                Text="CASH"
+                                TextColor="Black" />
+                        </Border>
+                        <Label
+                            Grid.Row="1"
+                            HorizontalTextAlignment="Center"
+                            Text="AMOUNT"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center" />
+                        <Border
+                            Grid.Row="2"
+                            Stroke="Black"
+                            StrokeShape="RoundRectangle 15"
+                            StrokeThickness="1">
                             <Label
-                                FontAttributes="Bold"
-                                FontSize="15"
                                 HorizontalTextAlignment="Center"
-                                Text="Amount" />
-                            <Entry
-                                Margin="0,5,0,5"
-                                Placeholder="Enter Amount..."
-                                Text="{Binding Amount}" />
-                            <Button
-                                x:Name="PaymentButton"
-                                Command="{Binding AddPaymentCommand, Source={RelativeSource AncestorType={x:Type vm:PaymentPopupViewModel}}}"
-                                CommandParameter="{Binding ., Converter={StaticResource PaymentCommandParameterConverter}, ConverterParameter={x:Reference PaymentButton}}"
-                                FontAttributes="Bold"
-                                Text="Add" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                Text="P200.00"
+                                TextColor="Black" />
+                        </Border>
+                        <Button
+                            Grid.Row="3"
+                            BackgroundColor="#84a689"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            HorizontalOptions="Center"
+                            Text="Add" />
+                    </Grid>
 
-            <HorizontalStackLayout
-                Grid.Row="1"
-                HorizontalOptions="Center"
-                Spacing="10"
-                VerticalOptions="Start">
-                <Label Text="TOTAL AMOUNT:" VerticalTextAlignment="Center" />
-                <Label Text="PHP 0.00" VerticalTextAlignment="Center" />
-                <Button Command="{Binding HandlePaymentCommand}" Text="PROCEED" />
-            </HorizontalStackLayout>
+                    <!--  CREDIT  -->
+                    <Grid
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        RowDefinitions="auto,auto,auto,auto">
+                        <Border
+                            BackgroundColor="#d9d9d9"
+                            Stroke="black"
+                            StrokeShape="RoundRectangle 1"
+                            StrokeThickness="2">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="CREDIT"
+                                TextColor="Black" />
+                        </Border>
+                        <Label
+                            Grid.Row="1"
+                            HorizontalTextAlignment="Center"
+                            Text="AMOUNT"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center" />
+                        <Border
+                            Grid.Row="2"
+                            Stroke="Black"
+                            StrokeShape="RoundRectangle 15"
+                            StrokeThickness="1">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="P200.00"
+                                TextColor="Black" />
+                        </Border>
+                        <Button
+                            Grid.Row="3"
+                            BackgroundColor="#84a689"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            HorizontalOptions="Center"
+                            Text="Add" />
+                    </Grid>
+
+                    <!--  DEBIT  -->
+                    <Grid
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        RowDefinitions="auto,auto,auto,auto">
+                        <Border
+                            BackgroundColor="#d9d9d9"
+                            Stroke="black"
+                            StrokeShape="RoundRectangle 1"
+                            StrokeThickness="2">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="DEBIT"
+                                TextColor="Black" />
+                        </Border>
+                        <Label
+                            Grid.Row="1"
+                            HorizontalTextAlignment="Center"
+                            Text="AMOUNT"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center" />
+                        <Border
+                            Grid.Row="2"
+                            Stroke="Black"
+                            StrokeShape="RoundRectangle 15"
+                            StrokeThickness="1">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="P200.00"
+                                TextColor="Black" />
+                        </Border>
+                        <Button
+                            Grid.Row="3"
+                            BackgroundColor="#84a689"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            HorizontalOptions="Center"
+                            Text="Add" />
+                    </Grid>
+
+                    
+                    <!--  SECOND ROW  -->
+                    <!--  E-PAY  -->
+                    <Grid
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        RowDefinitions="auto,auto,auto,auto">
+                        <Border
+                            BackgroundColor="#d9d9d9"
+                            Stroke="black"
+                            StrokeShape="RoundRectangle 1"
+                            StrokeThickness="2">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="E-PAY"
+                                TextColor="Black" />
+                        </Border>
+                        <Label
+                            Grid.Row="1"
+                            HorizontalTextAlignment="Center"
+                            Text="AMOUNT"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center" />
+                        <Border
+                            Grid.Row="2"
+                            Stroke="Black"
+                            StrokeShape="RoundRectangle 15"
+                            StrokeThickness="1">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="P200.00"
+                                TextColor="Black" />
+                        </Border>
+                        <Button
+                            Grid.Row="3"
+                            BackgroundColor="#84a689"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            HorizontalOptions="Center"
+                            Text="Add" />
+                    </Grid>
+
+                    <!--  CUSTOMER CREDIT  -->
+                    <Grid
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        RowDefinitions="auto,auto,auto,auto">
+                        <Border
+                            BackgroundColor="#d9d9d9"
+                            Stroke="black"
+                            StrokeShape="RoundRectangle 1"
+                            StrokeThickness="2">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="CUSTOMER CREDIT"
+                                TextColor="Black" />
+                        </Border>
+                        <Label
+                            Grid.Row="1"
+                            HorizontalTextAlignment="Center"
+                            Text="AMOUNT"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center" />
+                        <Border
+                            Grid.Row="2"
+                            Stroke="Black"
+                            StrokeShape="RoundRectangle 15"
+                            StrokeThickness="1">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="P200.00"
+                                TextColor="Black" />
+                        </Border>
+                        <Button
+                            Grid.Row="3"
+                            BackgroundColor="#84a689"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            HorizontalOptions="Center"
+                            Text="Add" />
+                    </Grid>
+
+                    <!--  LOYALTY CARD  -->
+                    <Grid
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        RowDefinitions="auto,auto,auto,auto">
+                        <Border
+                            BackgroundColor="#d9d9d9"
+                            Stroke="black"
+                            StrokeShape="RoundRectangle 1"
+                            StrokeThickness="2">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="LOYALTY CARD"
+                                TextColor="Black" />
+                        </Border>
+                        <Label
+                            Grid.Row="1"
+                            HorizontalTextAlignment="Center"
+                            Text="AMOUNT"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center" />
+                        <Border
+                            Grid.Row="2"
+                            Stroke="Black"
+                            StrokeShape="RoundRectangle 15"
+                            StrokeThickness="1">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="P200.00"
+                                TextColor="Black" />
+                        </Border>
+                        <Button
+                            Grid.Row="3"
+                            BackgroundColor="#84a689"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            HorizontalOptions="Center"
+                            Text="Add" />
+                    </Grid>
+
+
+                    <!--  LAST ROW  -->
+                    <!--  TOTAL AMOUNT DETS  -->
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        HorizontalOptions="End"
+                        Text="TOTAL AMOUNT"
+                        TextColor="Black"
+                        VerticalTextAlignment="Center" />
+                    <Border
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Stroke="black"
+                        StrokeShape="RoundRectangle 15"
+                        StrokeThickness="1">
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            Text="P0.00"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center" />
+                    </Border>
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        BackgroundColor="#84a689"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        HorizontalOptions="Start"
+                        Text="PROCEED"
+                        TextColor="Black" />
+                </Grid>
+            </Border>
         </Grid>
     </Border>
+
 </toolkit:Popup>
