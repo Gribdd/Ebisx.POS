@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Ebisx.POS.Presentation.ViewModels.Manager;
 using Ebisx.POS.Presentation.ViewModels.Popup.BillDiscount;
 using Ebisx.POS.Presentation.Views.Popups.BillDiscount;
 using Microsoft.Extensions.Logging;
@@ -41,15 +42,25 @@ namespace Ebisx.POS.Presentation
 
         private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
         {
+            //employee
             mauiAppBuilder.Services.AddTransient<MainPageViewModel>();
             mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
             mauiAppBuilder.Services.AddTransient<ItemInventoryPageViewModel>();
+
+            //manager
+            mauiAppBuilder.Services.AddTransient<ManagerEmployeesPageViewModel>();
+            mauiAppBuilder.Services.AddTransient<ManagerHomePageViewModel>();
+            mauiAppBuilder.Services.AddTransient<ManagerInventoryPageViewModel>();
+            mauiAppBuilder.Services.AddTransient<ManagerSalesPageViewModel>();
+            mauiAppBuilder.Services.AddTransient<ManagerTransactionPageViewModel>();
+
+            //popups
             mauiAppBuilder.Services.AddTransientPopup<PaymentPopup, PaymentPopupViewModel>();
             mauiAppBuilder.Services.AddTransientPopup<CashPaymentPopup, CashPaymentPopupViewModel>();
             mauiAppBuilder.Services.AddTransientPopup<BillDiscountPopup, BillDiscountPopupViewModel>();
             mauiAppBuilder.Services.AddTransientPopup<BillDiscountDetailsPopup, BillDiscountDetailsPopupViewModel>();
+            mauiAppBuilder.Services.AddTransientPopup<ItemDiscountPage, ItemDiscountPageViewModel>();
             return mauiAppBuilder;
         }
-
     }
 }

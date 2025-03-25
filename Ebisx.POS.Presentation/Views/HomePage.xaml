@@ -72,7 +72,6 @@
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
-
             </Style>
             <Style x:Key="borderStyle" TargetType="Border">
                 <Setter Property="Stroke" Value="black" />
@@ -88,14 +87,33 @@
 
         </ResourceDictionary>
     </ContentPage.Resources>
+
     <Grid
         Margin="0"
         BackgroundColor="#84a689"
-        RowDefinitions="auto,auto,*,auto">
-        <Label
-            FontSize="20"
-            Style="{StaticResource labelBorderstyle}"
-            Text="Hello" />
+        RowDefinitions="70,auto,*,auto">
+        <Border
+            Margin="10"
+            Padding="10"
+            BackgroundColor="White"
+            Stroke="Black"
+            StrokeShape="RoundRectangle 15"
+            StrokeThickness="2">
+            <Grid ColumnDefinitions="auto,*">
+                <Button
+                    Command="{Binding LogoutCommand}"
+                    CornerRadius="10"
+                    HorizontalOptions="Start"
+                    ImageSource="back_arrow.png"
+                    Style="{StaticResource CTAButtonStyle}" />
+                <Label
+                    Grid.Column="1"
+                    FontSize="20"
+                    Style="{StaticResource labelBorderstyle}"
+                    Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:dddd, MM/dd/yyyy}'}" />
+            </Grid>
+        </Border>
+
         <Grid
             Grid.Row="1"
             BackgroundColor="white"

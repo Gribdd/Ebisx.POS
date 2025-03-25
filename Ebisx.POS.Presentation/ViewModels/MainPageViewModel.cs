@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using Bogus.DataSets;
+using CommunityToolkit.Mvvm.Input;
 using Ebisx.POS.Presentation.Common;
 
 namespace Ebisx.POS.Presentation.ViewModels;
@@ -25,33 +26,37 @@ public partial class MainPageViewModel : BaseViewModel
         
         if (user is not null)
         {
-            await Shell.Current.GoToAsync("//home");
-            return;
+            if(user.UserRole == UserRole.Employee)
+            {
+                await Shell.Current.GoToAsync("//home");
+                return;
+            }
+
+            if (user.UserRole == UserRole.Manager)
+            {
+                await Shell.Current.GoToAsync("//managerhome");
+                return;
+            }
         }
 
         // Show error message
         await Shell.Current.DisplayAlert("Error", "Invalid email or password.", "OK");
-
-    }
-
-    private void LoadEmails()
-    {
-
     }
     
     public void LoadMockEmails()
     {
         var userFaker = new Faker<User>()
-        .RuleFor(u => u.Username, f => f.Internet.UserName())
-        .RuleFor(u => u.Email, f => f.Internet.Email())
-        .RuleFor(u => u.Password, f => "")
-        .RuleFor(u => u.BirthDate, f => f.Date.Past(30));
+            .RuleFor(u => u.Username, f => f.Internet.UserName())
+            .RuleFor(u => u.Email, f => f.Internet.Email())
+            .RuleFor(u => u.Password, f => "123")
+            .RuleFor(u => u.BirthDate, f => f.Date.Past(30));
 
-        _mockUsers = new ObservableCollection<User>(userFaker.Generate(10));
-            
+        _mockUsers = new ObservableCollection<User>(userFaker.Generate(2));
+        _mockUsers[0].UserRole = UserRole.Employee;
+        _mockUsers[1].UserRole = UserRole.Manager;
+
         //map the emails to the mockEmails collection
         MockEmails = new ObservableCollection<string>(_mockUsers.Select(u => u.Email));
-
     }
 
 }

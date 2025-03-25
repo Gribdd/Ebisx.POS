@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Ebisx.POS.Presentation.Views.Manager.ManagerHomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Ebisx.POS.Presentation.ViewModels.Manager"
+    Title="ManagerHomePage"
+    x:DataType="vm:ManagerHomePageViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CTAButtonStyle" TargetType="Button">
+                <Setter Property="BorderColor" Value="black" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="BackgroundColor" Value="#84a689" />
+                <Setter Property="TextColor" Value="{StaticResource Gray900}" />
+                <Setter Property="CornerRadius" Value="15" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#b5c9b8" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#b5c9b8" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#84a689" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid
+        Margin="0"
+        Background="{StaticResource Primary}"
+        RowDefinitions="auto,*">
+        <Border
+            Margin="10"
+            Padding="10"
+            BackgroundColor="White"
+            Stroke="Black"
+            StrokeShape="RoundRectangle 15"
+            StrokeThickness="2">
+            <Grid Background="White" ColumnDefinitions="50,*">
+                <Button
+                    Command="{Binding LogoutCommand}"
+                    HorizontalOptions="Start"
+                    ImageSource="back_arrow.png"
+                    Style="{StaticResource CTAButtonStyle}" />
+                <Label
+                    Grid.Column="1"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="TailTruncation"
+                    Text="WELCOME MANAGER 101"
+                    TextColor="Black"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+        </Border>
+        <Grid
+            Grid.Row="1"
+            Padding="10"
+            Background="White"
+            RowDefinitions="*,*,*,*,*"
+            RowSpacing="30">
+            <Button
+                Grid.Row="0"
+                Command="{Binding NavigateToInventoryCommand}"
+                FontSize="25"
+                HorizontalOptions="Fill"
+                MaximumWidthRequest="400"
+                Style="{StaticResource CTAButtonStyle}"
+                Text="INVENTORY" />
+            <Button
+                Grid.Row="1"
+                Command="{Binding NavigateToTransactionsCommand}"
+                FontSize="25"
+                HorizontalOptions="Fill"
+                MaximumWidthRequest="400"
+                Style="{StaticResource CTAButtonStyle}"
+                Text="TRANSACTION" />
+            <Button
+                Grid.Row="2"
+                Command="{Binding NavigateToSalesCommand}"
+                FontSize="25"
+                HorizontalOptions="Fill"
+                MaximumWidthRequest="400"
+                Style="{StaticResource CTAButtonStyle}"
+                Text="SALES" />
+            <Button
+                Grid.Row="3"
+                FontSize="25"
+                HorizontalOptions="Fill"
+                MaximumWidthRequest="400"
+                Style="{StaticResource CTAButtonStyle}"
+                Text="TILL" />
+            <Button
+                Grid.Row="4"
+                Command="{Binding NavigateToEmployeesCommand}"
+                FontSize="25"
+                HorizontalOptions="Fill"
+                MaximumWidthRequest="400"
+                Style="{StaticResource CTAButtonStyle}"
+                Text="EMPLOYEES" />
+
+        </Grid>
+    </Grid>
+</ContentPage>

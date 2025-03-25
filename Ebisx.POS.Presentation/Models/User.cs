@@ -3,22 +3,17 @@
 public partial class User : BaseModel
 {
     [ObservableProperty]
-    private string _username;
+    public partial string Username { get; set; }
 
     [ObservableProperty]
-    private string _password;
+    public partial string Password { get; set; }
 
     [ObservableProperty]
-    private string _email;
+    public partial string Email { get; set; }
 
     [ObservableProperty]
-    private DateTime _birthDate;
+    public partial DateTime BirthDate { get; set; }
 
-    public User()
-    {
-        _username = string.Empty;
-        _password = string.Empty;
-        _email = string.Empty;
-    }
+    public UserRole UserRole { get; set; }
 }
     

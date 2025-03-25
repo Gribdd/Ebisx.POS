@@ -250,5 +250,11 @@ public partial class HomePageViewModel : BaseViewModel
     }
 
 
+    [RelayCommand]
+    private void Logout()
+    {
+        Shell.Current.GoToAsync("//mainpage");
+    }
+
 
 }

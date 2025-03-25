@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Ebisx.POS.Presentation"
+    xmlns:mngr="clr-namespace:Ebisx.POS.Presentation.Views.Manager"
     xmlns:views="clr-namespace:Ebisx.POS.Presentation.Views"
     Title="Ebisx.POS.Presentation"
     Shell.FlyoutBehavior="Disabled"
@@ -19,4 +20,6 @@
         Title="Home"
         ContentTemplate="{DataTemplate views:HomePage}"
         Route="home" />
+
+    <ShellContent ContentTemplate="{DataTemplate mngr:ManagerHomePage}" Route="managerhome" />
 </Shell>
