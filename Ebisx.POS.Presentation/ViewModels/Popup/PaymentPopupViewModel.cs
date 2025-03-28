@@ -20,7 +20,7 @@ public partial class PaymentPopupViewModel : BaseViewModel
     [NotifyPropertyChangedFor(nameof(TotalAmountPaid))]
     public partial decimal CreditAmount { get; set; }
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(TotalAmountPanid))]
+    [NotifyPropertyChangedFor(nameof(TotalAmountPaid))]
     public partial decimal DebitAmount { get; set; }
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(TotalAmountPaid))]

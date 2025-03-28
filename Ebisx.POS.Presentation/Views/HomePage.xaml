@@ -87,601 +87,693 @@
 
         </ResourceDictionary>
     </ContentPage.Resources>
-
-    <Grid
-        Margin="0"
-        BackgroundColor="#84a689"
-        RowDefinitions="70,auto,*,auto">
-        <Border
-            Margin="10"
-            Padding="10"
-            BackgroundColor="White"
-            Stroke="Black"
-            StrokeShape="RoundRectangle 15"
-            StrokeThickness="2">
-            <Grid ColumnDefinitions="auto,*">
-                <Button
-                    Command="{Binding LogoutCommand}"
-                    CornerRadius="10"
-                    HorizontalOptions="Start"
-                    ImageSource="back_arrow.png"
-                    Style="{StaticResource CTAButtonStyle}" />
-                <Label
-                    Grid.Column="1"
-                    FontSize="20"
-                    Style="{StaticResource labelBorderstyle}"
-                    Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:dddd, MM/dd/yyyy}'}" />
-            </Grid>
-        </Border>
-
+    <ScrollView VerticalScrollBarVisibility="Always">
         <Grid
-            Grid.Row="1"
-            BackgroundColor="white"
-            ColumnDefinitions="*,Auto,*,Auto,*"
-            RowDefinitions="Auto,*,Auto">
+            Margin="0"
+            BackgroundColor="#84a689"
+            RowDefinitions="70,auto,*,auto">
+            <Border
+                Margin="10"
+                Padding="10"
+                BackgroundColor="White"
+                Stroke="Black"
+                StrokeShape="RoundRectangle 15"
+                StrokeThickness="2">
+                <Grid ColumnDefinitions="auto,*">
+                    <Button
+                        Command="{Binding LogoutCommand}"
+                        CornerRadius="10"
+                        HorizontalOptions="Start"
+                        ImageSource="back_arrow.png"
+                        Style="{StaticResource CTAButtonStyle}" />
+                    <Label
+                        Grid.Column="1"
+                        FontSize="20"
+                        Style="{StaticResource labelBorderstyle}"
+                        Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:dddd, MM/dd/yyyy}'}" />
+                </Grid>
+            </Border>
 
-            <!--  Top Divider  -->
-            <BoxView
-                Grid.Row="0"
-                Grid.ColumnSpan="5"
-                HeightRequest="2" />
-
-            <!--  First Column Content  -->
             <Grid
                 Grid.Row="1"
-                Grid.Column="0"
-                ColumnDefinitions="*,auto"
-                RowDefinitions="*,auto">
-                <Border
+                BackgroundColor="white"
+                ColumnDefinitions="*,Auto,*,Auto,*"
+                RowDefinitions="Auto,*,Auto">
+
+                <!--  Top Divider  -->
+                <BoxView
                     Grid.Row="0"
-                    Margin="10"
-                    Stroke="Black">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="15" />
-                    </Border.StrokeShape>
-                    <Grid
-                        Margin="10"
-                        ColumnDefinitions="auto,*"
-                        ColumnSpacing="15"
-                        RowDefinitions="auto,auto,auto,auto,auto"
-                        RowSpacing="10">
-                        <Label
-                            Style="{StaticResource labelStyle}"
-                            Text="INVOICE NO.:"
-                            VerticalTextAlignment="Center" />
-                        <Label
-                            Grid.Row="1"
-                            Style="{StaticResource labelStyle}"
-                            Text="TILL ID:"
-                            VerticalTextAlignment="Center" />
-                        <Label
-                            Grid.Row="2"
-                            Style="{StaticResource labelStyle}"
-                            Text="PAYMENT MODE.:"
-                            VerticalTextAlignment="Center" />
-                        <Label
-                            Grid.Row="3"
-                            Style="{StaticResource labelStyle}"
-                            Text="USER ID.:"
-                            VerticalTextAlignment="Center" />
-                        <Label
-                            Grid.Row="4"
-                            Style="{StaticResource labelStyle}"
-                            Text="EMPLOYEE TYPE.:"
-                            VerticalTextAlignment="Center" />
-                        <Border Grid.Column="1" Style="{StaticResource borderStyle}">
-                            <Label Style="{StaticResource labelBorderstyle}" Text="INV-01" />
-                        </Border>
-                        <Border
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Style="{StaticResource borderStyle}">
-                            <Label Style="{StaticResource labelBorderstyle}" Text="TILL-05" />
-                        </Border>
-                        <Border
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            Style="{StaticResource borderStyle}">
-                            <Label Style="{StaticResource labelBorderstyle}" Text="CASH" />
-                        </Border>
-                        <Border
-                            Grid.Row="3"
-                            Grid.Column="1"
-                            Style="{StaticResource borderStyle}">
-                            <Label Style="{StaticResource labelBorderstyle}" Text="0129428" />
-                        </Border>
-                        <Border
-                            Grid.Row="4"
-                            Grid.Column="1"
-                            Style="{StaticResource borderStyle}">
-                            <Label Style="{StaticResource labelBorderstyle}" Text="CASHIER" />
-                        </Border>
-                    </Grid>
-                </Border>
+                    Grid.ColumnSpan="5"
+                    HeightRequest="2" />
+
+                <!--  First Column Content  -->
                 <Grid
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    ColumnDefinitions="*,auto"
+                    RowDefinitions="*,auto">
+                    <Border
+                        Grid.Row="0"
+                        Margin="10"
+                        Stroke="Black">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="15" />
+                        </Border.StrokeShape>
+                        <Grid
+                            Margin="10"
+                            ColumnDefinitions="auto,*"
+                            ColumnSpacing="15"
+                            RowDefinitions="auto,auto,auto,auto,auto"
+                            RowSpacing="10">
+                            <Label
+                                Style="{StaticResource labelStyle}"
+                                Text="INVOICE NO.:"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Row="1"
+                                Style="{StaticResource labelStyle}"
+                                Text="TILL ID:"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Row="2"
+                                Style="{StaticResource labelStyle}"
+                                Text="PAYMENT MODE.:"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Row="3"
+                                Style="{StaticResource labelStyle}"
+                                Text="USER ID.:"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Row="4"
+                                Style="{StaticResource labelStyle}"
+                                Text="EMPLOYEE TYPE.:"
+                                VerticalTextAlignment="Center" />
+                            <Border Grid.Column="1" Style="{StaticResource borderStyle}">
+                                <Label Style="{StaticResource labelBorderstyle}" Text="INV-01" />
+                            </Border>
+                            <Border
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Style="{StaticResource borderStyle}">
+                                <Label Style="{StaticResource labelBorderstyle}" Text="TILL-05" />
+                            </Border>
+                            <Border
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Style="{StaticResource borderStyle}">
+                                <Label Style="{StaticResource labelBorderstyle}" Text="CASH" />
+                            </Border>
+                            <Border
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Style="{StaticResource borderStyle}">
+                                <Label Style="{StaticResource labelBorderstyle}" Text="0129428" />
+                            </Border>
+                            <Border
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                Style="{StaticResource borderStyle}">
+                                <Label Style="{StaticResource labelBorderstyle}" Text="CASHIER" />
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <Grid
+                        Grid.Column="1"
+                        Margin="0,0,5,0"
+                        RowDefinitions="*,*"
+                        RowSpacing="10"
+                        VerticalOptions="Center">
+                        <Button Style="{StaticResource CTAButtonStyle}" Text="SALES RETURN" />
+                        <Button
+                            Grid.Row="1"
+                            Style="{StaticResource CTAButtonStyle}"
+                            Text="SALESMAN" />
+                    </Grid>
+                    <Grid
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Margin="0,5"
+                        HorizontalOptions="Center"
+                        RowDefinitions="*,*"
+                        RowSpacing="3">
+                        <Label
+                            HorizontalOptions="Center"
+                            Style="{StaticResource labelStyle}"
+                            Text="BARCODE/PRODUCT ID" />
+                        <Border Grid.Row="1" Style="{StaticResource borderStyle}">
+                            <Label
+                                FontSize="30"
+                                Style="{StaticResource labelBorderstyle}"
+                                Text="{Binding SelectedOrderItem.Barcode}"
+                                WidthRequest="300" />
+                        </Border>
+
+
+                    </Grid>
+                </Grid>
+
+                <!--  First Vertical Divider  -->
+                <BoxView
+                    Grid.Row="1"
                     Grid.Column="1"
-                    Margin="0,0,5,0"
-                    RowDefinitions="*,*"
-                    RowSpacing="10"
-                    VerticalOptions="Center">
-                    <Button Style="{StaticResource CTAButtonStyle}" Text="SALES RETURN" />
+                    VerticalOptions="Fill"
+                    WidthRequest="2" />
+
+                <!--  Second Column Content  -->
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Padding="5"
+                    ColumnDefinitions="*,*"
+                    RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto"
+                    RowSpacing="5">
+                    <!--  Left Column Labels  -->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{StaticResource labelStyle}"
+                        Text="NO. OF ITEMS:" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{StaticResource labelStyle}"
+                        Text="QTY:" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Style="{StaticResource labelStyle}"
+                        Text="DISCOUNT :" />
+                    <Label
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Style="{StaticResource labelStyle}"
+                        Text="LOYALTY POINTS:" />
+                    <Label
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        Style="{StaticResource labelStyle}"
+                        Text="GRAND TOTAL:" />
+                    <Label
+                        Grid.Row="6"
+                        Grid.Column="0"
+                        Style="{StaticResource labelStyle}"
+                        Text="AMOUNT PAID:" />
+                    <Label
+                        Grid.Row="7"
+                        Grid.Column="0"
+                        Style="{StaticResource labelStyle}"
+                        Text="CHANGE:" />
+
+                    <!--  Right Column  -->
+                    <Border Grid.Column="1" Style="{StaticResource borderStyle}">
+                        <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalNumOfItems}" />
+                    </Border>
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Style="{StaticResource borderStyle}">
+                        <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalQuantity}" />
+                    </Border>
+
+
+                    <Grid
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        ColumnDefinitions="*,*">
+
+                        <Label
+                            FontSize="11"
+                            HorizontalTextAlignment="End"
+                            Style="{StaticResource labelStyle}"
+                            Text="ITEM DISCOUNT %" />
+                        <Label
+                            Grid.Column="1"
+                            FontSize="11"
+                            HorizontalTextAlignment="End"
+                            Style="{StaticResource labelStyle}"
+                            Text="BILL DISCOUNT %" />
+                    </Grid>
+
+                    <Grid
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="5">
+                        <Border Grid.Column="0" Style="{StaticResource borderStyle}">
+                            <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
+                        </Border>
+                        <Border Grid.Column="1" Style="{StaticResource borderStyle}">
+                            <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
+                        </Border>
+
+                    </Grid>
+
+                    <Border
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Style="{StaticResource borderStyle}">
+                        <Label Style="{StaticResource labelBorderstyle}" Text="0" />
+                    </Border>
+
+                    <Border
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Style="{StaticResource borderStyle}">
+                        <Label Style="{StaticResource labelBorderstyle}" Text="{Binding GrandTotal, StringFormat='₱{0:N2}'}" />
+                    </Border>
+
+                    <Border
+                        Grid.Row="6"
+                        Grid.Column="1"
+                        Style="{StaticResource borderStyle}">
+                        <Label Style="{StaticResource labelBorderstyle}" Text="0" />
+                    </Border>
+
+                    <Border
+                        Grid.Row="7"
+                        Grid.Column="1"
+                        Style="{StaticResource borderStyle}">
+                        <Label Style="{StaticResource labelBorderstyle}" Text="0" />
+                    </Border>
+
+                    <Grid
+                        Grid.Row="8"
+                        Grid.ColumnSpan="2"
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="20">
+                        <Button
+                            Command="{Binding ProcessTenderFloatCommand}"
+                            Style="{StaticResource CTAButtonStyle}"
+                            Text="TENDER FLOAT" />
+                        <Button
+                            Grid.Column="1"
+                            Style="{StaticResource CTAButtonStyle}"
+                            Text="REPRINT RECEIPT" />
+                    </Grid>
+                </Grid>
+
+
+                <!--  Second Vertical Divider  -->
+                <BoxView
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    VerticalOptions="Fill"
+                    WidthRequest="2" />
+
+                <!--  Third Column Content  -->
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    Padding="40,10"
+                    ColumnDefinitions="*,*,*"
+                    ColumnSpacing="15"
+                    RowDefinitions="*,*,*,*"
+                    RowSpacing="15">
+                    <!--  Row 1  -->
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Command="{Binding NumberInputCommand}"
+                        CommandParameter="9"
+                        Text="9" />
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Command="{Binding NumberInputCommand}"
+                        CommandParameter="8"
+                        Text="8" />
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Command="{Binding NumberInputCommand}"
+                        CommandParameter="7"
+                        Text="7" />
+
+                    <!--  Row 2  -->
                     <Button
                         Grid.Row="1"
-                        Style="{StaticResource CTAButtonStyle}"
-                        Text="SALESMAN" />
-                </Grid>
-                <Grid
-                    Grid.Row="1"
-                    Grid.ColumnSpan="2"
-                    Margin="0,5"
-                    HorizontalOptions="Center"
-                    RowDefinitions="*,*"
-                    RowSpacing="3">
-                    <Label
-                        HorizontalOptions="Center"
-                        Style="{StaticResource labelStyle}"
-                        Text="BARCODE/PRODUCT ID" />
-                    <Border Grid.Row="1" Style="{StaticResource borderStyle}">
-                        <Label
-                            FontSize="30"
-                            Style="{StaticResource labelBorderstyle}"
-                            Text="{Binding SelectedOrderItem.Barcode}"
-                            WidthRequest="300" />
-                    </Border>
-
-
-                </Grid>
-            </Grid>
-
-            <!--  First Vertical Divider  -->
-            <BoxView
-                Grid.Row="1"
-                Grid.Column="1"
-                VerticalOptions="Fill"
-                WidthRequest="2" />
-
-            <!--  Second Column Content  -->
-            <Grid
-                Grid.Row="1"
-                Grid.Column="2"
-                Padding="5"
-                ColumnDefinitions="*,*"
-                RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto"
-                RowSpacing="5">
-                <!--  Left Column Labels  -->
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Style="{StaticResource labelStyle}"
-                    Text="NO. OF ITEMS:" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Style="{StaticResource labelStyle}"
-                    Text="QTY:" />
-                <Label
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    Style="{StaticResource labelStyle}"
-                    Text="DISCOUNT :" />
-                <Label
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    Style="{StaticResource labelStyle}"
-                    Text="LOYALTY POINTS:" />
-                <Label
-                    Grid.Row="5"
-                    Grid.Column="0"
-                    Style="{StaticResource labelStyle}"
-                    Text="GRAND TOTAL:" />
-                <Label
-                    Grid.Row="6"
-                    Grid.Column="0"
-                    Style="{StaticResource labelStyle}"
-                    Text="AMOUNT PAID:" />
-                <Label
-                    Grid.Row="7"
-                    Grid.Column="0"
-                    Style="{StaticResource labelStyle}"
-                    Text="CHANGE:" />
-
-                <!--  Right Column  -->
-                <Border Grid.Column="1" Style="{StaticResource borderStyle}">
-                    <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalNumOfItems}" />
-                </Border>
-                <Border
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Style="{StaticResource borderStyle}">
-                    <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalQuantity}" />
-                </Border>
-
-
-                <Grid
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    ColumnDefinitions="*,*">
-
-                    <Label
-                        FontSize="11"
-                        HorizontalTextAlignment="End"
-                        Style="{StaticResource labelStyle}"
-                        Text="ITEM DISCOUNT %" />
-                    <Label
-                        Grid.Column="1"
-                        FontSize="11"
-                        HorizontalTextAlignment="End"
-                        Style="{StaticResource labelStyle}"
-                        Text="BILL DISCOUNT %" />
-                </Grid>
-
-                <Grid
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    ColumnDefinitions="*,*"
-                    ColumnSpacing="5">
-                    <Border Grid.Column="0" Style="{StaticResource borderStyle}">
-                        <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
-                    </Border>
-                    <Border Grid.Column="1" Style="{StaticResource borderStyle}">
-                        <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
-                    </Border>
-
-                </Grid>
-
-                <Border
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Style="{StaticResource borderStyle}">
-                    <Label Style="{StaticResource labelBorderstyle}" Text="0" />
-                </Border>
-
-                <Border
-                    Grid.Row="5"
-                    Grid.Column="1"
-                    Style="{StaticResource borderStyle}">
-                    <Label Style="{StaticResource labelBorderstyle}" Text="{Binding GrandTotal, StringFormat='₱{0:N2}'}" />
-                </Border>
-
-                <Border
-                    Grid.Row="6"
-                    Grid.Column="1"
-                    Style="{StaticResource borderStyle}">
-                    <Label Style="{StaticResource labelBorderstyle}" Text="0" />
-                </Border>
-
-                <Border
-                    Grid.Row="7"
-                    Grid.Column="1"
-                    Style="{StaticResource borderStyle}">
-                    <Label Style="{StaticResource labelBorderstyle}" Text="0" />
-                </Border>
-
-                <Grid
-                    Grid.Row="8"
-                    Grid.ColumnSpan="2"
-                    ColumnDefinitions="*,*"
-                    ColumnSpacing="20">
+                        Grid.Column="0"
+                        Command="{Binding NumberInputCommand}"
+                        CommandParameter="6"
+                        Text="6" />
                     <Button
-                        Command="{Binding ProcessTenderFloatCommand}"
-                        Style="{StaticResource CTAButtonStyle}"
-                        Text="TENDER FLOAT" />
-                    <Button
+                        Grid.Row="1"
                         Grid.Column="1"
-                        Style="{StaticResource CTAButtonStyle}"
-                        Text="REPRINT RECEIPT" />
+                        Command="{Binding NumberInputCommand}"
+                        CommandParameter="5"
+                        Text="5" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Command="{Binding NumberInputCommand}"
+                        CommandParameter="4"
+                        Text="4" />
+
+                    <!--  Row 3  -->
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Command="{Binding NumberInputCommand}"
+                        CommandParameter="3"
+                        Text="3" />
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Command="{Binding NumberInputCommand}"
+                        CommandParameter="2"
+                        Text="2" />
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Command="{Binding NumberInputCommand}"
+                        CommandParameter="1"
+                        Text="1" />
+
+                    <!--  Row 4  -->
+                    <Button
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Text="." />
+                    <Button
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Command="{Binding NumberInputCommand}"
+                        CommandParameter="0"
+                        Text="0" />
+                    <Button
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Text="X" />
                 </Grid>
+
+
+                <!--  Bottom Divider  -->
+                <BoxView
+                    Grid.Row="2"
+                    Grid.ColumnSpan="5"
+                    HeightRequest="2" />
             </Grid>
 
-
-            <!--  Second Vertical Divider  -->
-            <BoxView
-                Grid.Row="1"
-                Grid.Column="3"
-                VerticalOptions="Fill"
-                WidthRequest="2" />
-
-            <!--  Third Column Content  -->
             <Grid
-                Grid.Row="1"
-                Grid.Column="4"
-                Padding="40,10"
-                ColumnDefinitions="*,*,*"
-                ColumnSpacing="15"
-                RowDefinitions="*,*,*,*"
-                RowSpacing="15">
-                <!--  Row 1  -->
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Command="{Binding NumberInputCommand}"
-                    CommandParameter="9"
-                    Text="9" />
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Command="{Binding NumberInputCommand}"
-                    CommandParameter="8"
-                    Text="8" />
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    Command="{Binding NumberInputCommand}"
-                    CommandParameter="7"
-                    Text="7" />
-
-                <!--  Row 2  -->
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Command="{Binding NumberInputCommand}"
-                    CommandParameter="6"
-                    Text="6" />
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Command="{Binding NumberInputCommand}"
-                    CommandParameter="5"
-                    Text="5" />
-                <Button
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    Command="{Binding NumberInputCommand}"
-                    CommandParameter="4"
-                    Text="4" />
-
-                <!--  Row 3  -->
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Command="{Binding NumberInputCommand}"
-                    CommandParameter="3"
-                    Text="3" />
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Command="{Binding NumberInputCommand}"
-                    CommandParameter="2"
-                    Text="2" />
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="2"
-                    Command="{Binding NumberInputCommand}"
-                    CommandParameter="1"
-                    Text="1" />
-
-                <!--  Row 4  -->
-                <Button
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    Text="." />
-                <Button
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Command="{Binding NumberInputCommand}"
-                    CommandParameter="0"
-                    Text="0" />
-                <Button
-                    Grid.Row="3"
-                    Grid.Column="2"
-                    Text="X" />
-            </Grid>
-
-
-            <!--  Bottom Divider  -->
-            <BoxView
                 Grid.Row="2"
-                Grid.ColumnSpan="5"
-                HeightRequest="2" />
-        </Grid>
-
-        <Grid
-            Grid.Row="2"
-            BackgroundColor="White"
-            RowDefinitions="auto,auto,*">
-            <!--  Sticky Header  -->
-            <Grid
-                BackgroundColor="#84a689"
-                ColumnDefinitions="*,*,*,*,*,*,*,*,*"
-                HeightRequest="40">
-
-                <!--  Header Labels  -->
-                <Label
-                    Grid.Column="0"
-                    Style="{StaticResource labelBorderstyle}"
-                    Text="Product ID" />
-                <Label
-                    Grid.Column="1"
-                    Style="{StaticResource labelBorderstyle}"
-                    Text="Product Name" />
-                <Label
-                    Grid.Column="2"
-                    Style="{StaticResource labelBorderstyle}"
-                    Text="Barcode" />
-                <Label
-                    Grid.Column="3"
-                    Style="{StaticResource labelBorderstyle}"
-                    Text="Quantity" />
-                <Label
-                    Grid.Column="4"
-                    Style="{StaticResource labelBorderstyle}"
-                    Text="Price" />
-                <Label
-                    Grid.Column="5"
-                    Style="{StaticResource labelBorderstyle}"
-                    Text="Discount %" />
-                <Label
-                    Grid.Column="6"
-                    Style="{StaticResource labelBorderstyle}"
-                    Text="Discount PHP" />
-                <Label
-                    Grid.Column="7"
-                    Style="{StaticResource labelBorderstyle}"
-                    Text="VAT" />
-                <Label
-                    Grid.Column="8"
-                    Style="{StaticResource labelBorderstyle}"
-                    Text="Total Amount" />
-
-                <!--  Vertical Dividers  -->
-
-                <BoxView
-                    Grid.Column="0"
-                    HorizontalOptions="End"
-                    WidthRequest="2" />
-                <BoxView
-                    Grid.Column="1"
-                    HorizontalOptions="End"
-                    WidthRequest="2" />
-                <BoxView
-                    Grid.Column="2"
-                    HorizontalOptions="End"
-                    WidthRequest="2" />
-                <BoxView
-                    Grid.Column="3"
-                    HorizontalOptions="End"
-                    WidthRequest="2" />
-                <BoxView
-                    Grid.Column="4"
-                    HorizontalOptions="End"
-                    WidthRequest="2" />
-                <BoxView
-                    Grid.Column="5"
-                    HorizontalOptions="End"
-                    WidthRequest="2" />
-                <BoxView
-                    Grid.Column="6"
-                    HorizontalOptions="End"
-                    WidthRequest="2" />
-                <BoxView
-                    Grid.Column="7"
-                    HorizontalOptions="End"
-                    WidthRequest="2" />
-            </Grid>
-
-            <!--  Bottom Border  -->
-            <BoxView
-                Grid.Row="1"
-                Grid.ColumnSpan="17"
                 BackgroundColor="White"
-                HeightRequest="2"
-                VerticalOptions="End" />
-            <!--  Scrollable CollectionView  -->
-            <CollectionView
-                Grid.Row="2"
-                ItemsSource="{Binding OrderItems}"
-                SelectedItem="{Binding SelectedOrderItem}"
-                SelectionMode="Single">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:OrderItem">
-                        <Grid
-                            ColumnDefinitions="*,*,*,*,*,*,*,*,*"
-                            HeightRequest="40"
-                            RowDefinitions="*,auto">
-                            <Label
-                                HorizontalTextAlignment="Center"
-                                Style="{StaticResource labelStyle}"
-                                Text="{Binding ProductId}"
-                                VerticalTextAlignment="Center" />
-                            <Label
-                                Grid.Column="1"
-                                HorizontalTextAlignment="Center"
-                                Style="{StaticResource labelStyle}"
-                                Text="{Binding ProductName, FallbackValue='No value'}"
-                                VerticalTextAlignment="Center" />
-                            <Label
-                                Grid.Column="2"
-                                HorizontalTextAlignment="Center"
-                                Style="{StaticResource labelStyle}"
-                                Text="{Binding Barcode, FallbackValue='No value'}"
-                                VerticalTextAlignment="Center" />
-                            <Label
-                                Grid.Column="3"
-                                HorizontalTextAlignment="Center"
-                                Style="{StaticResource labelStyle}"
-                                Text="{Binding QuantityAtPurchase, FallbackValue='No value'}"
-                                VerticalTextAlignment="Center" />
-                            <Label
-                                Grid.Column="4"
-                                HorizontalTextAlignment="Center"
-                                Style="{StaticResource labelStyle}"
-                                Text="{Binding PriceAtPurchase, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
-                                VerticalTextAlignment="Center" />
-                            <Label
-                                Grid.Column="5"
-                                HorizontalTextAlignment="Center"
-                                Style="{StaticResource labelStyle}"
-                                Text="{Binding DiscountPercentage, StringFormat='{0:N2}%', FallbackValue='0.00%'}"
-                                VerticalTextAlignment="Center" />
-                            <Label
-                                Grid.Column="6"
-                                HorizontalTextAlignment="Center"
-                                Style="{StaticResource labelStyle}"
-                                Text="{Binding DiscountAmount, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
-                                VerticalTextAlignment="Center" />
-                            <Label
-                                Grid.Column="7"
-                                HorizontalTextAlignment="Center"
-                                Style="{StaticResource labelStyle}"
-                                Text="{Binding VatAtPurchase, StringFormat='{0:N2}%', FallbackValue='₱0.00'}"
-                                VerticalTextAlignment="Center" />
-                            <Label
-                                Grid.Column="8"
-                                HorizontalTextAlignment="Center"
-                                Style="{StaticResource labelStyle}"
-                                Text="{Binding TotalAmount, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
-                                VerticalTextAlignment="Center" />
+                RowDefinitions="auto,auto,*">
+                <!--  Sticky Header  -->
+                <Grid
+                    BackgroundColor="#84a689"
+                    ColumnDefinitions="*,*,*,*,*,*,*,*,*"
+                    HeightRequest="40">
+
+                    <!--  Header Labels  -->
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource labelBorderstyle}"
+                        Text="Product ID" />
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource labelBorderstyle}"
+                        Text="Product Name" />
+                    <Label
+                        Grid.Column="2"
+                        Style="{StaticResource labelBorderstyle}"
+                        Text="Barcode" />
+                    <Label
+                        Grid.Column="3"
+                        Style="{StaticResource labelBorderstyle}"
+                        Text="Quantity" />
+                    <Label
+                        Grid.Column="4"
+                        Style="{StaticResource labelBorderstyle}"
+                        Text="Price" />
+                    <Label
+                        Grid.Column="5"
+                        Style="{StaticResource labelBorderstyle}"
+                        Text="Discount %" />
+                    <Label
+                        Grid.Column="6"
+                        Style="{StaticResource labelBorderstyle}"
+                        Text="Discount PHP" />
+                    <Label
+                        Grid.Column="7"
+                        Style="{StaticResource labelBorderstyle}"
+                        Text="VAT" />
+                    <Label
+                        Grid.Column="8"
+                        Style="{StaticResource labelBorderstyle}"
+                        Text="Total Amount" />
+
+                    <!--  Vertical Dividers  -->
+
+                    <BoxView
+                        Grid.Column="0"
+                        HorizontalOptions="End"
+                        WidthRequest="2" />
+                    <BoxView
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        WidthRequest="2" />
+                    <BoxView
+                        Grid.Column="2"
+                        HorizontalOptions="End"
+                        WidthRequest="2" />
+                    <BoxView
+                        Grid.Column="3"
+                        HorizontalOptions="End"
+                        WidthRequest="2" />
+                    <BoxView
+                        Grid.Column="4"
+                        HorizontalOptions="End"
+                        WidthRequest="2" />
+                    <BoxView
+                        Grid.Column="5"
+                        HorizontalOptions="End"
+                        WidthRequest="2" />
+                    <BoxView
+                        Grid.Column="6"
+                        HorizontalOptions="End"
+                        WidthRequest="2" />
+                    <BoxView
+                        Grid.Column="7"
+                        HorizontalOptions="End"
+                        WidthRequest="2" />
+                </Grid>
+
+                <!--  Bottom Border  -->
+                <BoxView
+                    Grid.Row="1"
+                    Grid.ColumnSpan="17"
+                    BackgroundColor="White"
+                    HeightRequest="2"
+                    VerticalOptions="End" />
+                <!--  Scrollable CollectionView  -->
+                <CollectionView
+                    Grid.Row="2"
+                    ItemsSource="{Binding OrderItems}"
+                    SelectedItem="{Binding SelectedOrderItem}"
+                    SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:OrderItem">
+                            <Grid
+                                ColumnDefinitions="*,*,*,*,*,*,*,*,*"
+                                HeightRequest="40"
+                                RowDefinitions="*,auto">
+                                <Label
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource labelStyle}"
+                                    Text="{Binding ProductId}"
+                                    VerticalTextAlignment="Center" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource labelStyle}"
+                                    Text="{Binding ProductName, FallbackValue='No value'}"
+                                    VerticalTextAlignment="Center" />
+                                <Label
+                                    Grid.Column="2"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource labelStyle}"
+                                    Text="{Binding Barcode, FallbackValue='No value'}"
+                                    VerticalTextAlignment="Center" />
+                                <Label
+                                    Grid.Column="3"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource labelStyle}"
+                                    Text="{Binding QuantityAtPurchase, FallbackValue='No value'}"
+                                    VerticalTextAlignment="Center" />
+                                <Label
+                                    Grid.Column="4"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource labelStyle}"
+                                    Text="{Binding PriceAtPurchase, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
+                                    VerticalTextAlignment="Center" />
+                                <Label
+                                    Grid.Column="5"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource labelStyle}"
+                                    Text="{Binding DiscountPercentage, StringFormat='{0:N2}%', FallbackValue='0.00%'}"
+                                    VerticalTextAlignment="Center" />
+                                <Label
+                                    Grid.Column="6"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource labelStyle}"
+                                    Text="{Binding DiscountAmount, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
+                                    VerticalTextAlignment="Center" />
+                                <Label
+                                    Grid.Column="7"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource labelStyle}"
+                                    Text="{Binding VatAtPurchase, StringFormat='{0:N2}%', FallbackValue='₱0.00'}"
+                                    VerticalTextAlignment="Center" />
+                                <Label
+                                    Grid.Column="8"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource labelStyle}"
+                                    Text="{Binding TotalAmount, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
+                                    VerticalTextAlignment="Center" />
 
 
-                            <!--  Vertical Dividers  -->
+                                <!--  Vertical Dividers  -->
 
-                            <BoxView
-                                Grid.Column="0"
-                                HorizontalOptions="End"
-                                WidthRequest="2" />
-                            <BoxView
-                                Grid.Column="1"
-                                HorizontalOptions="End"
-                                WidthRequest="2" />
-                            <BoxView
-                                Grid.Column="2"
-                                HorizontalOptions="End"
-                                WidthRequest="2" />
-                            <BoxView
-                                Grid.Column="3"
-                                HorizontalOptions="End"
-                                WidthRequest="2" />
-                            <BoxView
-                                Grid.Column="4"
-                                HorizontalOptions="End"
-                                WidthRequest="2" />
-                            <BoxView
-                                Grid.Column="5"
-                                HorizontalOptions="End"
-                                WidthRequest="2" />
-                            <BoxView
-                                Grid.Column="6"
-                                HorizontalOptions="End"
-                                WidthRequest="2" />
-                            <BoxView
-                                Grid.Column="7"
-                                HorizontalOptions="End"
-                                WidthRequest="2" />
+                                <BoxView
+                                    Grid.Column="0"
+                                    HorizontalOptions="End"
+                                    WidthRequest="2" />
+                                <BoxView
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    WidthRequest="2" />
+                                <BoxView
+                                    Grid.Column="2"
+                                    HorizontalOptions="End"
+                                    WidthRequest="2" />
+                                <BoxView
+                                    Grid.Column="3"
+                                    HorizontalOptions="End"
+                                    WidthRequest="2" />
+                                <BoxView
+                                    Grid.Column="4"
+                                    HorizontalOptions="End"
+                                    WidthRequest="2" />
+                                <BoxView
+                                    Grid.Column="5"
+                                    HorizontalOptions="End"
+                                    WidthRequest="2" />
+                                <BoxView
+                                    Grid.Column="6"
+                                    HorizontalOptions="End"
+                                    WidthRequest="2" />
+                                <BoxView
+                                    Grid.Column="7"
+                                    HorizontalOptions="End"
+                                    WidthRequest="2" />
 
-                            <!--  Row Divider  -->
-                            <BoxView
-                                Grid.Row="1"
-                                Grid.ColumnSpan="9"
-                                HeightRequest="2"
-                                VerticalOptions="End" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                <!--  Row Divider  -->
+                                <BoxView
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="9"
+                                    HeightRequest="2"
+                                    VerticalOptions="End" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-        </Grid>
+            </Grid>
+            <FlexLayout
+                Grid.Row="3"
+                Padding="5"
+                
+                BackgroundColor="White"
+                Direction="Row"
+                Wrap="Wrap">
 
-        <Grid
+                <!--  First Row  -->
+                <HorizontalStackLayout Spacing="5">
+                    <Button
+                        Command="{Binding NewTransactionCommand}"
+                        HeightRequest="40"
+                        Text="NEW TRANSACTION"
+                        WidthRequest="160" />
+                    <Button
+                        HeightRequest="40"
+                        Text="VOID INVOICE"
+                        WidthRequest="160" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="5">
+                    <Button
+                        BackgroundColor="{Binding CurrentMode, Converter={converter:KeypadModeToColorConverter}, ConverterParameter=ItemDiscount}"
+                        Command="{Binding ApplyItemDiscountCommand}"
+                        HeightRequest="40"
+                        Text="ITEM DISCOUNT"
+                        WidthRequest="160" />
+                    <Button
+                        HeightRequest="40"
+                        Text="SCAN ITEMS"
+                        WidthRequest="160" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="5">
+                    <Button
+                        Command="{Binding CloseTallyCommand}"
+                        HeightRequest="40"
+                        Text="CLOSE TALLY"
+                        WidthRequest="160" />
+                    <Button
+                        HeightRequest="40"
+                        Text="CHANGE RATE"
+                        WidthRequest="160" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="5">
+                    <Button
+                        HeightRequest="40"
+                        Text="TOGGLE KEYBOARD"
+                        WidthRequest="160" />
+
+                    <Button
+                        Command="{Binding HoldTransactionCommand}"
+                        HeightRequest="40"
+                        Text="HOLD TRANSACTION"
+                        WidthRequest="160" />
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Spacing="5">
+                    <Button
+                        HeightRequest="40"
+                        Text="LOAD TRANSACTION"
+                        WidthRequest="160" />
+                    <Button
+                        Command="{Binding NavigateToItemSearchCommand}"
+                        HeightRequest="40"
+                        Text="FIND ITEM"
+                        WidthRequest="160" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="5">
+                    <Button
+                        BackgroundColor="{Binding CurrentMode, Converter={converter:KeypadModeToColorConverter}, ConverterParameter=ChangeQuantity}"
+                        Command="{Binding ChangeOrderItemQuantityCommand}"
+                        HeightRequest="40"
+                        Text="CHANGE QTY"
+                        WidthRequest="160" />
+                    <Button
+                        Command="{Binding ApplyBillDiscountCommand}"
+                        HeightRequest="40"
+                        Text="BILL DISCOUNT"
+                        WidthRequest="160" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="5">
+                    <Button
+                        Command="{Binding DeleteSelectedOrderItemCommand}"
+                        HeightRequest="40"
+                        Text="DELETE ROW"
+                        WidthRequest="160" />
+                    <Button
+                        HeightRequest="40"
+                        Text="CALL MANAGER"
+                        WidthRequest="160" />
+                </HorizontalStackLayout>
+            </FlexLayout>
+
+            <!--<Grid
             Grid.Row="3"
             Padding="5"
             BackgroundColor="white"
@@ -690,7 +782,9 @@
             RowDefinitions="Auto,Auto"
             RowSpacing="5">
 
+            -->
             <!--  First Row Buttons  -->
+            <!--
             <Button
                 Grid.Row="0"
                 Grid.Column="0"
@@ -724,7 +818,7 @@
                 Grid.Column="6"
                 Text="TOGGLE KEYBOARD" />
 
-            <!--  Second Row Buttons  -->
+              Second Row Buttons
             <Button
                 Grid.Row="1"
                 Grid.Column="0"
@@ -759,7 +853,8 @@
                 Grid.Row="1"
                 Grid.Column="6"
                 Text="CALL MANAGER" />
+        </Grid>-->
         </Grid>
-    </Grid>
+    </ScrollView>
 
 </ContentPage>

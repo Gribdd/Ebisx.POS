@@ -315,6 +315,7 @@
                     </Border>
                     <Button
                         Grid.Row="2"
+                        Command="{Binding HandlePaymentCommand}"
                         Grid.Column="2"
                         BackgroundColor="#84a689"
                         BorderColor="Black"
