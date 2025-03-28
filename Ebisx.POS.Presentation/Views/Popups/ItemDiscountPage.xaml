@@ -8,48 +8,61 @@
     x:DataType="vm:ItemDiscountPageViewModel"
     CanBeDismissedByTappingOutsideOfPopup="False"
     Color="Transparent">
-    <toolkit:Popup.Resources>
-        <Style x:Key="labelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="Black" />
-        </Style>
-    </toolkit:Popup.Resources>
 
-    <VerticalStackLayout>
-        <Border
-            BackgroundColor="#84a689"
-            Stroke="Black"
-            StrokeShape="RoundRectangle 15"
-            StrokeThickness="3">
-            <Grid>
-                <ImageButton
-                    Background="Red"
-                    BorderColor="Black"
-                    BorderWidth="1"
-                    Command="{Binding CloseCommand}"
-                    CornerRadius="10"
-                    HorizontalOptions="End"
-                    Source="icons8_close.png"
-                    VerticalOptions="Start"
-                    WidthRequest="30"
-                    ZIndex="1" />
-                <Border
-                    Margin="20"
-                    Padding="10"
-                    BackgroundColor="white"
-                    Stroke="Black"
-                    StrokeShape="RoundRectangle 15"
-                    StrokeThickness="2">
-                    <VerticalStackLayout>
-                        <Label Style="{StaticResource labelStyle}" />
-                        <Border
-                            Stroke="black"
-                            StrokeShape="RoundRectangle 15"
-                            StrokeThickness="1">
-                            <Entry />
-                        </Border>
-                    </VerticalStackLayout>
-                </Border>
-            </Grid>
-        </Border>
-    </VerticalStackLayout>
+    <Border
+        BackgroundColor="#84a689"
+        HeightRequest="{Binding PopupHeight}"
+        Stroke="Black"
+        StrokeShape="RoundRectangle 15"
+        StrokeThickness="3"
+        WidthRequest="{Binding PopupWidth}">
+        <Grid>
+            <ImageButton
+                Background="Red"
+                BorderColor="Black"
+                BorderWidth="1"
+                Command="{Binding CloseCommand}"
+                CornerRadius="10"
+                HorizontalOptions="End"
+                Source="icons8_close.png"
+                VerticalOptions="Start"
+                WidthRequest="30"
+                ZIndex="1" />
+
+            <Border
+                Margin="20"
+                Padding="10"
+                BackgroundColor="white"
+                Stroke="Black"
+                StrokeShape="RoundRectangle 15"
+                StrokeThickness="2">
+                <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                    <Label
+                        FontSize="Title"
+                        HorizontalTextAlignment="Center"
+                        Text="Enter coupon code"
+                        TextColor="Black" />
+                    <Border
+                        Stroke="black"
+                        StrokeShape="RoundRectangle 15"
+                        StrokeThickness="1">
+                        <Entry
+                            Text="{Binding CouponCode}"
+                            TextColor="Black"
+                            WidthRequest="300" />
+                    </Border>
+                    <Button
+                        BackgroundColor="#3af856"
+                        BorderColor="black"
+                        BorderWidth="2"
+                        Command="{Binding ConsumeCouponCommand}"
+                        CornerRadius="10"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        Text="SUBMIT"
+                        TextColor="Black" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </Border>
 </toolkit:Popup>

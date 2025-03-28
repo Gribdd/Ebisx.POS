@@ -489,11 +489,11 @@
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource labelBorderstyle}"
-                        Text="Product ID" />
+                        Text="ID" />
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource labelBorderstyle}"
-                        Text="Product Name" />
+                        Text="Name" />
                     <Label
                         Grid.Column="2"
                         Style="{StaticResource labelBorderstyle}"
@@ -578,6 +578,13 @@
                                 ColumnDefinitions="*,*,*,*,*,*,*,*,*"
                                 HeightRequest="40"
                                 RowDefinitions="*,auto">
+                                <FlyoutBase.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="Edit"/>
+                                        <MenuFlyoutSeparator/>
+                                        <MenuFlyoutItem Text="Delete"/>
+                                    </MenuFlyout>
+                                </FlyoutBase.ContextFlyout>
                                 <Label
                                     HorizontalTextAlignment="Center"
                                     Style="{StaticResource labelStyle}"
@@ -683,177 +690,72 @@
             <FlexLayout
                 Grid.Row="3"
                 Padding="5"
-                
+                JustifyContent="SpaceAround"
                 BackgroundColor="White"
                 Direction="Row"
                 Wrap="Wrap">
 
                 <!--  First Row  -->
-                <HorizontalStackLayout Spacing="5">
-                    <Button
-                        Command="{Binding NewTransactionCommand}"
-                        HeightRequest="40"
-                        Text="NEW TRANSACTION"
-                        WidthRequest="160" />
-                    <Button
-                        HeightRequest="40"
-                        Text="VOID INVOICE"
-                        WidthRequest="160" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Spacing="5">
-                    <Button
-                        BackgroundColor="{Binding CurrentMode, Converter={converter:KeypadModeToColorConverter}, ConverterParameter=ItemDiscount}"
-                        Command="{Binding ApplyItemDiscountCommand}"
-                        HeightRequest="40"
-                        Text="ITEM DISCOUNT"
-                        WidthRequest="160" />
-                    <Button
-                        HeightRequest="40"
-                        Text="SCAN ITEMS"
-                        WidthRequest="160" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Spacing="5">
-                    <Button
-                        Command="{Binding CloseTallyCommand}"
-                        HeightRequest="40"
-                        Text="CLOSE TALLY"
-                        WidthRequest="160" />
-                    <Button
-                        HeightRequest="40"
-                        Text="CHANGE RATE"
-                        WidthRequest="160" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Spacing="5">
-                    <Button
-                        HeightRequest="40"
-                        Text="TOGGLE KEYBOARD"
-                        WidthRequest="160" />
+                <Button
+                    HeightRequest="40"
+                    Text="VOID INVOICE"
+                    WidthRequest="200" />
+                <Button
+                    BackgroundColor="{Binding CurrentMode, Converter={converter:KeypadModeToColorConverter}, ConverterParameter=ItemDiscount}"
+                    Command="{Binding ApplyItemDiscountCommand}"
+                    HeightRequest="40"
+                    Text="ITEM DISCOUNT"
+                    WidthRequest="200" />
+                <Button
+                    HeightRequest="40"
+                    Text="SCAN ITEMS"
+                    WidthRequest="200" />
+                <Button
+                    Command="{Binding CloseTallyCommand}"
+                    HeightRequest="40"
+                    Text="CLOSE TALLY"
+                    WidthRequest="200" />
+                <Button
+                    HeightRequest="40"
+                    Text="VOID ITEM"
+                    WidthRequest="200" />
+                <Button
+                    HeightRequest="40"
+                    Text="TOGGLE KEYBOARD"
+                    WidthRequest="200" />
 
-                    <Button
-                        Command="{Binding HoldTransactionCommand}"
-                        HeightRequest="40"
-                        Text="HOLD TRANSACTION"
-                        WidthRequest="160" />
-                </HorizontalStackLayout>
+                <Button
+                    Command="{Binding HoldTransactionCommand}"
+                    HeightRequest="40"
+                    Text="HOLD TRANSACTION"
+                    WidthRequest="200" />
 
-                <HorizontalStackLayout Spacing="5">
-                    <Button
-                        HeightRequest="40"
-                        Text="LOAD TRANSACTION"
-                        WidthRequest="160" />
-                    <Button
-                        Command="{Binding NavigateToItemSearchCommand}"
-                        HeightRequest="40"
-                        Text="FIND ITEM"
-                        WidthRequest="160" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Spacing="5">
-                    <Button
-                        BackgroundColor="{Binding CurrentMode, Converter={converter:KeypadModeToColorConverter}, ConverterParameter=ChangeQuantity}"
-                        Command="{Binding ChangeOrderItemQuantityCommand}"
-                        HeightRequest="40"
-                        Text="CHANGE QTY"
-                        WidthRequest="160" />
-                    <Button
-                        Command="{Binding ApplyBillDiscountCommand}"
-                        HeightRequest="40"
-                        Text="BILL DISCOUNT"
-                        WidthRequest="160" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout Spacing="5">
-                    <Button
-                        Command="{Binding DeleteSelectedOrderItemCommand}"
-                        HeightRequest="40"
-                        Text="DELETE ROW"
-                        WidthRequest="160" />
-                    <Button
-                        HeightRequest="40"
-                        Text="CALL MANAGER"
-                        WidthRequest="160" />
-                </HorizontalStackLayout>
+                <Button
+                    HeightRequest="40"
+                    Text="LOAD TRANSACTION"
+                    WidthRequest="200" />
+                <Button
+                    Command="{Binding NavigateToItemSearchCommand}"
+                    HeightRequest="40"
+                    Text="FIND ITEM"
+                    WidthRequest="200" />
+                <Button
+                    BackgroundColor="{Binding CurrentMode, Converter={converter:KeypadModeToColorConverter}, ConverterParameter=ChangeQuantity}"
+                    Command="{Binding ChangeOrderItemQuantityCommand}"
+                    HeightRequest="40"
+                    Text="CHANGE QTY"
+                    WidthRequest="200" />
+                <Button
+                    Command="{Binding ApplyBillDiscountCommand}"
+                    HeightRequest="40"
+                    Text="BILL DISCOUNT"
+                    WidthRequest="200" />
+                <Button
+                    HeightRequest="40"
+                    Text="CALL MANAGER"
+                    WidthRequest="200" />
             </FlexLayout>
 
-            <!--<Grid
-            Grid.Row="3"
-            Padding="5"
-            BackgroundColor="white"
-            ColumnDefinitions="*,*,*,*,*,*,*"
-            ColumnSpacing="5"
-            RowDefinitions="Auto,Auto"
-            RowSpacing="5">
-
-            -->
-            <!--  First Row Buttons  -->
-            <!--
-            <Button
-                Grid.Row="0"
-                Grid.Column="0"
-                Command="{Binding NewTransactionCommand}"
-                Text="NEW TRANSACTION" />
-            <Button
-                Grid.Row="0"
-                Grid.Column="1"
-                Text="VOID INVOICE" />
-            <Button
-                Grid.Row="0"
-                Grid.Column="2"
-                BackgroundColor="{Binding CurrentMode, Converter={converter:KeypadModeToColorConverter}, ConverterParameter=ItemDiscount}"
-                Command="{Binding ApplyItemDiscountCommand}"
-                Text="ITEM DISCOUNT" />
-            <Button
-                Grid.Row="0"
-                Grid.Column="3"
-                Text="SCAN ITEMS" />
-            <Button
-                Grid.Row="0"
-                Grid.Column="4"
-                Command="{Binding CloseTallyCommand}"
-                Text="CLOSE TALLY" />
-            <Button
-                Grid.Row="0"
-                Grid.Column="5"
-                Text="CHANGE RATE" />
-            <Button
-                Grid.Row="0"
-                Grid.Column="6"
-                Text="TOGGLE KEYBOARD" />
-
-              Second Row Buttons
-            <Button
-                Grid.Row="1"
-                Grid.Column="0"
-                Command="{Binding HoldTransactionCommand}"
-                Text="HOLD TRANSACTION" />
-            <Button
-                Grid.Row="1"
-                Grid.Column="1"
-                Text="LOAD TRANSACTION" />
-            <Button
-                Grid.Row="1"
-                Grid.Column="2"
-                Command="{Binding NavigateToItemSearchCommand}"
-                Text="FIND ITEM" />
-            <Button
-                Grid.Row="1"
-                Grid.Column="3"
-                BackgroundColor="{Binding CurrentMode, Converter={converter:KeypadModeToColorConverter}, ConverterParameter=ChangeQuantity}"
-                Command="{Binding ChangeOrderItemQuantityCommand}"
-                Text="CHANGE QTY" />
-            <Button
-                Grid.Row="1"
-                Grid.Column="4"
-                Command="{Binding ApplyBillDiscountCommand}"
-                Text="BILL DISCOUNT" />
-            <Button
-                Grid.Row="1"
-                Grid.Column="5"
-                Command="{Binding DeleteSelectedOrderItemCommand}"
-                Text="DELETE ROW" />
-            <Button
-                Grid.Row="1"
-                Grid.Column="6"
-                Text="CALL MANAGER" />
-        </Grid>-->
         </Grid>
     </ScrollView>
 

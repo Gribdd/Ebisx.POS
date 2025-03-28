@@ -39,47 +39,45 @@
                     ColumnDefinitions="auto,200"
                     ColumnSpacing="10"
                     HorizontalOptions="Center"
-                    RowDefinitions="auto,auto,auto,auto,auto"
+                    RowDefinitions="auto,auto,auto,auto"
                     RowSpacing="10"
                     VerticalOptions="Center">
                     <!--  Left Labels  -->
+
                     <Label
                         Grid.Row="0"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        Text="INVOICE NO #"
+                        Text="NAME:"
                         TextColor="Black"
                         VerticalTextAlignment="Center" />
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        Text="CUSTOMER NAME:"
+                        Text="{Binding DiscountType, StringFormat='{0:Upper} ID:'}"
                         TextColor="Black"
                         VerticalTextAlignment="Center" />
                     <Label
                         Grid.Row="2"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        Text="SENIOR ID:"
-                        TextColor="Black"
-                        VerticalTextAlignment="Center" />
-                    <Label
-                        Grid.Row="3"
-                        Grid.Column="0"
-                        FontAttributes="Bold"
-                        Text="CUSTOMER TIN:"
+                        Text="TIN:"
                         TextColor="Black"
                         VerticalTextAlignment="Center" />
 
                     <!--  Entry Fields  -->
+
                     <Border
                         Grid.Row="0"
                         Grid.Column="1"
                         Stroke="Black"
                         StrokeShape="RoundRectangle 7"
                         StrokeThickness="1">
-                        <Entry Placeholder="Enter Invoice No" TextColor="{StaticResource Gray900}" />
+                        <Entry
+                            Placeholder="Enter Customer Name"
+                            Text="{Binding Name}"
+                            TextColor="{StaticResource Gray900}" />
                     </Border>
                     <Border
                         Grid.Row="1"
@@ -87,7 +85,10 @@
                         Stroke="Black"
                         StrokeShape="RoundRectangle 7"
                         StrokeThickness="1">
-                        <Entry Placeholder="Enter Customer Name" TextColor="{StaticResource Gray900}" />
+                        <Entry
+                            Placeholder="{Binding DiscountType, StringFormat='Enter {0} ID'}"
+                            Text="{Binding SpecialId}"
+                            TextColor="{StaticResource Gray900}" />
                     </Border>
                     <Border
                         Grid.Row="2"
@@ -95,15 +96,10 @@
                         Stroke="Black"
                         StrokeShape="RoundRectangle 7"
                         StrokeThickness="1">
-                        <Entry Placeholder="Enter Senior Id" TextColor="{StaticResource Gray900}" />
-                    </Border>
-                    <Border
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        Stroke="Black"
-                        StrokeShape="RoundRectangle 7"
-                        StrokeThickness="1">
-                        <Entry Placeholder="Enter Customer Name" TextColor="{StaticResource Gray900}" />
+                        <Entry
+                            Placeholder="Enter TIN ID"
+                            Text="{Binding TinId}"
+                            TextColor="{StaticResource Gray900}" />
                     </Border>
 
                     <!--  Submit Button  -->
@@ -114,7 +110,7 @@
                         BackgroundColor="#3af856"
                         BorderColor="black"
                         BorderWidth="2"
-                        Command="{Binding CloseCommand}"
+                        Command="{Binding SubmitCommand}"
                         FontAttributes="Bold"
                         HorizontalOptions="Center"
                         Text="SUBMIT"

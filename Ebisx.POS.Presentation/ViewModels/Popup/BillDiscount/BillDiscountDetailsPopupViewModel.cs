@@ -12,18 +12,32 @@ namespace Ebisx.POS.Presentation.ViewModels.Popup.BillDiscount
     {
         private readonly IPopupService popupService;
 
+        [ObservableProperty]
+        public partial string DiscountType { get; set; } = string.Empty;
+
+        [ObservableProperty]
+        public partial string Name { get; set; } = string.Empty;
+        [ObservableProperty]
+        public partial string SpecialId { get; set; } = string.Empty;
+        [ObservableProperty]
+        public partial string TinId { get; set; } = string.Empty;
+
         public BillDiscountDetailsPopupViewModel(IPopupService popupService)
         {
             this.popupService = popupService;
         }
 
         [RelayCommand]
-        private void Close()
+        private async Task Close()
         {
-            popupService.ClosePopup();
+            await popupService.ClosePopupAsync();
         }
 
-       
+        [RelayCommand]
+        private async Task Submit()
+        {
+            await popupService.ClosePopupAsync(true);
+        }
   
 
     }

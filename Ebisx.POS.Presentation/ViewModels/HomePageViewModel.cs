@@ -168,29 +168,51 @@ public partial class HomePageViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    private void ApplyItemDiscount()
+    private async Task ApplyItemDiscount()
     {
         if (SelectedOrderItem == null)
         {
-            Shell.Current.DisplayAlert
+            await Shell.Current.DisplayAlert
                 ("Error", 
                 "Please select an item first.", 
                 "OK");
             return;
         }
 
-        _popupService.ShowPopup<ItemDiscountPageViewModel>();
+        var discountPercentage = await _popupService.ShowPopupAsync<ItemDiscountPageViewModel>();
+        if (discountPercentage == null)
+        {
+            await Shell.Current.DisplayAlert
+                ("Not Found",
+                "Coupon not Found.",
+                "OK");
+            return;
+        }
+
+        SelectedOrderItem.DiscountPercentage = (decimal)discountPercentage;
     }
 
-    [RelayCommand]  
+    [RelayCommand]      
     private async Task ApplyBillDiscount()
     {
         var result = await _popupService.ShowPopupAsync<BillDiscountPopupViewModel>();
 
         if (result != null)
         {
-            var discountType = result.ToString();
-            _popupService.ShowPopup<BillDiscountDetailsPopupViewModel>();
+            var discountType = result.ToString() ?? string.Empty;
+            var isBillDiscounted = await _popupService.ShowPopupAsync<BillDiscountDetailsPopupViewModel>(
+                onPresenting: vm => 
+                    vm.DiscountType =  discountType);
+
+            if ( (bool) isBillDiscounted!)
+            {
+                // apply discount
+                foreach (var orderItem in OrderItems)
+                {
+                    orderItem.DiscountPercentage += 20;
+                }
+            }
+
         }
     }
 
@@ -230,8 +252,18 @@ public partial class HomePageViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    private void ProcessTenderFloat()
+    private async Task ProcessTenderFloat()
     {
+        // cannot proceed if order items length is 0
+        if (OrderItems.Count == 0)
+        {
+            await Shell.Current.DisplayAlert
+                ("Error",
+                "No items found in transaction.",
+                "OK");
+            return;
+        }
+
         _popupService.ShowPopup<PaymentPopupViewModel>();
     }
 

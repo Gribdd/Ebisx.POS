@@ -5,76 +5,104 @@ using Ebisx.POS.Presentation.ViewModels.Popup.BillDiscount;
 using Ebisx.POS.Presentation.Views.Manager;
 using Ebisx.POS.Presentation.Views.Popups.BillDiscount;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 
-namespace Ebisx.POS.Presentation
-{
-    public static class MauiProgram
-    {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()  
-			    .UseMauiCommunityToolkit(options =>
-                {
-                    options.SetShouldEnableSnackbarOnWindows(true);
-                })
-                .RegisterViewModels()
-                .RegisterServices()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                    fonts.AddFont("LuckiestGuy-Regular.ttf", "LuckiestGuyRegular");
-                });
-            Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
-            {
-#if ANDROID
-
-                handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.White);
-
+#if WINDOWS
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
 #endif
+
+namespace Ebisx.POS.Presentation;
+
+public static class MauiProgram
+{
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+                .UseMauiCommunityToolkit(options =>
+            {
+                options.SetShouldEnableSnackbarOnWindows(true);
+            })
+            .RegisterViewModels()
+            .RegisterServices()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("LuckiestGuy-Regular.ttf", "LuckiestGuyRegular");
             });
 
+#if WINDOWS
+//maximized window on startup in Windows platform
+builder.ConfigureLifecycleEvents(events =>
+{
+    events.AddWindows(wndLifeCycleBuilder =>
+    {
+        wndLifeCycleBuilder.OnWindowCreated(window =>
+        {
+            IntPtr nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            Microsoft.UI.WindowId win32WindowsId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
+            Microsoft.UI.Windowing.AppWindow winuiAppWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(win32WindowsId);
+            if (winuiAppWindow.Presenter is Microsoft.UI.Windowing.OverlappedPresenter p)
+            {
+                p.Maximize();
+                p.IsResizable = false;
+                p.IsMaximizable = false;
+                p.IsMinimizable = false;
+            }
+        });
+    });
+});
+#endif
+        Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
+        {
+#if ANDROID
+//Delete underline in entry 
+            handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.White);
+
+#endif
+        });
+
 #if DEBUG
-            builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
-        }
+        return builder.Build();
+    }
 
-        private static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
-        {
-            mauiAppBuilder.Services.AddSingleton<IProductService, ProductService>();
-            return mauiAppBuilder;
-        }
+    private static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
+    {
+        mauiAppBuilder.Services.AddSingleton<IProductService, ProductService>();
+        return mauiAppBuilder;
+    }
 
-        private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
-        {
-            //employee
-            mauiAppBuilder.Services.AddTransient<MainPageViewModel>();
-            mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
-            mauiAppBuilder.Services.AddTransient<ItemInventoryPageViewModel>();
+    private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
+    {
+        //employee
+        mauiAppBuilder.Services.AddTransient<MainPageViewModel>();
+        mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
+        mauiAppBuilder.Services.AddTransient<ItemInventoryPageViewModel>();
 
-            //manager
-            mauiAppBuilder.Services.AddTransient<ManagerEmployeesPageViewModel>();
-            mauiAppBuilder.Services.AddTransient<ManagerHomePageViewModel>();
-            mauiAppBuilder.Services.AddTransient<ManagerInventoryPageViewModel>();
-            mauiAppBuilder.Services.AddTransient<ManagerInventoryAddItemPageViewModel>();
-            mauiAppBuilder.Services.AddTransient<ManagerSalesPageViewModel>();
-            mauiAppBuilder.Services.AddTransient<ManagerTransactionPageViewModel>();
+        //manager
+        mauiAppBuilder.Services.AddTransient<ManagerEmployeesPageViewModel>();
+        mauiAppBuilder.Services.AddTransient<ManagerHomePageViewModel>();
+        mauiAppBuilder.Services.AddTransient<ManagerInventoryPageViewModel>();
+        mauiAppBuilder.Services.AddTransient<ManagerInventoryAddItemPageViewModel>();
+        mauiAppBuilder.Services.AddTransient<ManagerSalesPageViewModel>();
+        mauiAppBuilder.Services.AddTransient<ManagerTransactionPageViewModel>();
 
-            //popups
-            mauiAppBuilder.Services.AddTransientPopup<PaymentPopup, PaymentPopupViewModel>();
-            mauiAppBuilder.Services.AddTransientPopup<CashPaymentPopup, CashPaymentPopupViewModel>();
-            mauiAppBuilder.Services.AddTransientPopup<BillDiscountPopup, BillDiscountPopupViewModel>();
-            mauiAppBuilder.Services.AddTransientPopup<BillDiscountDetailsPopup, BillDiscountDetailsPopupViewModel>();
-            mauiAppBuilder.Services.AddTransientPopup<ItemDiscountPage, ItemDiscountPageViewModel>();
+        //popups
+        mauiAppBuilder.Services.AddTransientPopup<PaymentPopup, PaymentPopupViewModel>();
+        mauiAppBuilder.Services.AddTransientPopup<CashPaymentPopup, CashPaymentPopupViewModel>();
+        mauiAppBuilder.Services.AddTransientPopup<BillDiscountPopup, BillDiscountPopupViewModel>();
+        mauiAppBuilder.Services.AddTransientPopup<BillDiscountDetailsPopup, BillDiscountDetailsPopupViewModel>();
+        mauiAppBuilder.Services.AddTransientPopup<ItemDiscountPage, ItemDiscountPageViewModel>();
 
-            mauiAppBuilder.Services.AddTransient<ManagerAddInventoryItem>();
-            mauiAppBuilder.Services.AddTransient<ManagerInventoryPage>();
-            mauiAppBuilder.Services.AddTransient<ManagerHomePage>();
-            return mauiAppBuilder;
-        }
+        mauiAppBuilder.Services.AddTransient<ManagerAddInventoryItem>();
+        mauiAppBuilder.Services.AddTransient<ManagerInventoryPage>();
+        mauiAppBuilder.Services.AddTransient<ManagerHomePage>();
+        return mauiAppBuilder;
     }
 }

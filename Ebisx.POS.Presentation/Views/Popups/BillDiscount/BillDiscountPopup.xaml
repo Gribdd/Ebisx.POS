@@ -67,9 +67,10 @@
                 <Grid
                     ColumnDefinitions="*,*"
                     ColumnSpacing="10"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand">
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
                     <Button
+                        HeightRequest="50"
                         Command="{Binding ProceedToDetailsCommand}"
                         CommandParameter="senior"
                         Text="SENIOR CITIZEN" />

@@ -24,9 +24,9 @@ namespace Ebisx.POS.Presentation.ViewModels.Popup.BillDiscount
         }
 
         [RelayCommand]
-        private void ProceedToDetails(string discountType)
+        private async Task ProceedToDetails(string discountType)
         {
-            popupService.ClosePopup($"{discountType}");
+            await popupService.ClosePopupAsync(discountType);
         }
 
     }
