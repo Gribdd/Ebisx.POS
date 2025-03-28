@@ -25,5 +25,21 @@
         <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPressed" Color="#adadad" />
         <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="#adadad" />
 
+        <!--  Light Gray  -->
+        <SolidColorBrush x:Key="ScrollBarBackground" Color="#2e2e2e" />
+        <!--  Darker Gray when hovered  -->
+        <SolidColorBrush x:Key="ScrollBarBackgroundPointerOver" Color="#CCCCCC" />
+        <!--  Scrollbar track color  -->
+        <SolidColorBrush x:Key="ScrollBarForeground" Color="#3af856" />
+        <!--  Scrollbar thumb color  -->
+        <SolidColorBrush x:Key="ScrollBarThumbBackground" Color="#606060" />
+        <!--  Thumb hover effect  -->
+        <SolidColorBrush x:Key="ScrollBarThumbBackgroundPointerOver" Color="#404040" />
+        <!--  Thumb pressed effect  -->
+        <SolidColorBrush x:Key="ScrollBarThumbBackgroundPressed" Color="#202020" />
+
+        <!--  Remove Underline in Entry  -->
+        <Thickness x:Key="TextControlBorderThemeThickness">0</Thickness>
+        <Thickness x:Key="TextControlBorderThemeThicknessFocused">0</Thickness>
     </maui:MauiWinUIApplication.Resources>
 </maui:MauiWinUIApplication>

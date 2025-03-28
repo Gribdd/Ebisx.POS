@@ -623,7 +623,7 @@
                                 Grid.Column="7"
                                 HorizontalTextAlignment="Center"
                                 Style="{StaticResource labelStyle}"
-                                Text="{Binding VatAtPurchase, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
+                                Text="{Binding VatAtPurchase, StringFormat='{0:N2}%', FallbackValue='₱0.00'}"
                                 VerticalTextAlignment="Center" />
                             <Label
                                 Grid.Column="8"

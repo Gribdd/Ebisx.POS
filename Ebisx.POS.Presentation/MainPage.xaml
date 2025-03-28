@@ -18,12 +18,20 @@
     <Grid RowDefinitions="*">
         <Border
             BackgroundColor="#84a689"
-            HorizontalOptions="CenterAndExpand"
-            WidthRequest="300"
             HeightRequest="350"
-            VerticalOptions="CenterAndExpand">
-            <VerticalStackLayout Margin="30" VerticalOptions="Center" Spacing="5">
-                <Label FontAttributes="Bold" TextColor="Black" FontSize="20" HorizontalTextAlignment="Center" Text="POS"/>
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
+            WidthRequest="300">
+            <VerticalStackLayout
+                Margin="30"
+                Spacing="5"
+                VerticalOptions="Center">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="POS"
+                    TextColor="Black" />
 
                 <Label
                     FontAttributes="Bold"
@@ -44,10 +52,15 @@
                     Text="PASSWORD"
                     TextColor="black" />
                 <Border>
-                    <Entry TextColor="Black" BackgroundColor="White" IsPassword="True" Text="{Binding User.Password}" />
+                    <Entry
+                        BackgroundColor="White"
+                        IsPassword="True"
+                        Keyboard="Password"
+                        Text="{Binding User.Password}"
+                        TextColor="Black" />
                 </Border>
                 <Button
-                    WidthRequest="130"
+                    TextColor="Black"
                     Margin="0,30,0,0"
                     BackgroundColor="White"
                     BorderColor="Black"
@@ -55,7 +68,8 @@
                     Command="{Binding AuthenticateCommand}"
                     CornerRadius="20"
                     FontAttributes="Bold"
-                    Text="LOGIN" />
+                    Text="LOGIN"
+                    WidthRequest="130" />
             </VerticalStackLayout>
         </Border>
     </Grid>

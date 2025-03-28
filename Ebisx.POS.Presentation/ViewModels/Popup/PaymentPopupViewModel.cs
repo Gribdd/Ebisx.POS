@@ -12,8 +12,31 @@ public partial class PaymentPopupViewModel : BaseViewModel
     [ObservableProperty]
     public partial ObservableCollection<PaymentMethod> PaymentMethods { get; set; }
 
-    public double PopupWidth => Shell.Current.CurrentPage.Width * 0.9;
-    public double PopupHeight => Shell.Current.CurrentPage.Height * 0.9;
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TotalAmountPaid))]
+    public partial decimal CashAmount { get; set; }
+    
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TotalAmountPaid))]
+    public partial decimal CreditAmount { get; set; }
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TotalAmountPanid))]
+    public partial decimal DebitAmount { get; set; }
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TotalAmountPaid))]
+    public partial decimal EpayAmount { get; set; }
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TotalAmountPaid))]
+    public partial decimal CustomerCreditAmount { get; set; }
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TotalAmountPaid))]
+    public partial decimal LoyaltyCardAmount { get; set; }
+    public decimal TotalAmountPaid =>
+        CashAmount + CreditAmount + DebitAmount + EpayAmount + CustomerCreditAmount + LoyaltyCardAmount;
+
+    public double PopupWidth => Shell.Current.CurrentPage.Width;
+    public double PopupHeight => Shell.Current.CurrentPage.Height;
+
 
     public PaymentPopupViewModel(IPopupService popupService)
     {
@@ -39,32 +62,16 @@ public partial class PaymentPopupViewModel : BaseViewModel
     [RelayCommand]
     private async Task AddPayment(object parameter)
     {
-        if (parameter is Tuple<object, object> tuple &&
-            tuple.Item1 is PaymentMethod paymentMethod &&
-            tuple.Item2 is Button anchorButton)
+
+        switch (parameter)
         {
-                
-
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-
-            string text = $"Payment added: {paymentMethod.Name} with an amount of PHP {paymentMethod.Amount}";
-            ToastDuration duration = ToastDuration.Short;   
-            double fontSize = 14;
-
-            var toast = Toast.Make(text, duration, fontSize);
-            await toast.Show(cancellationTokenSource.Token);
-
-
-            switch (paymentMethod.Name)
-            {
-                case "Cash":
-                    _popupService.ShowPopup<CashPaymentPopupViewModel>(
-                        onPresenting: vm => vm.Anchor = anchorButton);
-                    break;
-                case "Credit":
-                    // Handle credit payment
-                    break;
-            }
+            case "Cash":
+                await  _popupService.ClosePopupAsync();
+                await _popupService.ShowPopupAsync<CashPaymentPopupViewModel>();
+                break;
+            case "Credit":
+                // Handle credit payment
+                break;
         }
     }
 

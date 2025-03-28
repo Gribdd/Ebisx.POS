@@ -5,7 +5,7 @@ namespace Ebisx.POS.Presentation.ViewModels.Manager
     public partial class ManagerHomePageViewModel : BaseViewModel
     {
         [RelayCommand]
-        private void Logout()
+        private void Logout()   
         {
             Shell.Current.GoToAsync("//mainpage");
         }

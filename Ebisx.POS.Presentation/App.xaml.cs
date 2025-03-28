@@ -1,4 +1,7 @@
-﻿namespace Ebisx.POS.Presentation
+﻿using Ebisx.POS.Presentation.Services.Interface;
+using Ebisx.POS.Presentation.Views.Manager;
+
+namespace Ebisx.POS.Presentation
 {
     public partial class App : Application
     {

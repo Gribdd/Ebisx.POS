@@ -45,11 +45,18 @@
                         Text="Item Inventory"
                         VerticalOptions="Center" />
 
-                    <SearchBar
+                    <Border
                         Grid.Column="1"
-                        Placeholder="Search item..."
-                        TextColor="black"
-                        WidthRequest="200" />
+                        Margin="0,0,10,0"
+                        HorizontalOptions="End"
+                        Stroke="Black"
+                        StrokeShape="RoundRectangle 15">
+                        <SearchBar
+                            Placeholder="Search item..."
+                            Text="{Binding SearchText}"
+                            TextColor="black"
+                            WidthRequest="200" />
+                    </Border>
                 </Grid>
             </Border>
 
@@ -72,12 +79,12 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     Style="{StaticResource labelStyle}"
-                    Text="Product ID" />
+                    Text="ID" />
                 <Label
                     Grid.Row="1"
                     Grid.Column="1"
                     Style="{StaticResource labelStyle}"
-                    Text="Product Name" />
+                    Text="Name" />
                 <Label
                     Grid.Row="1"
                     Grid.Column="2"
@@ -163,7 +170,7 @@
                 x:Name="products"
                 Grid.Row="2"
                 BackgroundColor="White"
-                ItemsSource="{Binding Products}"
+                ItemsSource="{Binding FilteredProducts}"
                 SelectedItem="{Binding SelectedProduct}"
                 SelectionMode="Single">
                 <CollectionView.ItemTemplate>
@@ -188,7 +195,7 @@
                             <Label
                                 Grid.Column="1"
                                 Style="{StaticResource labelStyle}"
-                                Text="{Binding ProductName}" />
+                                Text="{Binding Name}" />
                             <Label
                                 Grid.Column="2"
                                 Style="{StaticResource labelStyle}"
@@ -204,7 +211,7 @@
                             <Label
                                 Grid.Column="5"
                                 Style="{StaticResource labelStyle}"
-                                Text="{Binding Vat, StringFormat='{0}%'}" />
+                                Text="{Binding Vat, StringFormat='{0:f2}%'}" />
                             <Label
                                 Grid.Column="6"
                                 Style="{StaticResource labelStyle}"

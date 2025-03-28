@@ -12,6 +12,7 @@
     CanBeDismissedByTappingOutsideOfPopup="False"
     Color="Transparent">
 
+
     <Border
         BackgroundColor="#84a689"
         HeightRequest="{Binding PopupHeight}"
@@ -23,9 +24,10 @@
             <ImageButton
                 Background="Red"
                 BorderColor="Black"
-                BorderWidth="1"
+                BorderWidth="2"
                 Command="{Binding CloseCommand}"
                 CornerRadius="10"
+                HeightRequest="30"
                 HorizontalOptions="End"
                 Source="icons8_close.png"
                 VerticalOptions="Start"
@@ -33,17 +35,17 @@
                 ZIndex="1" />
             <Border
                 Margin="20"
+                Padding="10"
                 BackgroundColor="white"
                 Stroke="Black"
                 StrokeShape="RoundRectangle 15"
                 StrokeThickness="2">
                 <Grid
-                    Margin="10"
                     ColumnDefinitions="*,*,*"
                     ColumnSpacing="10"
-                    RowSpacing="30"
                     RowDefinitions=".4*,.4*,auto"
-                    VerticalOptions="Start">
+                    RowSpacing="30"
+                    VerticalOptions="Center">
                     <!--  FIRST ROW  -->
                     <!--  CASH  -->
                     <Grid
@@ -73,7 +75,7 @@
                             StrokeThickness="1">
                             <Label
                                 HorizontalTextAlignment="Center"
-                                Text="P200.00"
+                                Text="{Binding CashAmount, StringFormat='₱{0:F2}'}"
                                 TextColor="Black" />
                         </Border>
                         <Button
@@ -81,6 +83,8 @@
                             BackgroundColor="#84a689"
                             BorderColor="Black"
                             BorderWidth="1"
+                            Command="{Binding AddPaymentCommand}"
+                            CommandParameter="Cash"
                             HorizontalOptions="Center"
                             Text="Add" />
                     </Grid>
@@ -113,7 +117,7 @@
                             StrokeThickness="1">
                             <Label
                                 HorizontalTextAlignment="Center"
-                                Text="P200.00"
+                                Text="{Binding CreditAmount, StringFormat='₱{0:F2}'}"
                                 TextColor="Black" />
                         </Border>
                         <Button
@@ -153,7 +157,7 @@
                             StrokeThickness="1">
                             <Label
                                 HorizontalTextAlignment="Center"
-                                Text="P200.00"
+                                Text="{Binding DebitAmount, StringFormat='₱{0:F2}'}"
                                 TextColor="Black" />
                         </Border>
                         <Button
@@ -165,7 +169,7 @@
                             Text="Add" />
                     </Grid>
 
-                    
+
                     <!--  SECOND ROW  -->
                     <!--  E-PAY  -->
                     <Grid
@@ -195,7 +199,7 @@
                             StrokeThickness="1">
                             <Label
                                 HorizontalTextAlignment="Center"
-                                Text="P200.00"
+                                Text="{Binding EpayAmount, StringFormat='₱{0:F2}'}"
                                 TextColor="Black" />
                         </Border>
                         <Button
@@ -235,7 +239,7 @@
                             StrokeThickness="1">
                             <Label
                                 HorizontalTextAlignment="Center"
-                                Text="P200.00"
+                                Text="{Binding CustomerCreditAmount, StringFormat='₱{0:F2}'}"
                                 TextColor="Black" />
                         </Border>
                         <Button
@@ -275,7 +279,7 @@
                             StrokeThickness="1">
                             <Label
                                 HorizontalTextAlignment="Center"
-                                Text="P200.00"
+                                Text="{Binding LoyaltyCardAmount, StringFormat='₱{0:F2}'}"
                                 TextColor="Black" />
                         </Border>
                         <Button
@@ -305,7 +309,7 @@
                         StrokeThickness="1">
                         <Label
                             HorizontalTextAlignment="Center"
-                            Text="P0.00"
+                            Text="{Binding TotalAmountPaid, Mode=TwoWay, StringFormat='₱{0:F2}'}"
                             TextColor="Black"
                             VerticalTextAlignment="Center" />
                     </Border>

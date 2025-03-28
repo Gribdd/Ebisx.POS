@@ -3,7 +3,7 @@
 public partial class OrderItem : BaseModel
 {
     [ObservableProperty]
-    public partial int ProductId { get; set; } // Reference to Product
+    public partial Guid ProductId { get; set; } // Reference to Product
 
     [ObservableProperty]
     public partial string? ProductName { get; set; } // Store Name for display

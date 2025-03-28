@@ -7,8 +7,8 @@ namespace Ebisx.POS.Presentation
     {
         public AppShell()
         {
-            InitializeComponent();
             RegisterRoutes();
+            InitializeComponent();
         }
 
         private void RegisterRoutes()
@@ -17,10 +17,12 @@ namespace Ebisx.POS.Presentation
             Routing.RegisterRoute("home/iteminventory", typeof(ItemInventoryPage));
 
             //mana
-            Routing.RegisterRoute("managerhome/employee", typeof(ManagerEmployeesPage));
-            Routing.RegisterRoute("managerhome/inventory", typeof(ManagerInventoryPage));
-            Routing.RegisterRoute("managerhome/sales", typeof(ManagerSalesPage));
-            Routing.RegisterRoute("managerhome/transaction", typeof(ManagerTransactionPage));
+            Routing.RegisterRoute("employee", typeof(ManagerEmployeesPage));
+            Routing.RegisterRoute("inventory", typeof(ManagerInventoryPage));
+            Routing.RegisterRoute("inventory/additem", typeof(ManagerAddInventoryItem));
+
+            Routing.RegisterRoute("sales", typeof(ManagerSalesPage));
+            Routing.RegisterRoute("transaction", typeof(ManagerTransactionPage));
         }
     }
 }

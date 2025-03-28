@@ -7,15 +7,348 @@
     xmlns:vm="clr-namespace:Ebisx.POS.Presentation.ViewModels.Popup"
     x:DataType="vm:CashPaymentPopupViewModel"
     CanBeDismissedByTappingOutsideOfPopup="False"
-    HorizontalOptions="Start">
-    <VerticalStackLayout
-        Margin="100,0"
-        HeightRequest="700"
-        WidthRequest="300">
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI! CASHHHH"
-            VerticalOptions="Center" />
-        <Button Command="{Binding BackCommand}" Text="Go Back" />
-    </VerticalStackLayout>
+    Color="Transparent">
+
+    <Border
+        BackgroundColor="#84a689"
+        MinimumHeightRequest="400"
+        MinimumWidthRequest="300"
+        Stroke="Black"
+        StrokeShape="RoundRectangle 15"
+        StrokeThickness="3">
+        <Grid>
+            <ImageButton
+                Background="Red"
+                BorderColor="Black"
+                BorderWidth="2"
+                Command="{Binding BackCommand}"
+                CornerRadius="10"
+                HeightRequest="30"
+                HorizontalOptions="End"
+                Source="icons8_close.png"
+                VerticalOptions="Start"
+                WidthRequest="30"
+                ZIndex="1" />
+            <Border
+      
+                Margin="10"
+                BackgroundColor="White"
+                Stroke="black"
+                StrokeShape="RoundRectangle 10">
+
+                <Grid
+                    
+                    HorizontalOptions="Center"
+                    ColumnDefinitions="*,*"
+                    RowDefinitions="*,auto"
+                    VerticalOptions="Center">
+                    <Border
+                        HorizontalOptions="Center"
+                        Stroke="Black"
+                        StrokeShape="RoundRectangle 7">
+                        <Grid
+                            ColumnDefinitions="*,*"
+                            RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                            RowSpacing="3">
+                            <!--  Header Row  -->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="CASH NOTES"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalTextAlignment="Center"
+                                Text="Quantity"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+
+                            <!--  Cash Notes  -->
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="₱1000.00"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Entry
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Keyboard="Numeric"
+                                Placeholder="..."
+                                PlaceholderColor="Grey"
+                                Text="{Binding ThousandNote, Mode=TwoWay}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="₱500.00"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Entry
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Keyboard="Numeric"
+                                Placeholder="..."
+                                PlaceholderColor="Grey"
+                                Text="{Binding FiveHundredNote, Mode=TwoWay}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="₱200.00"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Entry
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Keyboard="Numeric"
+                                Placeholder="..."
+                                PlaceholderColor="Grey"
+                                Text="{Binding TwoHundredNote, Mode=TwoWay}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="₱100.00"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Entry
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Keyboard="Numeric"
+                                Placeholder="..."
+                                PlaceholderColor="Grey"
+                                Text="{Binding HundredNote, Mode=TwoWay}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="₱50.00"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Entry
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Keyboard="Numeric"
+                                Placeholder="..."
+                                PlaceholderColor="Grey"
+                                Text="{Binding FiftyNote, Mode=TwoWay}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="6"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="₱20.00"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Entry
+                                Grid.Row="6"
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Keyboard="Numeric"
+                                Placeholder="..."
+                                PlaceholderColor="Grey"
+                                Text="{Binding TwentyNote, Mode=TwoWay}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="7"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="TOTAL AMOUNT"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Row="7"
+                                Grid.Column="1"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding TotalCashNotes}"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                        </Grid>
+                    </Border>
+                    
+                    <!--  Coins Region  -->
+                    <Border
+                        Grid.Column="1"
+                        HorizontalOptions="Center"
+                        Stroke="Black"
+                        StrokeShape="RoundRectangle 7">
+                        <Grid
+                            ColumnDefinitions="*,*"
+                            RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                            RowSpacing="3">
+                            <!--  Header Row  -->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="COINS"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalTextAlignment="Center"
+                                Text="Quantity"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+
+                            <!--  Coin Notes  -->
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="₱10.00"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Entry
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Keyboard="Numeric"
+                                Placeholder="..."
+                                PlaceholderColor="Grey"
+                                Text="{Binding TenCoin, Mode=TwoWay}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="₱5.00"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Entry
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Keyboard="Numeric"
+                                Placeholder="..."
+                                PlaceholderColor="Grey"
+                                Text="{Binding FiveCoin, Mode=TwoWay}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="₱1.00"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Entry
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Keyboard="Numeric"
+                                Placeholder="..."
+                                PlaceholderColor="Grey"
+                                Text="{Binding OneCoin, Mode=TwoWay}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="₱0.50"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Entry
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Keyboard="Numeric"
+                                Placeholder="..."
+                                PlaceholderColor="Grey"
+                                Text="{Binding FiftyCentsCoin, Mode=TwoWay}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+
+                            <Label
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="₱0.25"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Entry
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Keyboard="Numeric"
+                                Placeholder="..."
+                                PlaceholderColor="Grey"
+                                Text="{Binding QuarterCoin, Mode=TwoWay}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+
+
+                            <Label
+                                Grid.Row="6"
+                                Grid.Column="0"
+                                HorizontalTextAlignment="Center"
+                                Text="TOTAL AMOUNT"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Row="6"
+                                Grid.Column="1"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding TotalCoins}"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center" />
+                        </Grid>
+                    </Border>
+
+                    <FlexLayout
+                        Grid.ColumnSpan="2"
+                        Grid.Row="1"
+                        Margin="0,10,0,0"
+                        JustifyContent="SpaceEvenly">
+                        <Button
+                            BackgroundColor="#d9d9d9"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            Command="{Binding ResetCommand}"
+                            CornerRadius="10"
+                            Text="Reset Quantity" />
+                        <Button
+                            BackgroundColor="#3af856"
+                            BorderColor="Black"
+                            BorderWidth="1"
+                            Command="{Binding ProceedCommand}"
+                            Text="Proceed" />
+                    </FlexLayout>
+                </Grid>
+            </Border>
+
+        </Grid>
+    </Border>
 </toolkit:Popup>

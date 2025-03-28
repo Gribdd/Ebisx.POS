@@ -179,21 +179,7 @@ public partial class HomePageViewModel : BaseViewModel
             return;
         }
 
-
-        if (CurrentMode == KeypadMode.ItemDiscount)
-        {
-            // Exiting mode
-            CurrentMode = KeypadMode.None;
-            IsInputActive = false;
-            CalculateTotals();
-            SelectedNumber = string.Empty;
-        }
-        else
-        {
-            // Entering mode
-            CurrentMode = KeypadMode.ItemDiscount;
-            IsInputActive = true;
-        }
+        _popupService.ShowPopup<ItemDiscountPageViewModel>();
     }
 
     [RelayCommand]  

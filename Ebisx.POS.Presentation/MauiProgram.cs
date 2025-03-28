@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Maui;
+using Ebisx.POS.Presentation.Services.Interface;
 using Ebisx.POS.Presentation.ViewModels.Manager;
 using Ebisx.POS.Presentation.ViewModels.Popup.BillDiscount;
+using Ebisx.POS.Presentation.Views.Manager;
 using Ebisx.POS.Presentation.Views.Popups.BillDiscount;
 using Microsoft.Extensions.Logging;
 
@@ -25,7 +27,14 @@ namespace Ebisx.POS.Presentation
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("LuckiestGuy-Regular.ttf", "LuckiestGuyRegular");
                 });
-            builder.Services.AddSingleton<ApiService.Services.ApiService>();
+            Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
+            {
+#if ANDROID
+
+                handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.White);
+
+#endif
+            });
 
 #if DEBUG
             builder.Logging.AddDebug();
@@ -36,7 +45,7 @@ namespace Ebisx.POS.Presentation
 
         private static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
         {
-            mauiAppBuilder.Services.AddSingleton<MockDataService>();
+            mauiAppBuilder.Services.AddSingleton<IProductService, ProductService>();
             return mauiAppBuilder;
         }
 
@@ -51,6 +60,7 @@ namespace Ebisx.POS.Presentation
             mauiAppBuilder.Services.AddTransient<ManagerEmployeesPageViewModel>();
             mauiAppBuilder.Services.AddTransient<ManagerHomePageViewModel>();
             mauiAppBuilder.Services.AddTransient<ManagerInventoryPageViewModel>();
+            mauiAppBuilder.Services.AddTransient<ManagerInventoryAddItemPageViewModel>();
             mauiAppBuilder.Services.AddTransient<ManagerSalesPageViewModel>();
             mauiAppBuilder.Services.AddTransient<ManagerTransactionPageViewModel>();
 
@@ -60,6 +70,10 @@ namespace Ebisx.POS.Presentation
             mauiAppBuilder.Services.AddTransientPopup<BillDiscountPopup, BillDiscountPopupViewModel>();
             mauiAppBuilder.Services.AddTransientPopup<BillDiscountDetailsPopup, BillDiscountDetailsPopupViewModel>();
             mauiAppBuilder.Services.AddTransientPopup<ItemDiscountPage, ItemDiscountPageViewModel>();
+
+            mauiAppBuilder.Services.AddTransient<ManagerAddInventoryItem>();
+            mauiAppBuilder.Services.AddTransient<ManagerInventoryPage>();
+            mauiAppBuilder.Services.AddTransient<ManagerHomePage>();
             return mauiAppBuilder;
         }
     }

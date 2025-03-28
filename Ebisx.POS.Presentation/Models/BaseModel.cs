@@ -1,7 +1,10 @@
-﻿namespace Ebisx.POS.Presentation.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace Ebisx.POS.Presentation.Models;
 
 public partial class BaseModel : ObservableObject
 {
     [ObservableProperty]
-    private int _id;
+    [JsonPropertyName("id")]
+    public partial Guid Id { get; set; }
 }

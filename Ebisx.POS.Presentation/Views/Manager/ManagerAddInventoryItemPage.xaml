@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Ebisx.POS.Presentation.Views.Manager.ManagerAddInventoryItem"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:Ebisx.POS.Presentation.Models"
+    xmlns:vm="clr-namespace:Ebisx.POS.Presentation.ViewModels.Manager"
+    Title="ManagerAddInventoryItem"
+    x:DataType="vm:ManagerInventoryAddItemPageViewModel"
+    Background="#84a689">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelStyle" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextTransform" Value="Uppercase" />
+                <Setter Property="TextColor" Value="black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Border
+        Margin="15"
+        Stroke="Black"
+        StrokeThickness="2">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="15" />
+        </Border.StrokeShape>
+        <Grid RowDefinitions="auto,*">
+            <Border
+                Margin="10"
+                Padding="10"
+                Background="White"
+                Stroke="Black"
+                StrokeShape="RoundRectangle 15">
+                <Grid ColumnDefinitions="50,*">
+                    <Button
+                        BackgroundColor="{StaticResource Primary}"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Command="{Binding BackCommand}"
+                        CornerRadius="15"
+                        HorizontalOptions="Start"
+                        ImageSource="back_arrow.png" />
+                    <Label
+                        Grid.Column="1"
+                        FontSize="Title"
+                        HeightRequest="50"
+                        Style="{StaticResource labelStyle}"
+                        Text="ADD ITEM " />
+                </Grid>
+            </Border>
+
+            <ScrollView
+                Grid.Row="1"
+                BackgroundColor="White"
+                VerticalScrollBarVisibility="Always">
+                <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                    <Border
+                        Margin="10"
+                        BackgroundColor="#84a689"
+                        MinimumHeightRequest="550"
+                        MinimumWidthRequest="200"
+                        Stroke="Black"
+                        StrokeShape="RoundRectangle 15"
+                        StrokeThickness="2">
+                        <Border
+                            Margin="20"
+                            Padding="20"
+                            BackgroundColor="white"
+                            Stroke="Black"
+                            StrokeShape="RoundRectangle 10">
+                            <VerticalStackLayout>
+
+                                <Label
+                                    HorizontalTextAlignment="Start"
+                                    Style="{StaticResource labelStyle}"
+                                    Text="name" />
+                                <Border
+                                    Margin="0,3,0,15"
+                                    HeightRequest="40"
+                                    Stroke="Black">
+                                    <Entry Text="{Binding NewProduct.Name}" TextColor="Black" />
+                                </Border>
+                                <Label
+                                    HorizontalTextAlignment="Start"
+                                    Style="{StaticResource labelStyle}"
+                                    Text="custom barcode" />
+                                <Border
+                                    Margin="0,3,0,15"
+                                    HeightRequest="40"
+                                    Stroke="Black">
+                                    <Entry Text="{Binding NewProduct.Barcode}" TextColor="Black" />
+                                </Border>
+
+                                <Grid
+                                    ColumnDefinitions="*,*"
+                                    ColumnSpacing="10"
+                                    RowDefinitions="*,*">
+                                    <Label
+                                        HorizontalTextAlignment="Start"
+                                        Style="{StaticResource labelStyle}"
+                                        Text="quantity" />
+                                    <Border
+                                        Grid.Row="1"
+                                        Margin="0,3,0,15"
+                                        HeightRequest="40"
+                                        Stroke="Black">
+                                        <Entry Text="{Binding NewProduct.Quantity}" TextColor="Black" />
+                                    </Border>
+
+                                    <Label
+                                        Grid.Column="1"
+                                        HorizontalTextAlignment="Start"
+                                        Style="{StaticResource labelStyle}"
+                                        Text="price" />
+                                    <Border
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="0,3,0,15"
+                                        HeightRequest="40"
+                                        Stroke="Black">
+                                        <Entry Text="{Binding NewProduct.Price}" TextColor="Black" />
+                                    </Border>
+                                </Grid>
+                                <Grid
+                                    ColumnDefinitions="*,*"
+                                    ColumnSpacing="10"
+                                    RowDefinitions="*,*">
+                                    <Label
+                                        HorizontalTextAlignment="Start"
+                                        Style="{StaticResource labelStyle}"
+                                        Text="Vat %" />
+                                    <Border
+                                        Grid.Row="1"
+                                        Margin="0,3,0,15"
+                                        HeightRequest="40"
+                                        Stroke="Black">
+                                        <Entry Text="{Binding NewProduct.Vat}" TextColor="Black" />
+                                    </Border>
+
+                                    <Label
+                                        Grid.Column="1"
+                                        HorizontalTextAlignment="Start"
+                                        Style="{StaticResource labelStyle}"
+                                        Text="sales unit" />
+                                    <Border
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="0,3,0,15"
+                                        HeightRequest="40"
+                                        Stroke="Black">
+                                        <Entry Text="{Binding NewProduct.SalesUnit}" TextColor="Black" />
+                                    </Border>
+                                </Grid>
+                                <Button
+                                    Margin="0,10,0,0"
+                                    BackgroundColor="#3af856"
+                                    BorderColor="Black"
+                                    BorderWidth="2"
+                                    Command="{Binding AddItemCommand}"
+                                    CornerRadius="0"
+                                    HorizontalOptions="Center"
+                                    Text="add item"
+                                    TextColor="black" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Border>
+                </Grid>
+            </ScrollView>
+        </Grid>
+    </Border>
+</ContentPage>

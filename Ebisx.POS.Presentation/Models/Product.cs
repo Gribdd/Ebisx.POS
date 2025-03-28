@@ -1,22 +1,31 @@
-﻿namespace Ebisx.POS.Presentation.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace Ebisx.POS.Presentation.Models;
 
 public partial class Product : BaseModel
 {
     [ObservableProperty]
-    private string? _productName;
+    [JsonPropertyName("name")]
+    public partial string? Name { get; set; }
 
     [ObservableProperty]
-    private string? _barcode;
+    [JsonPropertyName("barcode")]
+    public partial string? Barcode { get; set; }
 
     [ObservableProperty]
-    private int _quantity;
+    [JsonPropertyName("quantity")]
+    public partial int Quantity { get; set; }
 
     [ObservableProperty]
-    private decimal _price;
+    [JsonPropertyName("price")]
+    public partial decimal Price { get; set; }
 
     [ObservableProperty]
-    private decimal _vat;
+    [JsonPropertyName("vat")]
+    public partial decimal Vat { get; set; }
     
     [ObservableProperty]
-    private string? _salesUnit;
+    [JsonPropertyName("salesUnit")]
+    public partial string? SalesUnit { get; set; }
+
 }
