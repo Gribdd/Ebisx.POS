@@ -27,6 +27,8 @@ public static class MauiProgram
             })
             .RegisterViewModels()
             .RegisterServices()
+            .RegisterViews()
+            .RegisterPopups()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -35,26 +37,28 @@ public static class MauiProgram
             });
 
 #if WINDOWS
-//maximized window on startup in Windows platform
-builder.ConfigureLifecycleEvents(events =>
-{
-    events.AddWindows(wndLifeCycleBuilder =>
-    {
-        wndLifeCycleBuilder.OnWindowCreated(window =>
+        //maximized window on startup in Windows platform
+        builder.ConfigureLifecycleEvents(events =>
         {
-            IntPtr nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
-            Microsoft.UI.WindowId win32WindowsId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
-            Microsoft.UI.Windowing.AppWindow winuiAppWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(win32WindowsId);
-            if (winuiAppWindow.Presenter is Microsoft.UI.Windowing.OverlappedPresenter p)
+            events.AddWindows(wndLifeCycleBuilder =>
             {
-                p.Maximize();
-                p.IsResizable = false;
-                p.IsMaximizable = false;
-                p.IsMinimizable = false;
-            }
+                wndLifeCycleBuilder.OnWindowCreated(window =>
+                {
+                    IntPtr nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
+                    Microsoft.UI.WindowId win32WindowsId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
+                    Microsoft.UI.Windowing.AppWindow winuiAppWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(win32WindowsId);
+                    if (winuiAppWindow.Presenter is Microsoft.UI.Windowing.OverlappedPresenter p)
+                    {
+                        //maximize window
+                        p.Maximize();
+                        //disable resizing
+                        p.IsResizable = false;
+                        p.IsMaximizable = false;
+                        p.IsMinimizable = false;
+                    }
+                });
+            });
         });
-    });
-});
 #endif
         Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
         {
@@ -92,17 +96,27 @@ builder.ConfigureLifecycleEvents(events =>
         mauiAppBuilder.Services.AddTransient<ManagerInventoryAddItemPageViewModel>();
         mauiAppBuilder.Services.AddTransient<ManagerSalesPageViewModel>();
         mauiAppBuilder.Services.AddTransient<ManagerTransactionPageViewModel>();
+        return mauiAppBuilder;
+    }
 
+    private static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
+    {
+        mauiAppBuilder.Services.AddTransient<ManagerAddInventoryItem>();
+        mauiAppBuilder.Services.AddTransient<ManagerInventoryPage>();
+        mauiAppBuilder.Services.AddTransient<ManagerHomePage>();
+        return mauiAppBuilder;
+    }
+
+    private static MauiAppBuilder RegisterPopups(this MauiAppBuilder mauiAppBuilder)
+    {
         //popups
         mauiAppBuilder.Services.AddTransientPopup<PaymentPopup, PaymentPopupViewModel>();
         mauiAppBuilder.Services.AddTransientPopup<CashPaymentPopup, CashPaymentPopupViewModel>();
         mauiAppBuilder.Services.AddTransientPopup<BillDiscountPopup, BillDiscountPopupViewModel>();
         mauiAppBuilder.Services.AddTransientPopup<BillDiscountDetailsPopup, BillDiscountDetailsPopupViewModel>();
         mauiAppBuilder.Services.AddTransientPopup<ItemDiscountPage, ItemDiscountPageViewModel>();
-
-        mauiAppBuilder.Services.AddTransient<ManagerAddInventoryItem>();
-        mauiAppBuilder.Services.AddTransient<ManagerInventoryPage>();
-        mauiAppBuilder.Services.AddTransient<ManagerHomePage>();
         return mauiAppBuilder;
     }
 }
+
+
