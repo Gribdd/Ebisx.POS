@@ -9,6 +9,18 @@ namespace Ebisx.POS.Presentation
         {
             RegisterRoutes();
             InitializeComponent();
+            var getuserSavedkey = Preferences.Get("UserAlreadyloggedIn", false);
+
+            if (getuserSavedkey == true)
+            {
+                MyAppShell.CurrentItem = EmployeeHomePage;
+
+            }
+            else
+            {
+                MyAppShell.CurrentItem = LoginPage;
+
+            }
         }
 
         private void RegisterRoutes()

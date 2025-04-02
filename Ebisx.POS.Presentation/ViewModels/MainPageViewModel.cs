@@ -29,12 +29,14 @@ public partial class MainPageViewModel : BaseViewModel
         {
             if (user.UserRole == UserRole.Employee)
             {
+                Preferences.Set("UserAlreadyloggedIn", true);
                 await Shell.Current.GoToAsync("///home");
                 return;
             }
 
             if (user.UserRole == UserRole.Manager)
             {
+                Preferences.Set("UserAlreadyloggedIn", true);
                 await Shell.Current.GoToAsync("///managerhome");
                 return;
             }

@@ -7,20 +7,27 @@
     xmlns:mngr="clr-namespace:Ebisx.POS.Presentation.Views.Manager"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:views="clr-namespace:Ebisx.POS.Presentation.Views"
+    x:Name="MyAppShell"
     Title="Ebisx.POS.Presentation"
     Shell.FlyoutBehavior="Disabled"
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
-    
+
     <Shell.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="#84a689" StatusBarStyle="DarkContent" />
     </Shell.Behaviors>
-    
+
     <!--  Login Page  -->
-    <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="mainpage" />
+    <ShellContent
+        x:Name="LoginPage"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="mainpage" />
 
     <!--  Employee Home Page  -->
-    <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="home" />
+    <ShellContent
+        x:Name="EmployeeHomePage"
+        ContentTemplate="{DataTemplate views:HomePage}"
+        Route="home" />
 
     <!--  Manager Home Page  -->
     <ShellContent ContentTemplate="{DataTemplate mngr:ManagerHomePage}" Route="managerhome" />

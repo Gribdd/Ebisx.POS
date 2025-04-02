@@ -209,6 +209,7 @@ public partial class HomePageViewModel : BaseViewModel
                 // apply discount
                 foreach (var orderItem in OrderItems)
                 {
+                    // apply 20% discount 
                     orderItem.DiscountPercentage += 20;
                 }
             }
@@ -271,6 +272,7 @@ public partial class HomePageViewModel : BaseViewModel
     [RelayCommand]
     private void Logout()
     {
+        Preferences.Clear();
         Shell.Current.GoToAsync("//mainpage");
     }
 
