@@ -1,7 +1,4 @@
-﻿using Bogus.DataSets;
-using CommunityToolkit.Mvvm.Input;
-using Ebisx.POS.Presentation.Common;
-using Ebisx.POS.Presentation.Views.Manager;
+﻿using CommunityToolkit.Mvvm.Input;
 
 namespace Ebisx.POS.Presentation.ViewModels;
 

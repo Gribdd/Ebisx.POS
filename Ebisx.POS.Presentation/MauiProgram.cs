@@ -58,6 +58,17 @@ public static class MauiProgram
                     }
                 });
             });
+            events.AddWindows(windows => 
+                windows.OnPlatformMessage((window, args) =>
+                {
+                    if (args.MessageId == Convert.ToUInt32("0x0086", 16) ||
+                        args.MessageId == Convert.ToUInt32("0x0020", 16) ||
+                        args.MessageId == Convert.ToUInt32("0x0021", 16))
+                    {
+                        (App.Current as App).ResetIdleTimer();
+                    }
+                }
+                ));
         });
 #endif
         Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
