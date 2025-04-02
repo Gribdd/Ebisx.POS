@@ -1,7 +1,9 @@
 ﻿
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.Input;
+using Ebisx.POS.Presentation.Common;
 using Ebisx.POS.Presentation.Common.Enums;
+using Ebisx.POS.Presentation.Services.Interface;
 using Ebisx.POS.Presentation.ViewModels.Popup.BillDiscount;
 
 namespace Ebisx.POS.Presentation.ViewModels;
@@ -10,6 +12,8 @@ namespace Ebisx.POS.Presentation.ViewModels;
 public partial class HomePageViewModel : BaseViewModel
 {
     private readonly IPopupService _popupService;
+    private readonly ISettingsService _settingService;
+    private readonly INavigationService _navigationService;
 
     [ObservableProperty]
     public partial ObservableCollection<OrderItem> OrderItems { get; set; } = new();
@@ -58,9 +62,14 @@ public partial class HomePageViewModel : BaseViewModel
     }
 
 
-    public HomePageViewModel(IPopupService popupService)
+    public HomePageViewModel(
+        IPopupService popupService,
+        ISettingsService settingsService,
+        INavigationService navigationService)
     {
         _popupService = popupService;
+        _settingService = settingsService;
+        _navigationService = navigationService;
     }
 
     private void CalculateTotalQuantity()
@@ -103,7 +112,7 @@ public partial class HomePageViewModel : BaseViewModel
     [RelayCommand]
     private async Task NavigateToItemSearch()
     {
-        await Shell.Current.GoToAsync("//home/iteminventory");
+        await _navigationService.NavigateToAsync($"//{AppRoutes.ItemInventory}");
     }
 
     [RelayCommand]
@@ -210,7 +219,7 @@ public partial class HomePageViewModel : BaseViewModel
                 foreach (var orderItem in OrderItems)
                 {
                     // apply 20% discount 
-                    orderItem.DiscountPercentage += 20;
+                    orderItem.DiscountPercentage += 5;
                 }
             }
 
@@ -272,8 +281,8 @@ public partial class HomePageViewModel : BaseViewModel
     [RelayCommand]
     private void Logout()
     {
-        Preferences.Clear();
-        Shell.Current.GoToAsync("//mainpage");
+        _navigationService.Logout();
+        _settingService.Logout();
     }
 
 

@@ -90,6 +90,9 @@ public static class MauiProgram
     private static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddSingleton<IProductService, ProductService>();
+        mauiAppBuilder.Services.AddSingleton<INavigationService, NavigationService>();
+        mauiAppBuilder.Services.AddSingleton<ISettingsService, SettingsService>();
+
         return mauiAppBuilder;
     }
 
@@ -112,6 +115,7 @@ public static class MauiProgram
 
     private static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
     {
+        mauiAppBuilder.Services.AddSingleton<AppShell>();
         mauiAppBuilder.Services.AddTransient<ManagerAddInventoryItem>();
         mauiAppBuilder.Services.AddTransient<ManagerInventoryPage>();
         mauiAppBuilder.Services.AddTransient<ManagerHomePage>();

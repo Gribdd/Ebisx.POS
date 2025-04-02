@@ -19,13 +19,11 @@
 
     <!--  Login Page  -->
     <ShellContent
-        x:Name="LoginPage"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="mainpage" />
 
     <!--  Employee Home Page  -->
     <ShellContent
-        x:Name="EmployeeHomePage"
         ContentTemplate="{DataTemplate views:HomePage}"
         Route="home" />
 

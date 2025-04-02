@@ -1,4 +1,5 @@
-﻿using System.Transactions;
+﻿using Ebisx.POS.Presentation.Common;
+using Ebisx.POS.Presentation.Services.Interface;
 using Ebisx.POS.Presentation.Views.Manager;
 
 namespace Ebisx.POS.Presentation
@@ -9,32 +10,21 @@ namespace Ebisx.POS.Presentation
         {
             RegisterRoutes();
             InitializeComponent();
-            var getuserSavedkey = Preferences.Get("UserAlreadyloggedIn", false);
-
-            if (getuserSavedkey == true)
-            {
-                MyAppShell.CurrentItem = EmployeeHomePage;
-
-            }
-            else
-            {
-                MyAppShell.CurrentItem = LoginPage;
-
-            }
+            
         }
 
         private void RegisterRoutes()
         {
-            //employee
-            Routing.RegisterRoute("home/iteminventory", typeof(ItemInventoryPage));
-
-            //mana
-            Routing.RegisterRoute("employee", typeof(ManagerEmployeesPage));
-            Routing.RegisterRoute("inventory", typeof(ManagerInventoryPage));
-            Routing.RegisterRoute("inventory/additem", typeof(ManagerAddInventoryItem));
-
-            Routing.RegisterRoute("sales", typeof(ManagerSalesPage));
-            Routing.RegisterRoute("transaction", typeof(ManagerTransactionPage));
+            Routing.RegisterRoute(AppRoutes.Home, typeof(HomePage));
+            Routing.RegisterRoute(AppRoutes.Login, typeof(MainPage));
+            Routing.RegisterRoute(AppRoutes.ManagerHome, typeof(ManagerHomePage));
+            Routing.RegisterRoute(AppRoutes.ItemInventory, typeof(ItemInventoryPage));
+            Routing.RegisterRoute(AppRoutes.ManagerEmployees, typeof(ManagerEmployeesPage));
+            Routing.RegisterRoute(AppRoutes.ManagerInventory, typeof(ManagerInventoryPage));
+            Routing.RegisterRoute(AppRoutes.ManagerAddInventoryItem, typeof(ManagerAddInventoryItem));
+            Routing.RegisterRoute(AppRoutes.ManagerSales, typeof(ManagerSalesPage));
+            Routing.RegisterRoute(AppRoutes.ManagerTransaction, typeof(ManagerTransactionPage));
         }
+
     }
 }

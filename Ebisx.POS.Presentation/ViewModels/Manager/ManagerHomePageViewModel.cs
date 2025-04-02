@@ -1,13 +1,22 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using Ebisx.POS.Presentation.Services.Interface;
 
 namespace Ebisx.POS.Presentation.ViewModels.Manager
 {
     public partial class ManagerHomePageViewModel : BaseViewModel
     {
+        private readonly INavigationService _navigationService;
+
+        public ManagerHomePageViewModel(
+            INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+        }
+
         [RelayCommand]
         private void Logout()   
         {
-            Shell.Current.GoToAsync("//mainpage");
+            _navigationService.Logout();
         }
 
         [RelayCommand]

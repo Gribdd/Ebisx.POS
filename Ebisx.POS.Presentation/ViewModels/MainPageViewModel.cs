@@ -1,21 +1,27 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using Ebisx.POS.Presentation.Common;
+using Ebisx.POS.Presentation.Services.Interface;
 
 namespace Ebisx.POS.Presentation.ViewModels;
 
 public partial class MainPageViewModel : BaseViewModel
 {
-    //[ObservableProperty]
-    //private ObservableCollection<string> _mockEmails;
-    //[ObservableProperty]
-    //private User _user = new();
     private ObservableCollection<User> _mockUsers = new();
+    private readonly ISettingsService _settingService;
+    private readonly INavigationService _navigationService;
 
     [ObservableProperty]
-    public partial ObservableCollection<string> MockEmails { get; set; } = new();
-
+    private ObservableCollection<string> _mockEmails = new();
     [ObservableProperty]
     public partial User User { get; set; } = new();
 
+    public MainPageViewModel(
+        ISettingsService settingsService,
+        INavigationService navigationService)
+    {
+        _settingService = settingsService;
+        _navigationService = navigationService;
+    }
 
     [RelayCommand]
     private async Task Authenticate()
@@ -26,15 +32,15 @@ public partial class MainPageViewModel : BaseViewModel
         {
             if (user.UserRole == UserRole.Employee)
             {
-                Preferences.Set("UserAlreadyloggedIn", true);
-                await Shell.Current.GoToAsync("///home");
+                _settingService.IsUserLoggedIn = true;
+                await _navigationService.NavigateToAsync($"//{AppRoutes.Home}");
                 return;
             }
 
             if (user.UserRole == UserRole.Manager)
             {
-                Preferences.Set("UserAlreadyloggedIn", true);
-                await Shell.Current.GoToAsync("///managerhome");
+                _settingService.IsUserLoggedIn = true;
+                await _navigationService.NavigateToAsync("///managerhome");
                 return;
             }
         }
@@ -42,7 +48,6 @@ public partial class MainPageViewModel : BaseViewModel
         // Show error message
         await Shell.Current.DisplayAlert("Error", "Invalid email or password.", "OK");
     }
-
     public void LoadMockEmails()
     {
         var userFaker = new Faker<User>()
@@ -58,5 +63,4 @@ public partial class MainPageViewModel : BaseViewModel
         //map the emails to the mockEmails collection
         MockEmails = new ObservableCollection<string>(_mockUsers.Select(u => u.Email));
     }
-
 }
