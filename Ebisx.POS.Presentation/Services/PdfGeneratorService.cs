@@ -26,24 +26,80 @@ public class PdfGeneratorService : IPdfGeneratorService
         {
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf);
-            Paragraph header = new Paragraph("MAUI PDF Sample")
+
+            #region businessinfo
+            Paragraph businessName = new Paragraph(
+                businessInfo.RegistedName)
                 .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
-                .SetFontSize(20);
+                .SetFontSize(12);
+            document.Add(businessName);
 
-            document.Add(header);
-            Paragraph subheader = new Paragraph("Welcome to .NET Multi-platform App UI")
+            Paragraph businessAddress= new Paragraph(
+                businessInfo.Address)
                 .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
-                .SetFontSize(15);
-            document.Add(subheader);
-            LineSeparator ls = new LineSeparator(new SolidLine());
-            document.Add(ls);
+                .SetFontSize(12);
+            document.Add(businessAddress);
 
-            Paragraph footer = new Paragraph("Don't forget to like and subscribe!")
-                .SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT)
-                .SetFontColor(iText.Kernel.Colors.ColorConstants.LIGHT_GRAY)
-                .SetFontSize(14);
+            Paragraph businessVat = new Paragraph(
+                $"VAT Reg TIN: {businessInfo.VatTinNumber}")
+                .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                .SetFontSize(12);
+            document.Add(businessVat);
+            #endregion
 
-            document.Add(footer);
+            #region machineinfo
+            Paragraph machinePosNumber = new Paragraph(
+                machineInfo.PosSerialNumber)
+                .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                .SetFontSize(12);
+            document.Add(machinePosNumber);
+
+            Paragraph machineIdNumber = new Paragraph(
+               $"MIN#{machineInfo.MinNumber}")
+               .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+               .SetFontSize(12);
+            document.Add(machinePosNumber);
+            #endregion
+
+            #region employeeinfo
+            document.Add(new Paragraph(
+               "SALES INVOICE")
+               .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+               .SetFontSize(12));
+
+            document.Add(new Paragraph(
+               $"Cashier: {user.PublicId}-{user.FName} {user.LName}")
+               .SetTextAlignment(iText.Layout.Properties.TextAlignment.LEFT)
+               .SetFontSize(12));
+            #endregion
+
+            #region machineinfo
+            document.Add(new Paragraph(
+               "This serves as a SALES INVOICE")
+               .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+               .SetFontSize(12));
+
+            document.Add(new Paragraph(
+               $"ACCREDITATION NO.{machineInfo.AccreditationNumber}")
+               .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+               .SetFontSize(12));
+
+            document.Add(new Paragraph(
+               $"Date Issued: {machineInfo.DateIssued}")
+               .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+               .SetFontSize(12));
+
+            document.Add(new Paragraph(
+               $"Date Issued: {machineInfo.ValidUntil}")
+               .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+               .SetFontSize(12));
+            
+            document.Add(new Paragraph(
+               $"PTU No.: {machineInfo.PtuNumber}")
+               .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+               .SetFontSize(12));
+            #endregion
+
             document.Close();
         }
 
