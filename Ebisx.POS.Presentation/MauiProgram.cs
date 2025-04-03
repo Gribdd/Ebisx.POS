@@ -89,6 +89,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<INavigationService, NavigationService>();
         mauiAppBuilder.Services.AddSingleton<ISettingsService, SettingsService>();
         mauiAppBuilder.Services.AddSingleton<IUserService, UserService>();
+        mauiAppBuilder.Services.AddSingleton<IPdfGeneratorService, PdfGeneratorService>();
         return mauiAppBuilder;
     }
 
@@ -98,6 +99,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<MainPageViewModel>();
         mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
         mauiAppBuilder.Services.AddTransient<ItemInventoryPageViewModel>();
+        mauiAppBuilder.Services.AddTransient<PrintSalesInvoicePageViewModel>();
 
         //manager
         mauiAppBuilder.Services.AddTransient<ManagerEmployeesPageViewModel>();

@@ -1,25 +1,6 @@
 ﻿
 namespace Ebisx.POS.Presentation.Models;
 
-public class BusinessInfo
-{
-    public int Id { get; set; }
-    public string RegistedName { get; set; } = string.Empty;
-    public string Address { get; set; } = string.Empty;
-    public string VatTinNumber { get; set; } = string.Empty;
-}
-
-public class MachineInfo
-{
-    public int Id { get; set; }
-    public string PosSerialNumber { get; set; } = string.Empty;
-    public string MinNumber { get; set; } = string.Empty;
-    public string AccreditationNumber { get; set; } = string.Empty;
-    public string PtuNumber { get; set; } = string.Empty;
-    public DateTime DateIssued { get; set; }
-    public DateTime ValidUntil { get; set; }
-}
-
 public class PaymentType
 {
     public int Id { get; set; }
