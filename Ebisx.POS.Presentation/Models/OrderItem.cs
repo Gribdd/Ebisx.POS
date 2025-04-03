@@ -28,5 +28,9 @@ public partial class OrderItem : BaseModel
     public decimal DiscountAmount => (PriceAtPurchase * QuantityAtPurchase) * (DiscountPercentage / 100);
 
     public decimal TotalAmount => ((PriceAtPurchase * QuantityAtPurchase) * (1 + VatAtPurchase / 100)) - DiscountAmount;
+
+    [ObservableProperty]
+    public partial int OrderId { get; set; }
+
 }
  

@@ -303,6 +303,7 @@ public partial class HomePageViewModel : BaseViewModel
     [RelayCommand]
     private async Task PrintInvoice()
     {
+
         await _navigationService.NavigateToAsync(AppRoutes.PrintInvoice);
     }
 

@@ -8,19 +8,28 @@ namespace Ebisx.POS.Presentation.Services;
 
 public class PdfGeneratorService : IPdfGeneratorService
 {
+    public PdfGeneratorService()
+    {
+
+    }
     public void GeneratePdf(
         WebView pdfview,
         BusinessInfo businessInfo,
         MachineInfo machineInfo,
         User user)
     {
-        string fileName = "mauidotnet.pdf";
+        int number = 1;
+        string fileName = $"{businessInfo.RegistedName}-{number}.pdf";
 
 #if ANDROID
         var docsDirectory = Android.App.Application.Context.GetExternalFilesDir(Android.OS.Environment.DirectoryDocuments);
         var filePath = Path.Combine(docsDirectory.AbsoluteFile.Path, fileName);
+
+        // Ensure the file is accessible in WebView
+        pdfview.Source = $"file://{filePath}";
 #else
-            var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileName);
+        var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileName);
+        pdfview.Source = filePath;
 #endif
         using (PdfWriter writer = new PdfWriter(filePath))
         {
@@ -102,12 +111,6 @@ public class PdfGeneratorService : IPdfGeneratorService
 
             document.Close();
         }
-
-#if ANDROID
-        pdfview.Source = $"file:///android_asset/pdfjs/web/viewer.html?file=file://{WebUtility.UrlEncode(filePath)}";
-#else
-            pdfview.Source = filePath;
-#endif
     }
 }
 
