@@ -3,6 +3,7 @@ namespace Ebisx.POS.Presentation.Models;
 
 public class User
 {
+    public int PrivateId { get; set; }
     public string PublicId { get; set; } = string.Empty;
     public string FName { get; set; } = string.Empty;
     public string LName { get; set; } = string.Empty;

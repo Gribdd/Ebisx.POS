@@ -40,26 +40,26 @@ public partial class MainPageViewModel : BaseViewModel
         {
             if (user.UserRole.Role == "employee")
             {
-                _settingService.IsUserLoggedIn = true;
                 await _navigationService.NavigateToAsync(AppRoutes.Home );
-                return;
             }
 
             if (user.UserRole.Role == "manager")
             {
-                _settingService.IsUserLoggedIn = true;
                 await _navigationService.NavigateToAsync(
                     AppRoutes.ManagerHome,
                     new Dictionary<string, object> {
                         { "User", user }
                     });
-                return;
-                //await _navigationService.NavigateToAsync(AppRoutes.ManagerHome );
             }
+            _settingService.IsUserLoggedIn = true;
+            _settingService.AuthUserId = user.PrivateId;
+        }
+        else
+        {
+            // Show error message
+            await Shell.Current.DisplayAlert("Error", "Invalid email or password.", "OK");
         }
 
-        // Show error message
-        await Shell.Current.DisplayAlert("Error", "Invalid email or password.", "OK");
     }
 
 

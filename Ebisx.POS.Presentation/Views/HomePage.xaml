@@ -368,7 +368,7 @@
                             Text="Process payment" />
                         <Button
                             Grid.Column="1"
-                            Command="{Binding .}"
+                            Command="{Binding PrintInvoiceCommand}"
                             Style="{StaticResource CTAButtonStyle}"
                             Text="save and print" />
                     </Grid>

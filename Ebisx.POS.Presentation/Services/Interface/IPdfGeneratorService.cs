@@ -2,4 +2,5 @@
 
 public interface IPdfGeneratorService
 {
+    void GeneratePdf(WebView pdfview, BusinessInfo businessInfo, MachineInfo machineInfo, User user);
 }

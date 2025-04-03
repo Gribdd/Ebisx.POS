@@ -5,7 +5,8 @@ public static class AppRoutes
     // Employee Routes
     public const string Home = "///home";
     public const string ItemInventory = "//home/iteminventory";
-
+    public const string PrintInvoice = "//home/printinvoice";
+    
     // Manager Routes
     public const string ManagerHome = "///managerhome";
     public const string ManagerEmployees = "//managerhome/employees";

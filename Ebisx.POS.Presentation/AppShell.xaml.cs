@@ -32,6 +32,7 @@ namespace Ebisx.POS.Presentation
             Routing.RegisterRoute(AppRoutes.ManagerAddInventoryItem, typeof(ManagerAddInventoryItem));
             Routing.RegisterRoute(AppRoutes.ManagerSales, typeof(ManagerSalesPage));
             Routing.RegisterRoute(AppRoutes.ManagerTransaction, typeof(ManagerTransactionPage));
+            Routing.RegisterRoute(AppRoutes.PrintInvoice, typeof(PrintSalesInvoicePage));
         }
 
     }

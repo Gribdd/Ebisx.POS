@@ -89,6 +89,8 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<INavigationService, NavigationService>();
         mauiAppBuilder.Services.AddSingleton<ISettingsService, SettingsService>();
         mauiAppBuilder.Services.AddSingleton<IUserService, UserService>();
+        mauiAppBuilder.Services.AddSingleton<IMachineInfoService, MachineInfoService>();
+        mauiAppBuilder.Services.AddSingleton<IBusinessInfoService, BusinessInfoService>();
         mauiAppBuilder.Services.AddSingleton<IPdfGeneratorService, PdfGeneratorService>();
         return mauiAppBuilder;
     }

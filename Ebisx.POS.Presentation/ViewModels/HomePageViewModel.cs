@@ -39,11 +39,10 @@ public partial class HomePageViewModel : BaseViewModel
     public partial decimal GrandTotal { get; set; }
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ChangeAmount))]
     public partial decimal TotalAmountPaid { get; set; }
 
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(TotalAmountPaid))]
-    public partial decimal ChangeAmount { get; set; }
+    public decimal ChangeAmount => TotalAmountPaid - GrandTotal;
 
     private OrderItem? _selectedOrderItem = new();
 
@@ -301,5 +300,10 @@ public partial class HomePageViewModel : BaseViewModel
         _settingService.Logout();
     }
 
+    [RelayCommand]
+    private async Task PrintInvoice()
+    {
+        await _navigationService.NavigateToAsync(AppRoutes.PrintInvoice);
+    }
 
 }

@@ -1,16 +1,17 @@
-﻿
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
+using Ebisx.POS.Presentation.Models;
+using Ebisx.POS.Presentation.Services.Interface;
 
 namespace Ebisx.POS.Presentation.Services;
 
-public class UserService : IUserService
+public class MachineInfoService : IMachineInfoService
 {
     private readonly HttpClient _httpClient;
     JsonSerializerOptions _serializerOptions;
 
-    public UserService()
+    public MachineInfoService()
     {
         _httpClient = new HttpClient();
         _httpClient.BaseAddress = new Uri(Constants.BaseAddress);
@@ -21,16 +22,16 @@ public class UserService : IUserService
         };
     }
 
-    public async Task<List<User>> GetUsersAsync()
+    public async Task<List<MachineInfo>> GetMachineInfosAsync()
     {
-        var _users = new List<User>();
+        var machineInfos = new List<MachineInfo>();
         try
         {
-            HttpResponseMessage response = await _httpClient.GetAsync(_httpClient.BaseAddress + "api/User");
+            HttpResponseMessage response = await _httpClient.GetAsync(_httpClient.BaseAddress + "api/MachineInfo");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
-                _users = JsonSerializer.Deserialize<List<User>>(content, _serializerOptions) ?? new List<User>();
+                machineInfos = JsonSerializer.Deserialize<List<MachineInfo>>(content, _serializerOptions) ?? new List<MachineInfo>();
             }
         }
         catch (Exception ex)
@@ -38,19 +39,19 @@ public class UserService : IUserService
             Debug.WriteLine(@"\tERROR {0}", ex.Message);
         }
 
-        return _users;
+        return machineInfos;
     }
 
-    public async Task<User> GetUserByIdAsync(int id)
+    public async Task<MachineInfo> GetMachineInfoByIdAsync(int id)
     {
-        User user = new();
+        MachineInfo machineInfo = null;
         try
         {
-            HttpResponseMessage response = await _httpClient.GetAsync($"api/User/{id}");
+            HttpResponseMessage response = await _httpClient.GetAsync($"api/MachineInfo/{id}");
             if (response.IsSuccessStatusCode)
             {
                 string content = await response.Content.ReadAsStringAsync();
-                user = JsonSerializer.Deserialize<User>(content, _serializerOptions) ?? new User();
+                machineInfo = JsonSerializer.Deserialize<MachineInfo>(content, _serializerOptions);
             }
         }
         catch (Exception ex)
@@ -58,30 +59,18 @@ public class UserService : IUserService
             Debug.WriteLine(@"\tERROR {0}", ex.Message);
         }
 
-        return user;
+        return machineInfo;
     }
 
 
-    public async Task<bool> CreateUserAsync(User user)
+    public async Task<bool> CreateMachineInfoAsync(MachineInfo machineInfo)
     {
         try
         {
-            var userToSend = new
-            {
-                Fname = user.FName,
-                Lname = user.LName,
-                EmailAddress = user.EmailAddress,
-                Address = user.Address,
-                BirthDate = user.BirthDate,
-                Username = user.Username,
-                Password = user.Password,
-                RoleId = user.RoleId
-            };
-
-            string jsonContent = JsonSerializer.Serialize(userToSend, _serializerOptions);
+            string jsonContent = JsonSerializer.Serialize(machineInfo, _serializerOptions);
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await _httpClient.PostAsync("api/User", content);
+            HttpResponseMessage response = await _httpClient.PostAsync("api/MachineInfo", content);
             return response.IsSuccessStatusCode;
         }
         catch (Exception ex)
@@ -91,11 +80,11 @@ public class UserService : IUserService
         return false;
     }
 
-    public async Task<bool> DeleteUserAsync(int id)
+    public async Task<bool> DeleteMachineInfoAsync(int id)
     {
         try
         {
-            HttpResponseMessage response = await _httpClient.DeleteAsync($"api/User/{id}");
+            HttpResponseMessage response = await _httpClient.DeleteAsync($"api/MachineInfo/{id}");
             return response.IsSuccessStatusCode;
         }
         catch (Exception ex)
