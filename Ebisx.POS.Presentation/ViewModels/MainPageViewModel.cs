@@ -6,61 +6,68 @@ namespace Ebisx.POS.Presentation.ViewModels;
 
 public partial class MainPageViewModel : BaseViewModel
 {
-    private ObservableCollection<User> _mockUsers = new();
+    //private ObservableCollection<User> _mockUsers = new();
+    //[ObservableProperty]
+    //private ObservableCollection<string> _mockEmails = new();
     private readonly ISettingsService _settingService;
     private readonly INavigationService _navigationService;
-
-    [ObservableProperty]
-    private ObservableCollection<string> _mockEmails = new();
+    private readonly IUserService _userService;
     [ObservableProperty]
     public partial User User { get; set; } = new();
+    [ObservableProperty]
+    public partial ObservableCollection<User> Users { get; set; } = new(); 
+    [ObservableProperty]
+    public partial ObservableCollection<string> UsersEmailAddress { get; set; } = new();
 
     public MainPageViewModel(
         ISettingsService settingsService,
-        INavigationService navigationService)
+        INavigationService navigationService,
+        IUserService userService)
     {
         _settingService = settingsService;
         _navigationService = navigationService;
+        _userService = userService;
     }
 
     [RelayCommand]
     private async Task Authenticate()
     {
-        User user = _mockUsers.FirstOrDefault(u => u.Email == User.Email && u.Password == User.Password)!;
+        User user = Users.FirstOrDefault(
+            u => u.EmailAddress == User.EmailAddress && 
+            u.Password == User.Password)!;
 
         if (user is not null)
         {
-            if (user.UserRole == UserRole.Employee)
+            if (user.UserRole.Role == "employee")
             {
                 _settingService.IsUserLoggedIn = true;
-                await _navigationService.NavigateToAsync($"//{AppRoutes.Home}");
+                await _navigationService.NavigateToAsync(AppRoutes.Home );
                 return;
             }
 
-            if (user.UserRole == UserRole.Manager)
+            if (user.UserRole.Role == "manager")
             {
                 _settingService.IsUserLoggedIn = true;
-                await _navigationService.NavigateToAsync("///managerhome");
+                await _navigationService.NavigateToAsync(
+                    AppRoutes.ManagerHome,
+                    new Dictionary<string, object> {
+                        { "User", user }
+                    });
                 return;
+                //await _navigationService.NavigateToAsync(AppRoutes.ManagerHome );
             }
         }
 
         // Show error message
         await Shell.Current.DisplayAlert("Error", "Invalid email or password.", "OK");
     }
-    public void LoadMockEmails()
+
+
+
+    public async Task LoadAccounts()
     {
-        var userFaker = new Faker<User>()
-            .RuleFor(u => u.Username, f => f.Internet.UserName())
-            .RuleFor(u => u.Email, f => f.Internet.Email())
-            .RuleFor(u => u.Password, f => "123")
-            .RuleFor(u => u.BirthDate, f => f.Date.Past(30));
-
-        _mockUsers = new ObservableCollection<User>(userFaker.Generate(2));
-        _mockUsers[0].UserRole = UserRole.Employee;
-        _mockUsers[1].UserRole = UserRole.Manager;
-
-        //map the emails to the mockEmails collection
-        MockEmails = new ObservableCollection<string>(_mockUsers.Select(u => u.Email));
+        Users = new ObservableCollection<User>(await _userService.GetUsersAsync());
+        UsersEmailAddress = new ObservableCollection<string>(
+            Users.Select(u => u.EmailAddress));
     }
 }

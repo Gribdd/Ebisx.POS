@@ -41,8 +41,8 @@
                     <Picker
                         BackgroundColor="White"
                         FontAttributes="Bold"
-                        ItemsSource="{Binding MockEmails}"
-                        SelectedItem="{Binding User.Email}"
+                        ItemsSource="{Binding UsersEmailAddress}"
+                        SelectedItem="{Binding User.EmailAddress}"
                         TextColor="Black" />
                 </Border>
 
@@ -60,7 +60,6 @@
                         TextColor="Black" />
                 </Border>
                 <Button
-                    TextColor="Black"
                     Margin="0,30,0,0"
                     BackgroundColor="White"
                     BorderColor="Black"
@@ -69,6 +68,7 @@
                     CornerRadius="20"
                     FontAttributes="Bold"
                     Text="LOGIN"
+                    TextColor="Black"
                     WidthRequest="130" />
             </VerticalStackLayout>
         </Border>

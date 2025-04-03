@@ -18,14 +18,10 @@
     </Shell.Behaviors>
 
     <!--  Login Page  -->
-    <ShellContent
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="mainpage" />
+    <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="mainpage" />
 
     <!--  Employee Home Page  -->
-    <ShellContent
-        ContentTemplate="{DataTemplate views:HomePage}"
-        Route="home" />
+    <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="home" />
 
     <!--  Manager Home Page  -->
     <ShellContent ContentTemplate="{DataTemplate mngr:ManagerHomePage}" Route="managerhome" />

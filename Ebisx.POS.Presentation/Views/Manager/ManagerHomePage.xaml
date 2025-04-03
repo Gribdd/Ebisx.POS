@@ -61,7 +61,7 @@
                     FontSize="20"
                     HorizontalTextAlignment="Center"
                     LineBreakMode="TailTruncation"
-                    Text="WELCOME MANAGER 101"
+                    Text="{Binding User.PublicId, StringFormat='WELCOME MANAGER {0}'}"
                     TextColor="Black"
                     VerticalTextAlignment="Center" />
             </Grid>

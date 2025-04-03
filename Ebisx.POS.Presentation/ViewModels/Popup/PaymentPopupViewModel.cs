@@ -10,9 +10,6 @@ public partial class PaymentPopupViewModel : BaseViewModel
     private readonly IPopupService _popupService;
 
     [ObservableProperty]
-    public partial ObservableCollection<PaymentMethod> PaymentMethods { get; set; }
-
-    [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(TotalAmountPaid))]
     public partial decimal CashAmount { get; set; }
     
@@ -40,34 +37,32 @@ public partial class PaymentPopupViewModel : BaseViewModel
 
     public PaymentPopupViewModel(IPopupService popupService)
     {
-        PaymentMethods =
-        [
-            new () { Name = "Cash", Amount = 0 },
-            new () { Name = "Credit", Amount = 0 },
-            new () { Name = "Debit", Amount = 0 },
-            new () { Name = "E-Pay", Amount = 0 },
-            new () { Name = "Customer Credit", Amount = 0 },
-            new () { Name = "Loyalty Card", Amount = 0 },
-        ];
-
+       
         _popupService = popupService;
     }
 
     [RelayCommand]
-    private void Close()
+    private async Task Close()
     {
-        _popupService.ClosePopup();
+        if(CashAmount > 0)
+        {
+            await _popupService.ClosePopupAsync(CashAmount);
+            return;
+        }
+        else
+        {
+            _popupService.ClosePopup();
+        }
     }
 
     [RelayCommand]
     private async Task AddPayment(object parameter)
     {
 
-        switch (parameter)
+        switch (parameter)  
         {
             case "Cash":
-                await  _popupService.ClosePopupAsync();
-                await _popupService.ShowPopupAsync<CashPaymentPopupViewModel>();
+                await _popupService.ClosePopupAsync(parameter);
                 break;
             case "Credit":
                 // Handle credit payment
@@ -77,9 +72,16 @@ public partial class PaymentPopupViewModel : BaseViewModel
 
 
     [RelayCommand]
-    private void HandlePayment()
+    private async Task HandlePayment()
     {
-        _popupService.ClosePopup();
+        if (CashAmount > 0)
+        {
+            await _popupService.ClosePopupAsync(CashAmount);
+            return;
+        }
+        else
+        {
+            _popupService.ClosePopup();
+        }
     }
-
 }

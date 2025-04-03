@@ -1,10 +1,6 @@
 ﻿
 using CommunityToolkit.Maui.Core;
-using CommunityToolkit.Mvvm.Input;
-using Ebisx.POS.Presentation.Common;
 using Ebisx.POS.Presentation.Common.Enums;
-using Ebisx.POS.Presentation.Services.Interface;
-using Ebisx.POS.Presentation.ViewModels.Popup.BillDiscount;
 
 namespace Ebisx.POS.Presentation.ViewModels;
 
@@ -41,6 +37,13 @@ public partial class HomePageViewModel : BaseViewModel
         
     [ObservableProperty]
     public partial decimal GrandTotal { get; set; }
+
+    [ObservableProperty]
+    public partial decimal TotalAmountPaid { get; set; }
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TotalAmountPaid))]
+    public partial decimal ChangeAmount { get; set; }
 
     private OrderItem? _selectedOrderItem = new();
 
@@ -274,7 +277,20 @@ public partial class HomePageViewModel : BaseViewModel
             return;
         }
 
-        _popupService.ShowPopup<PaymentPopupViewModel>();
+        var result = await _popupService.ShowPopupAsync<PaymentPopupViewModel>();
+
+        if (result == null) return;
+
+        decimal amountPaid = 0;
+        switch (result)
+        {
+            case "Cash":
+                amountPaid = (decimal?)await _popupService.ShowPopupAsync<CashPaymentPopupViewModel>() ?? 0;
+                break;
+        }
+
+        TotalAmountPaid = amountPaid;
+            
     }
 
 

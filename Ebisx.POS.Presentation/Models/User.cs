@@ -1,19 +1,17 @@
-﻿namespace Ebisx.POS.Presentation.Models;
+﻿
+namespace Ebisx.POS.Presentation.Models;
 
-public partial class User : BaseModel
+public class User
 {
-    [ObservableProperty]
-    public partial string Username { get; set; }
-
-    [ObservableProperty]
-    public partial string Password { get; set; }
-
-    [ObservableProperty]
-    public partial string Email { get; set; }
-
-    [ObservableProperty]
-    public partial DateTime BirthDate { get; set; }
-
-    public UserRole UserRole { get; set; }
+    public string PublicId { get; set; } = string.Empty;
+    public string FName { get; set; } = string.Empty;
+    public string LName { get; set; } = string.Empty;
+    public string EmailAddress { get; set; } = string.Empty;
+    public string? Address { get; set; }
+    public DateTime BirthDate { get; set; }
+    public string Username { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
+    public int RoleId { get; set; }
+    public UserRole? UserRole { get; set; }
 }
-    
+

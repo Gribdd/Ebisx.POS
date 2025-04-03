@@ -7,14 +7,14 @@ namespace Ebisx.POS.Presentation;
 
 public partial class App : Application
 {
-    private readonly Timer _idleTimer = new Timer(60 * 1000);  //each 1 minute
+    private readonly Timer _idleTimer = new Timer(60 * 5000);  //each 5 minute
     private readonly INavigationService _navigationService;
-    private int _elapsedSeconds = 0;  // Tracks elapsed time
-    public App(INavigationService navigationService)
+
+    public App(AppShell appShell,INavigationService navigationService)
     {
         _navigationService = navigationService;
         InitializeComponent();
-
+        MainPage = appShell;
 
         _idleTimer.Elapsed += IdleTimer_Elapsed;
         Debug.WriteLine(":::Started");
@@ -22,15 +22,10 @@ public partial class App : Application
 
     }
 
-    protected override Window CreateWindow(IActivationState? activationState)
-    {
-        return new Window(new AppShell());
-    }
+    
 
     async void IdleTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
-        _elapsedSeconds += 60; // Increment elapsed time
-        Debug.WriteLine($"::: Elapsed time: {_elapsedSeconds}(s)");
         Debug.WriteLine(":::Elapsed");
 
         if (MainThread.IsMainThread)
@@ -64,9 +59,8 @@ public partial class App : Application
 
     public void ResetIdleTimer()
     {
-        _elapsedSeconds = 0; // Reset elapsed time when user interacts
         _idleTimer.Stop();
         _idleTimer.Start();
         Debug.WriteLine(":::Reset");    
     }
-}
+}   

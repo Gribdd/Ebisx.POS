@@ -6,7 +6,11 @@ namespace Ebisx.POS.Presentation.Services;
 public class NavigationService : INavigationService
 {
     private readonly ISettingsService _settingService;
-
+    public NavigationService(ISettingsService settingsService)
+    {
+        _settingService = settingsService;
+    }
+        
     public Task NavigateToAsync(string route, IDictionary<string, object> routeParameters = null)
     {
         return
@@ -18,8 +22,8 @@ public class NavigationService : INavigationService
     public Task InitializeAsync()
     {
         return NavigateToAsync(_settingService.IsUserLoggedIn
-            ? $"//{AppRoutes.Home}"
-            : $"//{AppRoutes.Login}");
+            ? AppRoutes.Home
+            : AppRoutes.Login);
     }
 
     public async Task GoBack()
@@ -29,6 +33,6 @@ public class NavigationService : INavigationService
 
     public async Task Logout()
     {
-        await NavigateToAsync($"//{AppRoutes.Login}");
+        await NavigateToAsync(AppRoutes.Login);
     }
 }

@@ -1,6 +1,4 @@
-﻿using Ebisx.POS.Presentation.Services.Interface;
-
-namespace Ebisx.POS.Presentation.Services;
+﻿namespace Ebisx.POS.Presentation.Services;
 
 public sealed class SettingsService : ISettingsService
 {
@@ -26,7 +24,6 @@ public sealed class SettingsService : ISettingsService
         Preferences.Clear();
     }
 
-    //logout
     public void Logout()
     {
         Preferences.Remove(UserIdKey);

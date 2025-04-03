@@ -6,11 +6,19 @@ namespace Ebisx.POS.Presentation
 {
     public partial class AppShell : Shell
     {
-        public AppShell()
+        private readonly INavigationService _navigationService;
+
+        public AppShell(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             RegisterRoutes();
             InitializeComponent();
-            
+
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _navigationService.InitializeAsync();
         }
 
         private void RegisterRoutes()

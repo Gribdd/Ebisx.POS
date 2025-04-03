@@ -27,5 +27,6 @@ public partial class OrderItem : BaseModel
     public partial decimal DiscountPercentage { get; set; }
     public decimal DiscountAmount => (PriceAtPurchase * QuantityAtPurchase) * (DiscountPercentage / 100);
 
-    public decimal TotalAmount => ((PriceAtPurchase * QuantityAtPurchase) - DiscountPercentage) * (1 + (VatAtPurchase / 100));
+    public decimal TotalAmount => ((PriceAtPurchase * QuantityAtPurchase) * (1 + VatAtPurchase / 100)) - DiscountAmount;
 }
+ 

@@ -13,7 +13,7 @@
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            vm.LoadMockEmails();
+            vm.LoadAccounts();
         }
     }
 

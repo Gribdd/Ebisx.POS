@@ -109,8 +109,8 @@ public partial class CashPaymentPopupViewModel : BaseViewModel
     [RelayCommand]
     private async Task Proceed()
     {
-        await _popupService.ClosePopupAsync();
-        await _popupService.ShowPopupAsync<PaymentPopupViewModel>(
-            onPresenting: vm => vm.CashAmount = GrandTotal);
+        await _popupService.ClosePopupAsync(GrandTotal);
+        //await _popupService.ShowPopupAsync<PaymentPopupViewModel>(
+        //    onPresenting: vm => vm.CashAmount = GrandTotal);
     }
 }

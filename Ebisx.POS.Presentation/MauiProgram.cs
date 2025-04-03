@@ -1,9 +1,5 @@
 ﻿using CommunityToolkit.Maui;
-using Ebisx.POS.Presentation.Services.Interface;
-using Ebisx.POS.Presentation.ViewModels.Manager;
-using Ebisx.POS.Presentation.ViewModels.Popup.BillDiscount;
-using Ebisx.POS.Presentation.Views.Manager;
-using Ebisx.POS.Presentation.Views.Popups.BillDiscount;
+
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 
@@ -92,7 +88,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<IProductService, ProductService>();
         mauiAppBuilder.Services.AddSingleton<INavigationService, NavigationService>();
         mauiAppBuilder.Services.AddSingleton<ISettingsService, SettingsService>();
-
+        mauiAppBuilder.Services.AddSingleton<IUserService, UserService>();
         return mauiAppBuilder;
     }
 
@@ -110,7 +106,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<ManagerInventoryAddItemPageViewModel>();
         mauiAppBuilder.Services.AddTransient<ManagerSalesPageViewModel>();
         mauiAppBuilder.Services.AddTransient<ManagerTransactionPageViewModel>();
-        return mauiAppBuilder;
+        return mauiAppBuilder;  
     }
 
     private static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)

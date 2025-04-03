@@ -347,14 +347,14 @@
                         Grid.Row="6"
                         Grid.Column="1"
                         Style="{StaticResource borderStyle}">
-                        <Label Style="{StaticResource labelBorderstyle}" Text="0" />
+                        <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalAmountPaid, StringFormat='₱{0:N2}'}" />
                     </Border>
 
                     <Border
                         Grid.Row="7"
                         Grid.Column="1"
                         Style="{StaticResource borderStyle}">
-                        <Label Style="{StaticResource labelBorderstyle}" Text="0" />
+                        <Label Style="{StaticResource labelBorderstyle}" Text="{Binding ChangeAmount, StringFormat='₱{0:N2}'}" />
                     </Border>
 
                     <Grid
@@ -365,11 +365,12 @@
                         <Button
                             Command="{Binding ProcessTenderFloatCommand}"
                             Style="{StaticResource CTAButtonStyle}"
-                            Text="TENDER FLOAT" />
+                            Text="Process payment" />
                         <Button
                             Grid.Column="1"
+                            Command="{Binding .}"
                             Style="{StaticResource CTAButtonStyle}"
-                            Text="REPRINT RECEIPT" />
+                            Text="save and print" />
                     </Grid>
                 </Grid>
 
@@ -580,9 +581,9 @@
                                 RowDefinitions="*,auto">
                                 <FlyoutBase.ContextFlyout>
                                     <MenuFlyout>
-                                        <MenuFlyoutItem Text="Edit"/>
-                                        <MenuFlyoutSeparator/>
-                                        <MenuFlyoutItem Text="Delete"/>
+                                        <MenuFlyoutItem Text="Edit" />
+                                        <MenuFlyoutSeparator />
+                                        <MenuFlyoutItem Text="Delete" />
                                     </MenuFlyout>
                                 </FlyoutBase.ContextFlyout>
                                 <Label
@@ -690,9 +691,9 @@
             <FlexLayout
                 Grid.Row="3"
                 Padding="5"
-                JustifyContent="SpaceAround"
                 BackgroundColor="White"
                 Direction="Row"
+                JustifyContent="SpaceAround"
                 Wrap="Wrap">
 
                 <!--  First Row  -->
