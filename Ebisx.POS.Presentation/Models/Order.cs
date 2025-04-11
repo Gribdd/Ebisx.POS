@@ -4,7 +4,7 @@ public partial class Order : ObservableObject
 {
     public int Id { get; set; }
 
-    public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+    public ObservableCollection<OrderItem> OrderItems { get; set; } = new ObservableCollection<OrderItem>();
 
     [ObservableProperty]
     public partial string Status { get; set; } = string.Empty;

@@ -8,9 +8,10 @@ namespace Ebisx.POS.Presentation.Services;
 public class UserService : IUserService
 {
     private readonly HttpClient _httpClient;
-    JsonSerializerOptions _serializerOptions;
+    private readonly JsonSerializerOptions _serializerOptions;
+    private readonly IMapper _mapper;
 
-    public UserService()
+    public UserService(IMapper mapper)
     {
         _httpClient = new HttpClient();
         _httpClient.BaseAddress = new Uri(Constants.BaseAddress);
@@ -19,18 +20,20 @@ public class UserService : IUserService
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             WriteIndented = true,
         };
+        _mapper = mapper;
     }
 
     public async Task<List<User>> GetUsersAsync()
     {
-        var _users = new List<User>();
         try
         {
             HttpResponseMessage response = await _httpClient.GetAsync(_httpClient.BaseAddress + "api/User");
             if (response.IsSuccessStatusCode)
             {
-                string content = await response.Content.ReadAsStringAsync();
-                _users = JsonSerializer.Deserialize<List<User>>(content, _serializerOptions) ?? new List<User>();
+                var usersResponse = await response.Content.ReadFromJsonAsync<List<UserResponseDto>>(_serializerOptions)
+                                    ?? new();
+
+                return _mapper.Map<List<User>>(usersResponse);
             }
         }
         catch (Exception ex)
@@ -38,19 +41,18 @@ public class UserService : IUserService
             Debug.WriteLine(@"\tERROR {0}", ex.Message);
         }
 
-        return _users;
+        return new();
     }
 
     public async Task<User> GetUserByIdAsync(int id)
     {
-        User user = new();
         try
         {
             HttpResponseMessage response = await _httpClient.GetAsync($"api/User/{id}");
             if (response.IsSuccessStatusCode)
             {
-                string content = await response.Content.ReadAsStringAsync();
-                user = JsonSerializer.Deserialize<User>(content, _serializerOptions) ?? new User();
+                var userResponse = await response.Content.ReadFromJsonAsync<UserResponseDto>(_serializerOptions) ?? new();
+                return _mapper.Map<User>(userResponse);
             }
         }
         catch (Exception ex)
@@ -58,27 +60,15 @@ public class UserService : IUserService
             Debug.WriteLine(@"\tERROR {0}", ex.Message);
         }
 
-        return user;
+        return new();
     }
 
 
-    public async Task<bool> CreateUserAsync(User user)
+    public async Task<bool> CreateUserAsync(User userRequest)
     {
         try
         {
-            var userToSend = new
-            {
-                Fname = user.FName,
-                Lname = user.LName,
-                EmailAddress = user.EmailAddress,
-                Address = user.Address,
-                BirthDate = user.BirthDate,
-                Username = user.Username,
-                Password = user.Password,
-                RoleId = user.RoleId
-            };
-
-            string jsonContent = JsonSerializer.Serialize(userToSend, _serializerOptions);
+            string jsonContent = JsonSerializer.Serialize(_mapper.Map<UserRequestDto>(userRequest), _serializerOptions);
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = await _httpClient.PostAsync("api/User", content);

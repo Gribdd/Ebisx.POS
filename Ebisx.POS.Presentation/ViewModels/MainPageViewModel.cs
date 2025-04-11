@@ -6,9 +6,6 @@ namespace Ebisx.POS.Presentation.ViewModels;
 
 public partial class MainPageViewModel : BaseViewModel
 {
-    //private ObservableCollection<User> _mockUsers = new();
-    //[ObservableProperty]
-    //private ObservableCollection<string> _mockEmails = new();
     private readonly ISettingsService _settingService;
     private readonly INavigationService _navigationService;
     private readonly IUserService _userService;

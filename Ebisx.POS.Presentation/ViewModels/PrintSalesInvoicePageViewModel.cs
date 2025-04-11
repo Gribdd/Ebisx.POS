@@ -1,11 +1,13 @@
 ﻿namespace Ebisx.POS.Presentation.ViewModels;
 
+[QueryProperty(nameof(Order), nameof(Order))]
 public partial class PrintSalesInvoicePageViewModel : BaseViewModel
 {
     private readonly IPdfGeneratorService _pdfGeneratorService;
     private readonly IMachineInfoService _machineInfoService;
     private readonly IBusinessInfoService _businessInfoService;
     private readonly IUserService _userService;
+    private readonly ISalesInvoiceService _salesInvoiceService;
     private readonly ISettingsService _settingsService;
 
     [ObservableProperty]
@@ -14,12 +16,16 @@ public partial class PrintSalesInvoicePageViewModel : BaseViewModel
     public partial MachineInfo MachineInfo { get; set; } = new();
     [ObservableProperty]
     public partial User User { get; set; } = new();
+    [ObservableProperty]
+    public partial Order Order { get; set; } = new();
+    
 
     public PrintSalesInvoicePageViewModel(
         IPdfGeneratorService pdfGeneratorService,
         IMachineInfoService machineInfoService,
         IBusinessInfoService businessInfoService,
         IUserService userService,
+        ISalesInvoiceService salesInvoiceService,
         ISettingsService settingsService
         )
     {
@@ -27,6 +33,7 @@ public partial class PrintSalesInvoicePageViewModel : BaseViewModel
         _machineInfoService = machineInfoService;
         _businessInfoService = businessInfoService;
         _userService = userService;
+        _salesInvoiceService = salesInvoiceService;
         _settingsService = settingsService;
     }
 
@@ -38,6 +45,7 @@ public partial class PrintSalesInvoicePageViewModel : BaseViewModel
             pdfview,
             BusinessInfo,
             MachineInfo,
+            Order,
             User);
     }
 

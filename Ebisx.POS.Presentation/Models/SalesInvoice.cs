@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace Ebisx.POS.Presentation.Models;
+﻿namespace Ebisx.POS.Presentation.Models;
 public class SalesInvoice
 {
     public int PrivateId { get; set; }

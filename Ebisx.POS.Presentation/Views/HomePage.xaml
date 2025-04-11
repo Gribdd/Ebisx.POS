@@ -110,7 +110,7 @@
                         Grid.Column="1"
                         FontSize="20"
                         Style="{StaticResource labelBorderstyle}"
-                        Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:dddd, MM/dd/yyyy}'}" />
+                        Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:MMMM, dd, yyyy - dddd }'}" />
                 </Grid>
             </Border>
 
@@ -130,7 +130,7 @@
                 <Grid
                     Grid.Row="1"
                     Grid.Column="0"
-                    ColumnDefinitions="*,auto"
+                    ColumnDefinitions="*"
                     RowDefinitions="*,auto">
                     <Border
                         Grid.Row="0"
@@ -143,7 +143,7 @@
                             Margin="10"
                             ColumnDefinitions="auto,*"
                             ColumnSpacing="15"
-                            RowDefinitions="auto,auto,auto,auto,auto"
+                            RowDefinitions="auto,auto,auto"
                             RowSpacing="10">
                             <Label
                                 Style="{StaticResource labelStyle}"
@@ -152,22 +152,12 @@
                             <Label
                                 Grid.Row="1"
                                 Style="{StaticResource labelStyle}"
-                                Text="TILL ID:"
+                                Text="USER ID:"
                                 VerticalTextAlignment="Center" />
                             <Label
                                 Grid.Row="2"
                                 Style="{StaticResource labelStyle}"
-                                Text="PAYMENT MODE.:"
-                                VerticalTextAlignment="Center" />
-                            <Label
-                                Grid.Row="3"
-                                Style="{StaticResource labelStyle}"
-                                Text="USER ID.:"
-                                VerticalTextAlignment="Center" />
-                            <Label
-                                Grid.Row="4"
-                                Style="{StaticResource labelStyle}"
-                                Text="EMPLOYEE TYPE.:"
+                                Text="EMPLOYEE TYPE:"
                                 VerticalTextAlignment="Center" />
                             <Border Grid.Column="1" Style="{StaticResource borderStyle}">
                                 <Label Style="{StaticResource labelBorderstyle}" Text="INV-01" />
@@ -176,40 +166,17 @@
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Style="{StaticResource borderStyle}">
-                                <Label Style="{StaticResource labelBorderstyle}" Text="TILL-05" />
-                            </Border>
-                            <Border
-                                Grid.Row="2"
-                                Grid.Column="1"
-                                Style="{StaticResource borderStyle}">
-                                <Label Style="{StaticResource labelBorderstyle}" Text="CASH" />
-                            </Border>
-                            <Border
-                                Grid.Row="3"
-                                Grid.Column="1"
-                                Style="{StaticResource borderStyle}">
                                 <Label Style="{StaticResource labelBorderstyle}" Text="0129428" />
                             </Border>
                             <Border
-                                Grid.Row="4"
+                                Grid.Row="2"
                                 Grid.Column="1"
                                 Style="{StaticResource borderStyle}">
                                 <Label Style="{StaticResource labelBorderstyle}" Text="CASHIER" />
                             </Border>
                         </Grid>
                     </Border>
-                    <Grid
-                        Grid.Column="1"
-                        Margin="0,0,5,0"
-                        RowDefinitions="*,*"
-                        RowSpacing="10"
-                        VerticalOptions="Center">
-                        <Button Style="{StaticResource CTAButtonStyle}" Text="SALES RETURN" />
-                        <Button
-                            Grid.Row="1"
-                            Style="{StaticResource CTAButtonStyle}"
-                            Text="SALESMAN" />
-                    </Grid>
+
                     <Grid
                         Grid.Row="1"
                         Grid.ColumnSpan="2"
@@ -220,7 +187,7 @@
                         <Label
                             HorizontalOptions="Center"
                             Style="{StaticResource labelStyle}"
-                            Text="BARCODE/PRODUCT ID" />
+                            Text="BARCODE" />
                         <Border Grid.Row="1" Style="{StaticResource borderStyle}">
                             <Label
                                 FontSize="30"
@@ -246,7 +213,7 @@
                     Grid.Column="2"
                     Padding="5"
                     ColumnDefinitions="*,*"
-                    RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto"
+                    RowDefinitions="auto,auto,auto,auto,auto,auto,auto"
                     RowSpacing="5">
                     <!--  Left Column Labels  -->
                     <Label
@@ -263,27 +230,17 @@
                         Grid.Row="3"
                         Grid.Column="0"
                         Style="{StaticResource labelStyle}"
-                        Text="DISCOUNT :" />
+                        Text="TOTAL DISCOUNT :" />
                     <Label
                         Grid.Row="4"
                         Grid.Column="0"
                         Style="{StaticResource labelStyle}"
-                        Text="LOYALTY POINTS:" />
+                        Text="GRAND TOTAL:" />
                     <Label
                         Grid.Row="5"
                         Grid.Column="0"
                         Style="{StaticResource labelStyle}"
-                        Text="GRAND TOTAL:" />
-                    <Label
-                        Grid.Row="6"
-                        Grid.Column="0"
-                        Style="{StaticResource labelStyle}"
                         Text="AMOUNT PAID:" />
-                    <Label
-                        Grid.Row="7"
-                        Grid.Column="0"
-                        Style="{StaticResource labelStyle}"
-                        Text="CHANGE:" />
 
                     <!--  Right Column  -->
                     <Border Grid.Column="1" Style="{StaticResource borderStyle}">
@@ -297,75 +254,37 @@
                     </Border>
 
 
-                    <Grid
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        ColumnDefinitions="*,*">
-
-                        <Label
-                            FontSize="11"
-                            HorizontalTextAlignment="End"
-                            Style="{StaticResource labelStyle}"
-                            Text="ITEM DISCOUNT %" />
-                        <Label
-                            Grid.Column="1"
-                            FontSize="11"
-                            HorizontalTextAlignment="End"
-                            Style="{StaticResource labelStyle}"
-                            Text="BILL DISCOUNT %" />
-                    </Grid>
-
-                    <Grid
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        ColumnDefinitions="*,*"
-                        ColumnSpacing="5">
-                        <Border Grid.Column="0" Style="{StaticResource borderStyle}">
-                            <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
-                        </Border>
-                        <Border Grid.Column="1" Style="{StaticResource borderStyle}">
-                            <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
-                        </Border>
-
-                    </Grid>
 
                     <Border
-                        Grid.Row="4"
+                        Grid.Row="3"
                         Grid.Column="1"
                         Style="{StaticResource borderStyle}">
-                        <Label Style="{StaticResource labelBorderstyle}" Text="0" />
+                        <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalDiscount, StringFormat='₱{0:N2}'}" />
                     </Border>
 
                     <Border
-                        Grid.Row="5"
+                        Grid.Row="4"
                         Grid.Column="1"
                         Style="{StaticResource borderStyle}">
                         <Label Style="{StaticResource labelBorderstyle}" Text="{Binding GrandTotal, StringFormat='₱{0:N2}'}" />
                     </Border>
 
                     <Border
-                        Grid.Row="6"
+                        Grid.Row="5"
                         Grid.Column="1"
                         Style="{StaticResource borderStyle}">
                         <Label Style="{StaticResource labelBorderstyle}" Text="{Binding TotalAmountPaid, StringFormat='₱{0:N2}'}" />
                     </Border>
 
-                    <Border
-                        Grid.Row="7"
-                        Grid.Column="1"
-                        Style="{StaticResource borderStyle}">
-                        <Label Style="{StaticResource labelBorderstyle}" Text="{Binding ChangeAmount, StringFormat='₱{0:N2}'}" />
-                    </Border>
-
                     <Grid
-                        Grid.Row="8"
+                        Grid.Row="6"
                         Grid.ColumnSpan="2"
                         ColumnDefinitions="*,*"
                         ColumnSpacing="20">
                         <Button
                             Command="{Binding ProcessTenderFloatCommand}"
                             Style="{StaticResource CTAButtonStyle}"
-                            Text="Process payment" />
+                            Text="Payment" />
                         <Button
                             Grid.Column="1"
                             Command="{Binding PrintInvoiceCommand}"
@@ -483,46 +402,31 @@
                 <!--  Sticky Header  -->
                 <Grid
                     BackgroundColor="#84a689"
-                    ColumnDefinitions="*,*,*,*,*,*,*,*,*"
+                    ColumnDefinitions="*,*,*,*,*"
                     HeightRequest="40">
 
                     <!--  Header Labels  -->
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource labelBorderstyle}"
-                        Text="ID" />
+                        Text="Name" />
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource labelBorderstyle}"
-                        Text="Name" />
+                        Text="Price" />
                     <Label
                         Grid.Column="2"
                         Style="{StaticResource labelBorderstyle}"
-                        Text="Barcode" />
+                        Text="Quantity" />
+
                     <Label
                         Grid.Column="3"
                         Style="{StaticResource labelBorderstyle}"
-                        Text="Quantity" />
+                        Text="Discount" />
                     <Label
                         Grid.Column="4"
                         Style="{StaticResource labelBorderstyle}"
-                        Text="Price" />
-                    <Label
-                        Grid.Column="5"
-                        Style="{StaticResource labelBorderstyle}"
-                        Text="Discount %" />
-                    <Label
-                        Grid.Column="6"
-                        Style="{StaticResource labelBorderstyle}"
-                        Text="Discount PHP" />
-                    <Label
-                        Grid.Column="7"
-                        Style="{StaticResource labelBorderstyle}"
-                        Text="VAT" />
-                    <Label
-                        Grid.Column="8"
-                        Style="{StaticResource labelBorderstyle}"
-                        Text="Total Amount" />
+                        Text="Exit Price" />
 
                     <!--  Vertical Dividers  -->
 
@@ -546,18 +450,7 @@
                         Grid.Column="4"
                         HorizontalOptions="End"
                         WidthRequest="2" />
-                    <BoxView
-                        Grid.Column="5"
-                        HorizontalOptions="End"
-                        WidthRequest="2" />
-                    <BoxView
-                        Grid.Column="6"
-                        HorizontalOptions="End"
-                        WidthRequest="2" />
-                    <BoxView
-                        Grid.Column="7"
-                        HorizontalOptions="End"
-                        WidthRequest="2" />
+
                 </Grid>
 
                 <!--  Bottom Border  -->
@@ -570,71 +463,42 @@
                 <!--  Scrollable CollectionView  -->
                 <CollectionView
                     Grid.Row="2"
-                    ItemsSource="{Binding OrderItems}"
+                    ItemsSource="{Binding Order.OrderItems}"
                     SelectedItem="{Binding SelectedOrderItem}"
                     SelectionMode="Single">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:OrderItem">
                             <Grid
-                                ColumnDefinitions="*,*,*,*,*,*,*,*,*"
+                                ColumnDefinitions="*,*,*,*,*"
                                 HeightRequest="40"
                                 RowDefinitions="*,auto">
-                                <FlyoutBase.ContextFlyout>
-                                    <MenuFlyout>
-                                        <MenuFlyoutItem Text="Edit" />
-                                        <MenuFlyoutSeparator />
-                                        <MenuFlyoutItem Text="Delete" />
-                                    </MenuFlyout>
-                                </FlyoutBase.ContextFlyout>
+
                                 <Label
-                                    HorizontalTextAlignment="Center"
-                                    Style="{StaticResource labelStyle}"
-                                    Text="{Binding ProductId}"
-                                    VerticalTextAlignment="Center" />
-                                <Label
-                                    Grid.Column="1"
+                                    Grid.Column="0"
                                     HorizontalTextAlignment="Center"
                                     Style="{StaticResource labelStyle}"
                                     Text="{Binding ProductName, FallbackValue='No value'}"
                                     VerticalTextAlignment="Center" />
                                 <Label
-                                    Grid.Column="2"
-                                    HorizontalTextAlignment="Center"
-                                    Style="{StaticResource labelStyle}"
-                                    Text="{Binding Barcode, FallbackValue='No value'}"
-                                    VerticalTextAlignment="Center" />
-                                <Label
-                                    Grid.Column="3"
-                                    HorizontalTextAlignment="Center"
-                                    Style="{StaticResource labelStyle}"
-                                    Text="{Binding QuantityAtPurchase, FallbackValue='No value'}"
-                                    VerticalTextAlignment="Center" />
-                                <Label
-                                    Grid.Column="4"
+                                    Grid.Column="1"
                                     HorizontalTextAlignment="Center"
                                     Style="{StaticResource labelStyle}"
                                     Text="{Binding PriceAtPurchase, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
                                     VerticalTextAlignment="Center" />
                                 <Label
-                                    Grid.Column="5"
+                                    Grid.Column="2"
                                     HorizontalTextAlignment="Center"
                                     Style="{StaticResource labelStyle}"
-                                    Text="{Binding DiscountPercentage, StringFormat='{0:N2}%', FallbackValue='0.00%'}"
+                                    Text="{Binding QuantityAtPurchase, FallbackValue='No value'}"
                                     VerticalTextAlignment="Center" />
                                 <Label
-                                    Grid.Column="6"
+                                    Grid.Column="3"
                                     HorizontalTextAlignment="Center"
                                     Style="{StaticResource labelStyle}"
                                     Text="{Binding DiscountAmount, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
                                     VerticalTextAlignment="Center" />
                                 <Label
-                                    Grid.Column="7"
-                                    HorizontalTextAlignment="Center"
-                                    Style="{StaticResource labelStyle}"
-                                    Text="{Binding VatAtPurchase, StringFormat='{0:N2}%', FallbackValue='₱0.00'}"
-                                    VerticalTextAlignment="Center" />
-                                <Label
-                                    Grid.Column="8"
+                                    Grid.Column="4"
                                     HorizontalTextAlignment="Center"
                                     Style="{StaticResource labelStyle}"
                                     Text="{Binding TotalAmount, StringFormat='₱{0:N2}', FallbackValue='₱0.00'}"
@@ -663,23 +527,11 @@
                                     Grid.Column="4"
                                     HorizontalOptions="End"
                                     WidthRequest="2" />
-                                <BoxView
-                                    Grid.Column="5"
-                                    HorizontalOptions="End"
-                                    WidthRequest="2" />
-                                <BoxView
-                                    Grid.Column="6"
-                                    HorizontalOptions="End"
-                                    WidthRequest="2" />
-                                <BoxView
-                                    Grid.Column="7"
-                                    HorizontalOptions="End"
-                                    WidthRequest="2" />
 
                                 <!--  Row Divider  -->
                                 <BoxView
                                     Grid.Row="1"
-                                    Grid.ColumnSpan="9"
+                                    Grid.ColumnSpan="5"
                                     HeightRequest="2"
                                     VerticalOptions="End" />
                             </Grid>
@@ -717,6 +569,7 @@
                     Text="CLOSE TALLY"
                     WidthRequest="200" />
                 <Button
+                    Command="{Binding VoidItem}"
                     HeightRequest="40"
                     Text="VOID ITEM"
                     WidthRequest="200" />

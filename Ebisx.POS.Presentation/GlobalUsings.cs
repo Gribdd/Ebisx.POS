@@ -7,10 +7,27 @@ global using Ebisx.POS.Presentation.Models;
 global using Ebisx.POS.Presentation.Services;
 global using System.Collections.ObjectModel;
 global using Ebisx.POS.Presentation.Services.Interface;
-global using Bogus;
 global using Ebisx.POS.Presentation.ViewModels.Manager;
 global using Ebisx.POS.Presentation.ViewModels.Popup.BillDiscount;
 global using Ebisx.POS.Presentation.Views.Manager;
 global using Ebisx.POS.Presentation.Views.Popups.BillDiscount;
 global using CommunityToolkit.Mvvm.Input;
 global using Ebisx.POS.Presentation.Common;
+
+global using Ebisx.POS.Presentation.DTOs.BusinessInfo;
+global using Ebisx.POS.Presentation.DTOs.Customer;
+global using Ebisx.POS.Presentation.DTOs.Discount;
+global using Ebisx.POS.Presentation.DTOs.DiscountType;
+global using Ebisx.POS.Presentation.DTOs.MachineInfo;
+global using Ebisx.POS.Presentation.DTOs.NonCashPaymentMethod;
+global using Ebisx.POS.Presentation.DTOs.Order;
+global using Ebisx.POS.Presentation.DTOs.OrderItem;
+global using Ebisx.POS.Presentation.DTOs.Payment;
+global using Ebisx.POS.Presentation.DTOs.PaymentType;
+global using Ebisx.POS.Presentation.DTOs.Product;
+global using Ebisx.POS.Presentation.DTOs.SalesInvoice;
+global using Ebisx.POS.Presentation.DTOs.User;
+global using Ebisx.POS.Presentation.DTOs.UserRole;
+
+global using AutoMapper;
+global using System.Net.Http.Json;

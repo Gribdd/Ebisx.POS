@@ -1,12 +1,9 @@
-﻿
-using CommunityToolkit.Mvvm.Input;
-using Ebisx.POS.Presentation.Services.Interface;
-
-namespace Ebisx.POS.Presentation.ViewModels;
+﻿namespace Ebisx.POS.Presentation.ViewModels;
 
 public partial class ItemInventoryPageViewModel : BaseViewModel
 {
     private readonly IProductService _productService;
+    private readonly INavigationService _navigationService;
 
     [ObservableProperty]
     public partial ObservableCollection<Product> Products { get; set; } = new();
@@ -31,9 +28,12 @@ public partial class ItemInventoryPageViewModel : BaseViewModel
         }
     }
 
-    public ItemInventoryPageViewModel(IProductService productService)
+    public ItemInventoryPageViewModel(
+        IProductService productService,
+        INavigationService navigationService)
     {
         _productService = productService;
+        _navigationService = navigationService;
     }
 
     public async Task LoadProducts()
@@ -50,11 +50,11 @@ public partial class ItemInventoryPageViewModel : BaseViewModel
         {
             ProductId = selectedProduct.Id,
             ProductName = selectedProduct.Name,
+            Barcode = selectedProduct.Barcode,
             QuantityAtPurchase = 1,
             PriceAtPurchase = selectedProduct.Price,
-            VatAtPurchase = selectedProduct.Vat,            
-            DiscountPercentage = 0,
-            Barcode = selectedProduct.Barcode
+            VatAtPurchase = selectedProduct.Vat,     
+            IsVoided = false
         };
 
         var navigationParameter = new Dictionary<string,object>
@@ -62,7 +62,7 @@ public partial class ItemInventoryPageViewModel : BaseViewModel
             { nameof(OrderItem), orderItem }
         };
 
-        await Shell.Current.GoToAsync("..",navigationParameter);
+        await _navigationService.NavigateToAsync("..", navigationParameter);
     }
 
     private void FilterProducts()

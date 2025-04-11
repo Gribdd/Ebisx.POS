@@ -16,6 +16,7 @@ public class PdfGeneratorService : IPdfGeneratorService
         WebView pdfview,
         BusinessInfo businessInfo,
         MachineInfo machineInfo,
+        Order order,
         User user)
     {
         int number = 1;

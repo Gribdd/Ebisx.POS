@@ -1,9 +1,11 @@
 ﻿namespace Ebisx.POS.Presentation.Models;
 
-public partial class OrderItem : BaseModel
+public partial class OrderItem : ObservableObject
 {
+    public int Id { get; set; }
+
     [ObservableProperty]
-    public partial Guid ProductId { get; set; } // Reference to Product
+    public partial int ProductId { get; set; } // Reference to Product
 
     [ObservableProperty]
     public partial string? ProductName { get; set; } // Store Name for display
@@ -32,5 +34,7 @@ public partial class OrderItem : BaseModel
     [ObservableProperty]
     public partial int OrderId { get; set; }
 
+    [ObservableProperty]
+    public partial bool IsVoided { get; set; } = false;
 }
  

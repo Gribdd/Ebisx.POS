@@ -2,18 +2,19 @@ namespace Ebisx.POS.Presentation.Views;
 
 public partial class HomePage : ContentPage
 {
-    private readonly HomePageViewModel vm;
+    private readonly HomePageViewModel _vm;
 
     public HomePage(HomePageViewModel vm)
 	{
 		InitializeComponent();
-        this.vm = vm;
+        _vm = vm;
         BindingContext = vm;
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        vm.UpdateOrderItems();
+        _vm.UpdateOrderItems();
+        _vm.LoadPaymentMethodsAvailable();
     }
 }

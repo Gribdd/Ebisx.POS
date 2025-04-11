@@ -64,7 +64,7 @@
             <Grid
                 Grid.Row="1"
                 BackgroundColor="#84a689"
-                ColumnDefinitions="*, *, *, *, *, *, *"
+                ColumnDefinitions="*, *, *, *, *, *"
                 HeightRequest="30"
                 RowDefinitions="auto,*, auto">
                 <BoxView
@@ -77,37 +77,31 @@
                 <!--  Header Labels  -->
                 <Label
                     Grid.Row="1"
-                    Grid.Column="0"
-                    Style="{StaticResource labelStyle}"
-                    Text="ID" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="1"
                     Style="{StaticResource labelStyle}"
                     Text="Name" />
                 <Label
                     Grid.Row="1"
-                    Grid.Column="2"
+                    Grid.Column="1"
                     Style="{StaticResource labelStyle}"
                     Text="Barcode" />
                 <Label
                     Grid.Row="1"
-                    Grid.Column="3"
+                    Grid.Column="2"
                     Style="{StaticResource labelStyle}"
                     Text="Quantity" />
                 <Label
                     Grid.Row="1"
-                    Grid.Column="4"
+                    Grid.Column="3"
                     Style="{StaticResource labelStyle}"
                     Text="Price" />
                 <Label
                     Grid.Row="1"
-                    Grid.Column="5"
+                    Grid.Column="4"
                     Style="{StaticResource labelStyle}"
                     Text="VAT%" />
                 <Label
                     Grid.Row="1"
-                    Grid.Column="6"
+                    Grid.Column="5"
                     Style="{StaticResource labelStyle}"
                     Text="Sales Unit" />
 
@@ -176,7 +170,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Product">
                         <Grid
-                            ColumnDefinitions="*, *, *, *, *, *, *, auto"
+                            ColumnDefinitions="*, *, *, *, *, *, auto"
                             HeightRequest="30"
                             RowDefinitions="*, auto">
 
@@ -191,29 +185,25 @@
                             <Label
                                 Grid.Column="0"
                                 Style="{StaticResource labelStyle}"
-                                Text="{Binding Id}" />
+                                Text="{Binding Name}" />
                             <Label
                                 Grid.Column="1"
                                 Style="{StaticResource labelStyle}"
-                                Text="{Binding Name}" />
+                                Text="{Binding Barcode}" />
                             <Label
                                 Grid.Column="2"
                                 Style="{StaticResource labelStyle}"
-                                Text="{Binding Barcode}" />
+                                Text="{Binding Quantity}" />
                             <Label
                                 Grid.Column="3"
                                 Style="{StaticResource labelStyle}"
-                                Text="{Binding Quantity}" />
+                                Text="{Binding Price, StringFormat='₱{0:N2}'}" />
                             <Label
                                 Grid.Column="4"
                                 Style="{StaticResource labelStyle}"
-                                Text="{Binding Price, StringFormat='₱{0:N2}'}" />
-                            <Label
-                                Grid.Column="5"
-                                Style="{StaticResource labelStyle}"
                                 Text="{Binding Vat, StringFormat='{0:f2}%'}" />
                             <Label
-                                Grid.Column="6"
+                                Grid.Column="5"
                                 Style="{StaticResource labelStyle}"
                                 Text="{Binding SalesUnit}" />
 

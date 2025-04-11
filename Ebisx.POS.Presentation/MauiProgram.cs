@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Maui;
-
+using Ebisx.POS.Presentation.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 
@@ -17,7 +17,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
-                .UseMauiCommunityToolkit(options =>
+            .UseMauiCommunityToolkit(options =>
             {
                 options.SetShouldEnableSnackbarOnWindows(true);
             })
@@ -25,13 +25,13 @@ public static class MauiProgram
             .RegisterServices()
             .RegisterViews()
             .RegisterPopups()
+            .RegisterProfiles()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("LuckiestGuy-Regular.ttf", "LuckiestGuyRegular");
             });
-
 #if WINDOWS
         //maximized window on startup in Windows platform
         builder.ConfigureLifecycleEvents(events =>
@@ -81,56 +81,6 @@ public static class MauiProgram
 #endif
 
         return builder.Build();
-    }
-
-    private static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
-    {
-        mauiAppBuilder.Services.AddSingleton<IProductService, ProductService>();
-        mauiAppBuilder.Services.AddSingleton<INavigationService, NavigationService>();
-        mauiAppBuilder.Services.AddSingleton<ISettingsService, SettingsService>();
-        mauiAppBuilder.Services.AddSingleton<IUserService, UserService>();
-        mauiAppBuilder.Services.AddSingleton<IMachineInfoService, MachineInfoService>();
-        mauiAppBuilder.Services.AddSingleton<IBusinessInfoService, BusinessInfoService>();
-        mauiAppBuilder.Services.AddSingleton<IPdfGeneratorService, PdfGeneratorService>();
-        return mauiAppBuilder;
-    }
-
-    private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
-    {
-        //employee
-        mauiAppBuilder.Services.AddTransient<MainPageViewModel>();
-        mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
-        mauiAppBuilder.Services.AddTransient<ItemInventoryPageViewModel>();
-        mauiAppBuilder.Services.AddTransient<PrintSalesInvoicePageViewModel>();
-
-        //manager
-        mauiAppBuilder.Services.AddTransient<ManagerEmployeesPageViewModel>();
-        mauiAppBuilder.Services.AddTransient<ManagerHomePageViewModel>();
-        mauiAppBuilder.Services.AddTransient<ManagerInventoryPageViewModel>();
-        mauiAppBuilder.Services.AddTransient<ManagerInventoryAddItemPageViewModel>();
-        mauiAppBuilder.Services.AddTransient<ManagerSalesPageViewModel>();
-        mauiAppBuilder.Services.AddTransient<ManagerTransactionPageViewModel>();
-        return mauiAppBuilder;  
-    }
-
-    private static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
-    {
-        mauiAppBuilder.Services.AddSingleton<AppShell>();
-        mauiAppBuilder.Services.AddTransient<ManagerAddInventoryItem>();
-        mauiAppBuilder.Services.AddTransient<ManagerInventoryPage>();
-        mauiAppBuilder.Services.AddTransient<ManagerHomePage>();
-        return mauiAppBuilder;
-    }
-
-    private static MauiAppBuilder RegisterPopups(this MauiAppBuilder mauiAppBuilder)
-    {
-        //popups
-        mauiAppBuilder.Services.AddTransientPopup<PaymentPopup, PaymentPopupViewModel>();
-        mauiAppBuilder.Services.AddTransientPopup<CashPaymentPopup, CashPaymentPopupViewModel>();
-        mauiAppBuilder.Services.AddTransientPopup<BillDiscountPopup, BillDiscountPopupViewModel>();
-        mauiAppBuilder.Services.AddTransientPopup<BillDiscountDetailsPopup, BillDiscountDetailsPopupViewModel>();
-        mauiAppBuilder.Services.AddTransientPopup<ItemDiscountPage, ItemDiscountPageViewModel>();
-        return mauiAppBuilder;
     }
 }
 
